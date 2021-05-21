@@ -31,15 +31,20 @@ function App() {
 
   
   return (
-    <div className="App">
-      {(user.email != "")?(
-        <div>
-          <h2>Welcome, <span>{user.name}</span></h2>
-          <button onClick={Logout}>Logout</button>
-        </div>
-      ):(
-        <LoginForm Login={Login} error={error}/>)}
-    </div>
+    <ul>
+      <li className="title">
+          <h1>Info Exchange</h1>
+      </li>
+      <li className="App">
+        {(user.email != "")?(
+          <div>
+            <h2>Welcome, <span>{user.name}</span></h2>
+            <button onClick={Logout}>Logout</button>
+          </div>
+        ):(
+          <LoginForm Login={Login} error={error}/>)}
+      </li>
+    </ul>
   );
 }
 

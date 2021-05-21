@@ -5,6 +5,15 @@
 
 }
 
+ul, li {
+  height: 100vh;
+}
+
+ul {
+  column-count: 2;
+  column-gap: 0;
+}
+
 input, button {
   appearance: none;
   background: none;
@@ -18,7 +27,19 @@ input, button {
   align-items: center;
   justify-content: center;
   background-color: #bfbfbf;
+  width:100%;
 }
+
+.title {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #bfbfbf;
+  width:100%;
+}
+
+
 
 form {
   display: block;
