@@ -1,10 +1,10 @@
 import React, {useState} from 'react'
 import LoginForm from './LoginForm'
-function RegisterForm (AdminUser){
+function RegisterForm ({AdminUser, Change}){
     const [details, setDetails]=useState({name:"", email:'',password:''})
     const submitHandler=e=>{
         e.preventDefault()
-        AdminUser(details)
+        //AdminUser(details)
     }
     return (
         <div>
@@ -12,7 +12,7 @@ function RegisterForm (AdminUser){
                 <div className="form-inner">
                     <div>
                         <h2>Sign Up</h2>
-                        <button onClick={<LoginForm/>}>I already have an account</button>
+                        <button onClick={()=>Change()}>I already have an account</button>
                     </div>
                     <div className="form-group">
                         <label htmlFor="name">Name: </label>

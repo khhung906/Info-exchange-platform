@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import RegisterForm from './RegisterForm'
-function LoginForm({Login, error}) {
+function LoginForm({Login, error, Change}) {
     const [details, setDetails]=useState({name:"", email:'',password:''})
     const submitHandler=e=>{
         e.preventDefault()
@@ -11,7 +11,7 @@ function LoginForm({Login, error}) {
             <div className="form-inner">
                 <div>
                     <h2>Sign in</h2>
-                    <button onClick={<RegisterForm/>}>I don't have an account</button>
+                    <button onClick={()=>Change()}>I don't have an account</button>
                 </div>
                 {(error !='')?(<div className='error'>{error}</div>):''}
                 <div className="form-group">

@@ -7,8 +7,10 @@ function App() {
     email: "123",
     password:"123"
   }
-  const [user, setUser]=useState({name:'',email:''})
-  const [error, setError]=useState('')
+  const [user, setUser] = useState({name:'',email:''})
+  const [error, setError] = useState('')
+  const [FormType, setType] = useState('login')
+
   const Login = details => {
     console.log(details);
     if (details.email==adminUser.email && details.password==adminUser.password){
@@ -22,14 +24,27 @@ function App() {
       setError("Details do not match.")
     }
   }
+
+  const AdminUser = () =>{
+
+  }
+
   const Logout = () => {
     console.log("Logout")
     setUser({name:'', email:''})
   }
 
+  const FormSwitch = () => {
+    console.log('change-form');
+    if(FormType === 'login'){
+      setType('register')
+    }
+    else{
+      setType('login')
+    }
+  }
 
 
-  
   return (
     <ul>
       <li className="title">
@@ -42,7 +57,8 @@ function App() {
             <button onClick={Logout}>Logout</button>
           </div>
         ):(
-          <LoginForm Login={Login} error={error}/>)}
+          (FormType === "login")?(<LoginForm Login={Login} error={error} Change={FormSwitch}/>):(
+            <RegisterForm AdminUser={AdminUser} Change={FormSwitch}/>))}
       </li>
     </ul>
   );
