@@ -1,0 +1,146 @@
+* {
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+
+}
+
+ul, li {
+  height: 100vh;
+}
+
+ul {
+  column-count: 2;
+  column-gap: 0;
+}
+
+.navBar {
+  overflow: hidden;
+  background-color: #333;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.navBar a{
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  cursor: pointer;
+}
+
+.redirect {
+  float: right;
+}
+
+.redirect:hover {
+  background: #ddd;
+  color: black;
+}
+
+input, button {
+  appearance: none;
+  background: none;
+  border: none;
+  outline: none;
+}
+
+.App {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #bfbfbf;
+  width:100%;
+}
+
+.title {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #bfbfbf;
+  width:100%;
+}
+
+.title-name {
+  font-family: "copperplate", fantasy;
+  float: left;
+}
+
+form {
+  display: block;
+  position: relative;
+  filter: drop-shadow(0 0 30px #333)
+}
+
+form .form-inner {
+  position: relative;
+  display: block;
+  background-color: white;
+  padding:50px;
+  z-index:2;
+  border-radius: 5px;
+}
+
+.form-inner .form-group label {
+  display: block;
+  color: gray;
+  margin-bottom: 50px;
+}
+
+form .form-inner .form-group input {
+  display:block;
+  width:300px;
+  padding: 20px 15px;
+  background-color: rgb(156, 155, 153);
+  border-radius: 8px;
+  margin-bottom: 50px;
+}
+
+form .form-inner input[type="submit"] {
+  margin: 10px 0 0 0;
+  padding: 7px 10px;
+  border: 1px solid #efffff;
+  border-radius: 10px;
+  background: #3085d6;
+  width: 100%; 
+  font-size: 30px;
+  color: white;
+  display: block;
+  cursor: pointer;
+}
+
+form .form-inner input[type="submit"]:hover {
+  background-position: 100% 0%;
+  background-color: #379af7;
+}
+
+::placeholder {
+  color:black
+}
+
+.switch-form {
+  margin: 10px 0 0 0;
+  padding: 7px 10px;
+  border: 1px solid #efffff;
+  border-radius: 10px;
+  background: #ca7616;
+  width: 100%; 
+  font-size: 15px;
+  color: white;
+  display: block;
+  cursor: pointer;
+}
+
+.switch-form:hover {
+  background-color: #f8911b;
+}
+
+.rights {
+  text-align: center;
+  font-size: x-small;
+}
