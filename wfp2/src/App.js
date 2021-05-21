@@ -7,7 +7,7 @@ function App() {
     email: "123",
     password:"123"
   }
-  const [user, setUser] = useState({name:'',email:''})
+  const [guest, setGuest] = useState({name:'',email:''})
   const [error, setError] = useState('')
   const [FormType, setType] = useState('login')
 
@@ -15,7 +15,7 @@ function App() {
     console.log(details);
     if (details.email==adminUser.email && details.password==adminUser.password){
       console.log("Logged in")
-      setUser({
+      setGuest({
         name: details.name,
         email: details.email
       })
@@ -26,12 +26,14 @@ function App() {
   }
 
   const AdminUser = () =>{
-
   }
+
+  // const [user, setUser]= useState=([{name:'', email:'', password:''}])
+
 
   const Logout = () => {
     console.log("Logout")
-    setUser({name:'', email:''})
+    setGuest({name:'', email:''})
   }
 
   const FormSwitch = () => {
@@ -48,12 +50,12 @@ function App() {
   return (
     <ul>
       <li className="title">
-          <h1>Info Exchange</h1>
+          <h1 className="title-name">Info Exchange</h1>
       </li>
       <li className="App">
-        {(user.email != "")?(
+        {(guest.email != "")?(
           <div>
-            <h2>Welcome, <span>{user.name}</span></h2>
+            <h2>Welcome, <span>{guest.name}</span></h2>
             <button onClick={Logout}>Logout</button>
           </div>
         ):(

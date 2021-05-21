@@ -39,6 +39,9 @@ input, button {
   width:100%;
 }
 
+.title-name {
+  font-family: "copperplate", fantasy;
+}
 
 form {
   display: block;
@@ -73,7 +76,7 @@ form .form-inner input[type="submit"] {
   margin: 10px 0 0 0;
   padding: 7px 10px;
   border: 1px solid #efffff;
-  border-radius: 3px;
+  border-radius: 10px;
   background: #3085d6;
   width: 100%; 
   font-size: 15px;
@@ -89,4 +92,21 @@ form .form-inner input[type="submit"]:hover {
 
 ::placeholder {
   color:black
+}
+
+.switch-form {
+  margin: 10px 0 0 0;
+  padding: 7px 10px;
+  border: 1px solid #efffff;
+  border-radius: 10px;
+  background: #ca7616;
+  width: 100%; 
+  font-size: 15px;
+  color: white;
+  display: block;
+  cursor: pointer;
+}
+
+.switch-form:hover {
+  background-color: #f8911b;
 }
