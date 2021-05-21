@@ -86,3 +86,7 @@ form .form-inner input[type="submit"]:hover {
   background-position: 100% 0%;
   background-color: #379af7;
 }
+
+::placeholder {
+  color:black
+}
