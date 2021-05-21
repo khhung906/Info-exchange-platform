@@ -40,14 +40,11 @@ input, button {
 }
 
 
-
 form {
   display: block;
   position: relative;
   filter: drop-shadow(0 0 30px #333)
 }
-
-
 
 form .form-inner {
   position: relative;
@@ -66,7 +63,7 @@ form .form-inner {
 
 form .form-inner .form-group input {
   display:block;
-  width:100%;
+  width:300px;
   padding: 10px 15px;
   background-color: rgb(156, 155, 153);
   border-radius: 8px;
