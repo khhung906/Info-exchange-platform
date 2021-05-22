@@ -1,0 +1,12 @@
+{
+  "name": "Info-exchange-platform",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/johnsonhung906/Info-exchange-platform.git",
+  "author": "fhj0604 <72683996+fhj0604@users.noreply.github.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "cd frontend && yarn start",
+    "server": "cd backend && yarn server"
+  }
+}

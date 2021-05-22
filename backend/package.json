@@ -1,0 +1,16 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "server": "nodemon src/server.js"
+  },
+  "dependencies": {
+    "dotenv-defaults": "^2.0.1",
+    "express": "^4.17.1",
+    "generate-curl": "^1.0.4",
+    "mongoose": "^5.12.10"
+  }
+}
