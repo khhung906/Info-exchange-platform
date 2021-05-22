@@ -18,19 +18,30 @@ function App() {
   const Login = async(details) => {
     console.log(details)
     const password = details.password;
-    const mail = details.email;
+    const email = details.email;
     const {
       data: { message, data}
     } = await instance.get('api/GetUserInfo', {
-      mail, 
-      password
+      params : {password, email} //password : password, mail : mail
     });
     console.log(message)
     //if fail
     //setError("Details do not match.")
   }
 
-  const CreateAccount = () =>{
+  const CreateAccount = async(details) =>{
+    console.log(details)
+    const name = details.name;
+    const email = details.email;
+    const password = details.password;
+    const {
+      data : { message}
+    } = await instance.post('api/CreateUser', {
+      name,
+      email,
+      password
+    });
+    console.log(message);
     //if fail
     //setError("Account already exist.")
   }
