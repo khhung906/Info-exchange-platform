@@ -1,31 +1,38 @@
 import React, {useState} from 'react'
 import LoginForm from "./components/LoginForm"
 import RegisterForm from './components/RegisterForm'
+import axios from 'axios'
+
+const API_ROOT = 'http://localhost:4000'
+
+const instance = axios.create({
+  baseURL: API_ROOT,
+})
 
 function App() {
-  const adminUser ={
-    email: "123",
-    password:"123"
-  }
   const [guest, setGuest] = useState({email:'', password:''})
   const [error, setError] = useState('')
   const [FormType, setType] = useState('login')
+  
 
-  const Login = details => {
-    console.log(details);
-    if (details.email==adminUser.email && details.password==adminUser.password){
-      console.log("Logged in")
-      setGuest({
-        email: details.email,
-        password: details.password
-      })
-    } else {
-      console.log("Details do not match.")
-      setError("Details do not match.")
-    }
+  const Login = async(details) => {
+    console.log(details)
+    const password = details.password;
+    const mail = details.email;
+    const {
+      data: { message, data}
+    } = await instance.get('api/GetUserInfo', {
+      mail, 
+      password
+    });
+    console.log(message)
+    //if fail
+    //setError("Details do not match.")
   }
 
-  const AdminUser = () =>{
+  const CreateAccount = () =>{
+    //if fail
+    //setError("Account already exist.")
   }
 
   // const [user, setUser]= useState=([{name:'', email:'', password:''}])
@@ -52,25 +59,31 @@ function App() {
       <div className="navBar">
         <a className="title-name">Info Exchange</a>
         <a className="redirect">About Us</a>
+        <a className="redirect">Help</a>
         <a className="redirect">Language</a>
       </div>
+      <hr className="bar-line"/>
       <div>
         <ul>
           <li className="title">
               <div>
                 <h1 className="title-name">Where you find what you need?</h1>
+                <p className="title-context">use some dynamic design here</p>
+                <p className="title-context"></p>
+                <p className="title-context"></p>
+                <p className="title-context"></p>
                 <p className="rights">@2021 NTU All Rigts Reserved.</p>
               </div>
           </li>
           <li className="App">
-            {(guest.email != "")?(
+            {(guest.email !== "")?(
               <div>
                 <h1>Welcome</h1>
                 <button onClick={Logout}>Logout</button>
               </div>
             ):(
               (FormType === "login")?(<LoginForm Login={Login} error={error} Change={FormSwitch}/>):(
-                <RegisterForm AdminUser={AdminUser} Change={FormSwitch}/>))}
+                <RegisterForm CreateAccount={CreateAccount} Change={FormSwitch}/>))}
           </li>
         </ul>
       </div>

@@ -8,7 +8,7 @@ function LoginForm({Login, error, Change}) {
     return (
         <form onSubmit={submitHandler}>
             <div className="form-inner">
-                <div>
+                <div className="form-title"> 
                     <h2>Sign In</h2>
                 </div>
                 {(error !='')?(<div className='error'>{error}</div>):''}
@@ -21,7 +21,8 @@ function LoginForm({Login, error, Change}) {
                     <input type="password" name="password" id="password" placeholder="Password" onChange={e=>setDetails({...details, password:e.target.value})} value={details.password}/>
                 </div>
                 <input type="submit" value="Login"/>
-                <button className="switch-form" onClick={()=>Change()}>I don't have an account</button>
+                <hr/>
+                <button className="switch-form" onClick={()=>Change()}>Join Us</button>
             </div>
         </form>
     )

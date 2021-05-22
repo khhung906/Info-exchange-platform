@@ -1,12 +1,16 @@
 import express from 'express'; 
 import mongoose from 'mongoose';
 import routes from './routes/index.js';
+import cors from 'cors';
 //should be called before mongo.connect
 import dotenv from 'dotenv';
 dotenv.config();
 
 const app = express(); 
 const port = process.env.PORT || 4000; 
+
+app.use(cors());
+app.use(express.json());
 app.use('/', routes);
 
 function connectMongo() {

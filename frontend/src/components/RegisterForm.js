@@ -1,16 +1,16 @@
 import React, {useState} from 'react'
-function RegisterForm ({AdminUser, Change}){
-    const [details, setDetails]=useState({name:"", email:'',password:''})
+function RegisterForm ({CreateAccount, Change}){
+    const [details, setDetails]=useState({name:'', email:'',password:''})
     const submitHandler=e=>{
         e.preventDefault()
-        AdminUser(details)
+        CreateAccount(details)
         console.log(details)
     }
     return (
         <div>
             <form onSubmit={submitHandler}>
                 <div className="form-inner">
-                    <div>
+                    <div className="form-title">
                         <h2>Sign Up</h2>
                     </div>
                     <div className="form-group">
@@ -25,7 +25,8 @@ function RegisterForm ({AdminUser, Change}){
                         <label htmlFor="password"></label>
                         <input type="password" name="password" id="password" placeholder="Password" onChange={e=>setDetails({...details, password:e.target.value})} value={details.password}/>
                     </div>
-                    <input type="submit" value="Login"/>
+                    <input type="submit" value="Create"/>
+                    <hr/>
                     <button className="switch-form" onClick={()=>Change()}>I already have an account</button>
                 </div>
             </form>

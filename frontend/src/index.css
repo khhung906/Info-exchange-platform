@@ -16,15 +16,19 @@ ul {
 
 .navBar {
   overflow: hidden;
-  background-color: #333;
+  background-color: #f7f3f3;
   position: fixed;
   top: 0;
   width: 100%;
 }
 
+/* .bar-line{
+  color: #333;
+} */
+
 .navBar a{
   display: block;
-  color: #f2f2f2;
+  color: black;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
@@ -37,8 +41,8 @@ ul {
 }
 
 .redirect:hover {
-  background: #ddd;
-  color: black;
+  border-radius: 8px;
+  color: rgb(172, 167, 167);
 }
 
 input, button {
@@ -53,7 +57,7 @@ input, button {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #bfbfbf;
+  background-color: #f8f5f5;
   width:100%;
 }
 
@@ -62,13 +66,17 @@ input, button {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #bfbfbf;
+  background-color: #f7f3f3;
   width:100%;
 }
 
 .title-name {
   font-family: "copperplate", fantasy;
   float: left;
+}
+
+.title-context {
+  text-align: center;
 }
 
 form {
@@ -86,29 +94,44 @@ form .form-inner {
   border-radius: 5px;
 }
 
+form .form-inner .form-title {
+  font-style:inherit;
+}
+
 .form-inner .form-group label {
   display: block;
-  color: gray;
-  margin-bottom: 50px;
+  color: rgb(196, 194, 194);
+  margin-bottom: 25px;
 }
 
 form .form-inner .form-group input {
   display:block;
-  width:300px;
+  width:350px;
+  color: black;
   padding: 20px 15px;
-  background-color: rgb(156, 155, 153);
-  border-radius: 8px;
-  margin-bottom: 50px;
+  border-width: 1px;
+  border-color: #d2dae0;
+  border-radius:10px 10px 10px 10px;
+  border-style: solid;
+  margin-bottom: 25px;
+}
+form .form-inner hr{
+  margin-top: 30px;
+}
+
+form .form-inner .form-group input:focus{
+  border-color: #48a2f7;
 }
 
 form .form-inner input[type="submit"] {
   margin: 10px 0 0 0;
   padding: 7px 10px;
   border: 1px solid #efffff;
-  border-radius: 10px;
-  background: #3085d6;
+  border-radius: 8px;
+  background: #48a2f7;
   width: 100%; 
-  font-size: 30px;
+  height: 60px;
+  font-size: 25px;
   color: white;
   display: block;
   cursor: pointer;
@@ -120,24 +143,27 @@ form .form-inner input[type="submit"]:hover {
 }
 
 ::placeholder {
-  color:black
+  color:rgb(107, 102, 102);
 }
 
 .switch-form {
-  margin: 10px 0 0 0;
+  margin: 30px 0 0 0;
   padding: 7px 10px;
   border: 1px solid #efffff;
-  border-radius: 10px;
-  background: #ca7616;
-  width: 100%; 
-  font-size: 15px;
+  border-radius: 8px;
+  background: #f39e3d;
+  margin-left: 10%;
+  width: 80%; 
+  align-self: center;
+  height: 45px;
+  font-size: 20px;
   color: white;
   display: block;
   cursor: pointer;
 }
 
 .switch-form:hover {
-  background-color: #f8911b;
+  background-color: #f18f1e;
 }
 
 .rights {

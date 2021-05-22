@@ -10,7 +10,7 @@ router.post('/CreateUser', async function (req, res) {
     const existing = await Account.findOne({mail : data.mail});
     if (existing) {
       console.log("Account exists");
-      res.status(400).send({msg : "Account exists"});
+      res.send({msg : "Account exists"});
     }
     else {
       data.credit = 100;
@@ -28,14 +28,14 @@ router.post('/CreateUser', async function (req, res) {
 router.get('/GetUserInfo', async function(req, res) {
   try {
     const data = new Account(req.query);
-    const existing = await Account.findOne({name : data.name, mail : data.mail, password : data.password});
+    const existing = await Account.findOne({mail : data.mail, password : data.password});
     if (existing) {
       console.log("login successfully");
       res.send({message : "login successfully", Info : existing});
     }
     else {
       console.log("Account doesn't exist");
-      res.status(400).send({message : "Account doesn't exist"});
+      res.send({message : "Account doesn't exist"});
     }
   } catch(e) {
     console.log("Something went wrong");
