@@ -16,7 +16,7 @@ ul {
 
 .navBar {
   overflow: hidden;
-  background-color: #f7f3f3;
+  background-color: #f8f5f5;
   position: fixed;
   top: 0;
   width: 100%;
@@ -57,7 +57,7 @@ input, button {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #f8f5f5;
+  background-color: #f7f3f3;
   width:100%;
 }
 
@@ -121,6 +121,10 @@ form .form-inner hr{
 
 form .form-inner .form-group input:focus{
   border-color: #48a2f7;
+}
+
+form .form-inner .error-form input{
+  border-color: red;
 }
 
 form .form-inner input[type="submit"] {

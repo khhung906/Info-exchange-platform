@@ -10,7 +10,7 @@ router.post('/CreateUser', async function (req, res) {
     const existing = await Account.findOne({email : data.email});
     if (existing) {
       console.log("Account exists");
-      res.send({msg : "Account exists"});
+      res.send({message : "Account exists"});
     }
     else {
       data.credit = 100;

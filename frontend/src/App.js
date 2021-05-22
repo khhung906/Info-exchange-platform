@@ -1,103 +1,30 @@
 import React, {useState} from 'react'
-import LoginForm from "./components/LoginForm"
-import RegisterForm from './components/RegisterForm'
-import axios from 'axios'
+import { NavLink, Switch, Route, Redirect } from "react-router-dom";
+import HomePage from './components/HomePage'
+import AboutUs from './components/AboutUs'
+import Help from './components/Help'
+import MainPage from './components/MainPage';
 
-const API_ROOT = 'http://localhost:4000'
-
-const instance = axios.create({
-  baseURL: API_ROOT,
-})
-
+//language function undesigned
 function App() {
-  const [guest, setGuest] = useState({email:'', password:''})
-  const [error, setError] = useState('')
-  const [FormType, setType] = useState('login')
-  
-
-  const Login = async(details) => {
-    console.log(details)
-    const password = details.password;
-    const email = details.email;
-    const {
-      data: { message, data}
-    } = await instance.get('api/GetUserInfo', {
-      params : {password, email} //password : password, mail : mail
-    });
-    console.log(message)
-    //if fail
-    //setError("Details do not match.")
+  const [login, setLogin] = useState(false)
+  const log_in = () =>{
+    setLogin(true);
   }
-
-  const CreateAccount = async(details) =>{
-    console.log(details)
-    const name = details.name;
-    const email = details.email;
-    const password = details.password;
-    const {
-      data : { message}
-    } = await instance.post('api/CreateUser', {
-      name,
-      email,
-      password
-    });
-    console.log(message);
-    //if fail
-    //setError("Account already exist.")
-  }
-
-  // const [user, setUser]= useState=([{name:'', email:'', password:''}])
-
-
-  const Logout = () => {
-    console.log("Logout")
-    setGuest({email:''})
-  }
-
-  const FormSwitch = () => {
-    console.log('change-form');
-    if(FormType === 'login'){
-      setType('register')
-    }
-    else{
-      setType('login')
-    }
-  }
-
-
   return (
     <div>
       <div className="navBar">
-        <a className="title-name">Info Exchange</a>
-        <a className="redirect">About Us</a>
-        <a className="redirect">Help</a>
-        <a className="redirect">Language</a>
+        <NavLink className="title-name" to="/home">Info Exchange</NavLink>
+        <NavLink className="redirect" to="/aboutus">About Us</NavLink>
+        <NavLink className="redirect" to="/help">Help</NavLink>
       </div>
       <hr className="bar-line"/>
-      <div>
-        <ul>
-          <li className="title">
-              <div>
-                <h1 className="title-name">Where you find what you need?</h1>
-                <p className="title-context">use some dynamic design here</p>
-                <p className="title-context"></p>
-                <p className="title-context"></p>
-                <p className="title-context"></p>
-                <p className="rights">@2021 NTU All Rigts Reserved.</p>
-              </div>
-          </li>
-          <li className="App">
-            {(guest.email !== "")?(
-              <div>
-                <h1>Welcome</h1>
-                <button onClick={Logout}>Logout</button>
-              </div>
-            ):(
-              (FormType === "login")?(<LoginForm Login={Login} error={error} Change={FormSwitch}/>):(
-                <RegisterForm CreateAccount={CreateAccount} Change={FormSwitch}/>))}
-          </li>
-        </ul>
-      </div>
+      <Switch>
+          <Route exact path="/" component={login? ()=><MainPage />: ()=><HomePage log_in = {log_in}/>} />
+          <Route exact path="/help" component={Help} />
+          <Route exact path="/aboutus" component={AboutUs} />
+          <Redirect from="/home" to="/" />
+      </Switch>
     </div>
   );
 }
