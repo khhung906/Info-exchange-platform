@@ -20,6 +20,10 @@ function HomePage({log_in}) {
     console.log(details)
     const password = details.password;
     const email = details.email;
+    if (email.trim() === "" || password.trim() === "") {
+      setError("You must enter a message");
+      return;
+    }
     const {
       data: {message, data}
     } = await instance.get('api/GetUserInfo', {
@@ -36,6 +40,10 @@ function HomePage({log_in}) {
     const name = details.name;
     const email = details.email;
     const password = details.password;
+    if (email.trim() === "" || password.trim() === "" || name.trim() === "") {
+      setError("You must enter a message");
+      return;
+    }
     const {
       data : {message}
     } = await instance.post('api/CreateUser', {
@@ -65,7 +73,6 @@ function HomePage({log_in}) {
       setType('login')
     }
   }
-
 
   return (
     <div>
