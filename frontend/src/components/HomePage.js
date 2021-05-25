@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import LoginForm from "./LoginForm"
 import RegisterForm from './RegisterForm'
-
+import { NavLink, Switch, Route, Redirect } from "react-router-dom";
 import axios from 'axios'
 
 const API_ROOT = 'http://localhost:4000'
@@ -76,6 +76,12 @@ function HomePage({log_in}) {
 
   return (
     <div>
+      <div className="navBar">
+        <NavLink className="title-name" to="/home">Info Exchange</NavLink>
+        <NavLink className="redirect" to="/aboutus">About Us</NavLink>
+        <NavLink className="redirect" to="/help">Help</NavLink>
+      </div>
+      <hr className="bar-line"/>
         <ul>
             <li className="title">
                 <div>

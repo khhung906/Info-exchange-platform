@@ -18,7 +18,6 @@ function App() {
         <NavLink className="redirect" to="/aboutus">About Us</NavLink>
         <NavLink className="redirect" to="/help">Help</NavLink>
       </div> */}
-      <hr className="bar-line"/>
       <Switch>
           <Route exact path="/" component={login? ()=><MainPage />: ()=><HomePage log_in = {log_in}/>} />
           <Route exact path="/help" component={Help} />
