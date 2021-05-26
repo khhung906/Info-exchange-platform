@@ -4,6 +4,7 @@ import HomePage from './components/HomePage'
 import AboutUs from './components/AboutUs'
 import Help from './components/Help'
 import MainPage from './components/MainPage';
+import Calender from './components/Calender';
 
 //language function undesigned
 function App() {
@@ -22,6 +23,7 @@ function App() {
           <Route exact path="/" component={login? ()=><MainPage />: ()=><HomePage log_in = {log_in}/>} />
           <Route exact path="/help" component={Help} />
           <Route exact path="/aboutus" component={AboutUs} />
+          <Route exact path="/calender" component={Calender} />
           <Redirect from="/home" to="/" />
       </Switch>
     </div>
