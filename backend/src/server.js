@@ -4,6 +4,7 @@ import routes from './routes/index.js';
 import cors from 'cors';
 //should be called before mongo.connect
 import dotenv from 'dotenv';
+import { dataInit } from './upload.js'
 dotenv.config();
 
 const app = express(); 
@@ -28,7 +29,7 @@ function connectMongo() {
 }
 
 connectMongo();
-
+dataInit();
 
 
 

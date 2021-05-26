@@ -6,7 +6,9 @@ const accountSchema = new Schema({
     email : String,
     password : String,
     credit : Number,
-    money : Number
+    money : Number,
+    course : [String]
+    //courses : Array
 })
 
 export default mongoose.model('Account', accountSchema);
