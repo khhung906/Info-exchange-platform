@@ -18,8 +18,11 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
-import Paper from '@material-ui/core/Paper';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
 
 
 // function Copyright() {
@@ -57,10 +60,13 @@ const useStyles = makeStyles((theme) => ({
   },
   feature_selection: {
     display: 'flex',
-    flexWrap: 'wrap', '& >*': {margin: theme.spacing(1), width: theme.spacing(16), height: theme.spacing(16),},
+    flexWrap: 'wrap', '& >*': {margin: theme.spacing(1), width: theme.spacing(30), height: theme.spacing(30),},
   },
   moneyButton: {
     marginRight: "10px",
+  },
+  media: {
+    height:140,
   }
 }));
 
@@ -106,7 +112,7 @@ function MainPage() {
 
     return (
       <div>
-        <div>
+        <div style={{ background: '#f7f3f3' }}>
           <AppBar position="static" style={{ background: 'gray' }}>
             <Toolbar>
               {['left'].map((anchor) => (
@@ -150,16 +156,16 @@ function MainPage() {
           </Menu>
         </div>
         <div className={classes.feature_selection}>
-          <Paper elevation={10}/>
-          <Paper elevation={10}/>
-          <Paper elevation={10}/>
-          <Paper elevation={10}/>
-          <Paper elevation={10}/>
-          <Paper elevation={10}/>
-          <Paper elevation={10}/>
-          <Paper elevation={10}/>
-          <Paper elevation={10}/>
-          <Paper elevation={10}/>
+          <Card>
+            <CardActionArea>
+              <CardMedia className={classes.media} image="/AppImg/Calender.jpg"/>
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="h2">
+                  Exam/HW Calender
+                </Typography>
+              </CardContent>
+            </CardActionArea>
+          </Card> 
         </div>
       </div>
     );
