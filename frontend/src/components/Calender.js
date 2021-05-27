@@ -2,10 +2,13 @@ import React, {useState} from 'react'
 import Button from '@material-ui/core/Button';
 import MainPageTopBar from './MainPageTopBar';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
-import AddCourse from './AddCourse'
+import AddCourse from './AddCourse';
+import Calendar from 'react-calendar'
+import DeleteCourse from './DeleteCourse';
+
 
 function Calender() {
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -15,13 +18,22 @@ function Calender() {
         setOpen(false);
     };
 
+    const [value, onChange] =useState(new Date())
+
+  
     return (
       <div>
           <MainPageTopBar/>
-            <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-                add course
-            </Button>
-          <AddCourse open={open} onClose={handleClose} />
+            <AddCourse open={open} onClose={handleClose}/>
+              <Button variant="contained" color="primary" onClick={handleClickOpen}>
+                  Add Course
+              </Button>
+            <DeleteCourse open={open} onClose={handleClose}/>
+              <Button variant="contained" color="primary" onClick={handleClickOpen}>
+                  Delete Course
+              </Button>
+          <Calendar onChange={onChange} value={value} className="react-calendar">
+          </Calendar>
       </div>
     );
   }

@@ -33,7 +33,7 @@ function AddCourse(props) {
 
   return (
     <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open}>
-      <DialogTitle id="simple-dialog-title">Add Course</DialogTitle>
+      <DialogTitle id="simple-dialog-title">Delete Course</DialogTitle>
       <form className={classes.root} noValidate autoComplete="off">
         <TextField id="standard-basic" label="Class ID" />
       </form>
