@@ -12,17 +12,7 @@ const localizer = momentLocalizer(moment);
 
 function Calender() {
     const [open, setOpen] = useState(false);
-
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
-
-    const handleClose = (value) => {
-        setOpen(false);
-    };
-
-    const now = new Date();
-    const events = [
+    const [events, setEvents]=useState([
       {
           id: 0,
           title: 'All Day Event very long title',
@@ -36,21 +26,29 @@ function Calender() {
         start: new Date(2015, 3, 7),
         end: new Date(2015, 3, 10),
       },
-      {
-          id: 2,
-          title: 'DTS STARTS',
-          start: new Date(2016, 2, 13, 0, 0, 0),
-          end: new Date(2016, 2, 20, 0, 0, 0),
-      },
-      {
-        id: 3,
-        title: 'Today',
-        start: now,
-        end: now,
-      },
-    ]
+    ]);
+    const now = new Date();
+
+    const handleClickOpen = () => {
+      setOpen(true);
+    };
+
+    const handleClose = (value) => {
+        setOpen(false);
+    };
+
     const onSelect = (event) =>{
       console.log(event)
+      // console.log('open');
+      // let e = [...events];
+      // e.push({
+      //     id: 4,
+      //     title: 'hihi',
+      //     allDay: true,
+      //     start: new Date(2021, 5, 4),
+      //     end: new Date(2021, 5, 25),
+      // })
+      //setEvents(e);
     }
 
     return (
