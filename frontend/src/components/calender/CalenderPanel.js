@@ -76,12 +76,19 @@ function CalenderPanel(props) {
         else o[event.target.name] = true;
         setCourse(c);
         let show = [];
+        console.log(c);
         for(let i = 0; i < events.length; i++){
-            if(c[events[i].divider] || o[events[i].divider]){
+            console.log(c[events[i].divider])
+            console.log(o[events[i].divider])
+            if(c[events[i].divider] && o[events[i].divider]===undefined){
+                show.push(events[i]);
+            }
+            else if(o[events[i].divider] && c[events[i].divider]===undefined){
                 show.push(events[i]);
             }
         }
-        setShow(show)
+        setShow(show);
+        console.log(show);
     };
     
     const [openAdd, setOpenAdd] = useState(false);
