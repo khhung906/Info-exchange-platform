@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import { makeStyles } from '@material-ui/core';
 
@@ -50,7 +49,7 @@ export default function ProfileMenu() {
   
   return (
     <div>
-      <IconButton aria-controls="profile" aria-haspopup="true" onClick={handleClick} color="inherit">
+      <IconButton aria-haspopup="true" onClick={handleClick} color="inherit">
         <AccountCircle />
       </IconButton>
       <Menu

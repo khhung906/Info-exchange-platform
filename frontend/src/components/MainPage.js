@@ -14,12 +14,14 @@ function MainPage() {
     console.log('main page')
     const classes = useStyles();
     return (
-      <div>
+
+      <div className="background">
         <MainPageTopBar/>
         <div className={classes.feature_selection}>
           <Cards/>
         </div>
       </div>
+
     );
 }
   

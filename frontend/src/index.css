@@ -61,6 +61,10 @@ input, button {
   width:100%;
 }
 
+.background {
+  background-color: #f7f3f3;
+}
+
 .title {
   height: 100vh;
   display: flex;
@@ -72,7 +76,28 @@ input, button {
 
 .title-name {
   font-family: "copperplate", fantasy;
-  float: left;
+  animation: movein 5s infinite;
+  position: relative;
+  animation-timing-function: 4s;
+}
+
+#title-name1 {animation-timing-function: linear;}
+#title-name2 {animation-timing-function: ease;}
+#title-name3 {animation-timing-function: ease-in;}
+#title-name4 {animation-timing-function: ease-out;}
+#title-name5 {animation-timing-function: ease-in-out;}
+#title-name6 {animation-timing-function: linear;}
+#title-name7 {animation-timing-function: ease;}
+#title-name8 {animation-timing-function: ease-in;}
+#title-name9 {animation-timing-function: ease-out;}
+#title-name10 {animation-timing-function: ease;}
+#title-name11 {animation-timing-function: ease;}
+#title-name12 {animation-timing-function: ease;}
+#title-name13 {animation-timing-function: ease;}
+
+@keyframes movein {
+    from {right: 300px}
+    to {right:0px}
 }
 
 .title-context {

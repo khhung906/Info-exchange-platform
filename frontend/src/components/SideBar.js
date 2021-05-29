@@ -38,11 +38,11 @@ export default function SideBar() {
     <List
       component="nav"
       aria-labelledby="nested-list-subheader"
-      subheader={
-        <ListSubheader component="div" id="nested-list-subheader">
-          Nested List Items
-        </ListSubheader>
-      }
+      // subheader={
+      //   <ListSubheader component="div" id="nested-list-subheader">
+      //     Nested List Items
+      //   </ListSubheader>
+      // }
       className={classes.root}
     >
       <ListItem button>
@@ -61,7 +61,7 @@ export default function SideBar() {
         <ListItemIcon>
           <InboxIcon />
         </ListItemIcon>
-        <ListItemText primary="Service" />
+        <ListItemText primary="Services" />
         {open ? <ExpandLess /> : <ExpandMore />}
       </ListItem>
       <Collapse in={open} timeout="auto" unmountOnExit>

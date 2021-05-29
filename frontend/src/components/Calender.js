@@ -10,8 +10,7 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 
 const localizer = momentLocalizer(moment);
 
-function Calender() {
-    const [open, setOpen] = useState(false);
+function Calender(props) {
     const [events, setEvents]=useState([
       {
           id: 0,
@@ -29,12 +28,22 @@ function Calender() {
     ]);
     const now = new Date();
 
-    const handleClickOpen = () => {
-      setOpen(true);
+
+    const [openAdd, setOpenAdd] = useState(false);
+    const handleClickOpenAdd = () => {
+      setOpenAdd(true);
+    };
+    const handleCloseAdd = (value) => {
+        setOpenAdd(false);
     };
 
-    const handleClose = (value) => {
-        setOpen(false);
+
+    const [openDelete, setOpenDelete] = useState(false);
+    const handleClickOpenDelete = () => {
+      setOpenDelete(true);
+    };
+    const handleCloseDelete = (value) => {
+        setOpenDelete(false);
     };
 
     const onSelect = (event) =>{
@@ -54,12 +63,12 @@ function Calender() {
     return (
       <div>
           <MainPageTopBar/>
-            <AddCourse open={open} onClose={handleClose}/>
-              <Button variant="contained" color="primary" onClick={handleClickOpen}>
+            <AddCourse open={openAdd} onClose={handleCloseAdd}/>
+              <Button variant="contained" color="primary" onClick={handleClickOpenAdd}>
                   Add Course
               </Button>
-            <DeleteCourse open={open} onClose={handleClose}/>
-              <Button variant="contained" color="primary" onClick={handleClickOpen}>
+            <DeleteCourse open={openDelete} onClose={handleCloseDelete}/>
+              <Button variant="contained" color="primary" onClick={handleClickOpenDelete}>
                   Delete Course
               </Button>
           <div style={{marginLeft:'250pt', marginTop:'50pt', height: '450pt', width:'800pt'}}>

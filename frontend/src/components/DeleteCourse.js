@@ -7,6 +7,9 @@ import Dialog from '@material-ui/core/Dialog';
 import PersonIcon from '@material-ui/icons/Person';
 import { blue } from '@material-ui/core/colors';
 import TextField from '@material-ui/core/TextField';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
 
 const useStyles = makeStyles((theme) => ({
     avatar: {
@@ -22,10 +25,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 //select, pickers
-function AddCourse(props) {
+function DeleteCourse(props) {
   const classes = useStyles();
   const { open, onClose } = props;
-
   const handleClose = () => {
     onClose();
   };
@@ -34,11 +36,28 @@ function AddCourse(props) {
   return (
     <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open}>
       <DialogTitle id="simple-dialog-title">Delete Course</DialogTitle>
-      <form className={classes.root} noValidate autoComplete="off">
-        <TextField id="standard-basic" label="Class ID" />
-      </form>
+        <DialogContent>
+            <DialogContentText>
+            Enter Your Course Information
+            </DialogContentText>
+            <TextField
+            autoFocus
+            margin="dense"
+            id="class-id"
+            label="Class ID"
+            fullWidth
+            />
+        </DialogContent>
+      <DialogActions>
+        <Button onClick={handleClose} color="primary">
+          Cancel
+        </Button>
+        <Button onClick={handleClose} color="primary">
+          Delete
+        </Button>
+      </DialogActions>
     </Dialog>
   );
 }
 
-export default AddCourse;
+export default DeleteCourse;

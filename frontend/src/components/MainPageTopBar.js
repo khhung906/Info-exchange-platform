@@ -73,8 +73,8 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-function MainPageTopBar() {
-    console.log('main page')
+function MainPageTopBar(props) {
+    const topbarTitles = {mainpage: 'Main Page', calendar: 'Calendar'}
     const classes = useStyles();
 
     const [anchorEl, setAnchorEl] = useState(null);
@@ -108,8 +108,7 @@ function MainPageTopBar() {
     )
 
     return (
-      <div>
-        <div style={{ background: '#f7f3f3' }}>
+        <div>
           <AppBar position="static" style={{ background: 'gray' }}>
             <Toolbar>
               {['left'].map((anchor) => (
@@ -128,7 +127,7 @@ function MainPageTopBar() {
                 </React.Fragment>
               ))}
               <Typography variant="h6" className={classes.title}>
-                Main Page
+                Info Exchange
               </Typography>
 
               <IconButton className={classes.moneyButton} color="inherit">
@@ -145,7 +144,6 @@ function MainPageTopBar() {
             </Toolbar>
           </AppBar>
         </div>
-      </div>
     );
 }
   

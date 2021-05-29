@@ -77,7 +77,7 @@ function HomePage({log_in}) {
   return (
     <div>
       <div className="navBar">
-        <NavLink className="title-name" to="/home">Info Exchange</NavLink>
+        <NavLink style={{fontFamily: "copperplate", float: 'left'}} to="/home">Info Exchange</NavLink>
         <NavLink className="redirect" to="/aboutus">About Us</NavLink>
         <NavLink className="redirect" to="/help">Help</NavLink>
       </div>
@@ -85,7 +85,14 @@ function HomePage({log_in}) {
         <ul>
             <li className="title">
                 <div>
-                <h1 className="title-name">Where you find what you need?</h1>
+                <h1>
+                  <div className="title-name" id="title-name1">Where </div>
+                  <div className="title-name" id="title-name2">you </div>
+                  <div className="title-name" id="title-name3">find </div>
+                  <div className="title-name" id="title-name4">what </div>
+                  <div className="title-name" id="title-name5">you </div>
+                  <div className="title-name" id="title-name6">need?</div>
+                </h1>
                 <p className="title-context">use some dynamic design here</p>
                 <p className="title-context"></p>
                 <p className="title-context"></p>
