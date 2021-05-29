@@ -16,6 +16,7 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import CalendarTodayTwoToneIcon from '@material-ui/icons/CalendarTodayTwoTone';
 import MapTwoToneIcon from '@material-ui/icons/MapTwoTone';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -89,6 +90,12 @@ export default function SideBar() {
           </ListItem>
         </List>
       </Collapse>
+      <ListItem button style={{marginTop:'390px'}}>
+        <ListItemIcon>
+          <ExitToAppIcon />
+        </ListItemIcon>
+        <ListItemText primary="Logout"/>
+      </ListItem>
     </List>
   );
 }

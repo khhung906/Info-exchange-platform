@@ -196,7 +196,7 @@ function MainPageTopBar(props) {
                   <NotificationsIcon />
                 </Badge>
               </IconButton>
-              <ProfileMenu/>
+              {/* <ProfileMenu/> */}
             </Toolbar>
           </AppBar>
         </div>
