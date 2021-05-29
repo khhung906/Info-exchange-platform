@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SideBar() {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = React.useState(false);
 
   const handleClick = () => {
     setOpen(!open);
@@ -90,7 +90,7 @@ export default function SideBar() {
           </ListItem>
         </List>
       </Collapse>
-      <ListItem button style={{marginTop:'390px'}}>
+      <ListItem button style={{marginTop:'540px'}}>
         <ListItemIcon>
           <ExitToAppIcon />
         </ListItemIcon>
