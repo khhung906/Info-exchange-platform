@@ -12,6 +12,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DateFnsUtils from '@date-io/date-fns'; 
 import {KeyboardDatePicker, MuiPickersUtilsProvider,} from '@material-ui/pickers';
+
 const useStyles = makeStyles((theme) => ({
     avatar: {
         backgroundColor: blue[100],
@@ -26,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 //select, pickers
-function AddCourse(props) {
+function AddtoCalendar(props) {
   const classes = useStyles();
   const { open, onClose } = props;
   const handleClose = () => {
@@ -34,8 +35,6 @@ function AddCourse(props) {
   };
 
   const [selectedDate, handleDateChange] = useState(new Date());
-
-
   return (
     <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open}>
       <DialogTitle id="simple-dialog-title">Add Course</DialogTitle>
@@ -62,7 +61,7 @@ function AddCourse(props) {
           label="Professor Name"
           fullWidth
         />
-        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+        {/* {<MuiPickersUtilsProvider utils={DateFnsUtils}>
           <KeyboardDatePicker
             clearable
             value={selectedDate}
@@ -73,7 +72,7 @@ function AddCourse(props) {
             style={{marginTop: '15px'}}
             label="Exam Date"
           />
-        </MuiPickersUtilsProvider>
+        </MuiPickersUtilsProvider>} */}
       </DialogContent>
       <DialogActions>
         <Button onClick={handleClose} color="primary">
@@ -87,4 +86,4 @@ function AddCourse(props) {
   );
 }
 
-export default AddCourse;
+export default AddtoCalendar;

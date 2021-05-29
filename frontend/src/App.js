@@ -4,7 +4,7 @@ import HomePage from './components/HomePage'
 import AboutUs from './components/AboutUs'
 import Help from './components/Help'
 import MainPage from './components/MainPage';
-import Calender from './components/Calender';
+import Calender from './components/calender/Calender';
 
 //language function undesigned
 function App() {

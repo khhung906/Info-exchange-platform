@@ -10,6 +10,10 @@
     "server": "cd backend && yarn server"
   },
   "dependencies": {
+    "@date-io/date-fns": "^1.3.13",
+    "@date-io/moment": "^2.10.11",
+    "@material-ui/pickers": "^3.3.10",
+    "date-fns": "^2.22.1",
     "moment": "^2.29.1",
     "react-big-calendar": "^0.33.4",
     "react-calendar": "^3.4.0",

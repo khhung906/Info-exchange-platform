@@ -15,6 +15,8 @@ import StarBorder from '@material-ui/icons/StarBorder';
 import SettingsIcon from '@material-ui/icons/Settings';
 import CalendarTodayTwoToneIcon from '@material-ui/icons/CalendarTodayTwoTone';
 import MapTwoToneIcon from '@material-ui/icons/MapTwoTone';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
@@ -28,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SideBar() {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
 
   const handleClick = () => {
     setOpen(!open);
@@ -38,13 +40,20 @@ export default function SideBar() {
     <List
       component="nav"
       aria-labelledby="nested-list-subheader"
-      // subheader={
-      //   <ListSubheader component="div" id="nested-list-subheader">
-      //     Nested List Items
-      //   </ListSubheader>
-      // }
+      subheader={
+        <ListSubheader component="div" id="nested-list-subheader">
+          Info Exchange
+        </ListSubheader>
+      }
       className={classes.root}
     >
+
+      <ListItem button>
+        <ListItemIcon>
+          <AccountCircleIcon />
+        </ListItemIcon>
+        <ListItemText primary="Profile" />
+      </ListItem>
       <ListItem button>
         <ListItemIcon>
           <SettingsIcon />

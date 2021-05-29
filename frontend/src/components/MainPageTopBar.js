@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { makeStyles } from '@material-ui/core/styles';
+import { fade,makeStyles } from '@material-ui/core/styles';
 import { NavLink, Switch, Route, Redirect } from "react-router-dom";
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -27,6 +27,9 @@ import CardMedia from '@material-ui/core/CardMedia';
 import SideBar from './SideBar.js'
 import ProfileMenu from './ProfileMenu'
 import Cards from './Cards'
+import { Button } from '@material-ui/core';
+import InputBase from '@material-ui/core/InputBase';
+import SearchIcon from '@material-ui/icons/Search';
 
 // function Copyright() {
 //   return (
@@ -50,7 +53,9 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
+    color: 'white',
     fontFamily: "copperplate",
+    textDecoration: 'none',
   },
   notificationButton: {
     marginRight: "10px",
@@ -70,7 +75,44 @@ const useStyles = makeStyles((theme) => ({
   },
   media: {
     height:140,
-  }
+  },
+  search: {
+    position: 'relative',
+    borderRadius: theme.shape.borderRadius,
+    backgroundColor: fade(theme.palette.common.white, 0.15),
+    '&:hover': {
+      backgroundColor: fade(theme.palette.common.white, 0.25),
+    },
+    marginRight: theme.spacing(2),
+    marginLeft: 0,
+    width: '100%',
+    [theme.breakpoints.up('sm')]: {
+      marginLeft: theme.spacing(3),
+      width: 'auto',
+    },
+  },
+  searchIcon: {
+    padding: theme.spacing(0, 2),
+    height: '100%',
+    position: 'absolute',
+    pointerEvents: 'none',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  inputRoot: {
+    color: 'inherit',
+  },
+  inputInput: {
+    padding: theme.spacing(1, 1, 1, 0),
+    // vertical padding + font size from searchIcon
+    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
+    transition: theme.transitions.create('width'),
+    width: '100%',
+    [theme.breakpoints.up('md')]: {
+      width: '20ch',
+    },
+  },
 }));
 
 function MainPageTopBar(props) {
@@ -109,7 +151,7 @@ function MainPageTopBar(props) {
 
     return (
         <div>
-          <AppBar position="static" style={{ background: 'gray' }}>
+          <AppBar position="static" style={{ background: 'DarkTurquoise' }}>
             <Toolbar>
               {['left'].map((anchor) => (
                 <React.Fragment key={anchor}>
@@ -127,8 +169,22 @@ function MainPageTopBar(props) {
                 </React.Fragment>
               ))}
               <Typography variant="h6" className={classes.title}>
-                Info Exchange
+                <NavLink className={classes.title} to="/">Info Exchange</NavLink>
               </Typography>
+
+              <div className={classes.search}>
+                <div className={classes.searchIcon}>
+                  <SearchIcon />
+                </div>
+                <InputBase
+                  placeholder="Search…"
+                  classes={{
+                    root: classes.inputRoot,
+                    input: classes.inputInput,
+                  }}
+                  inputProps={{ 'aria-label': 'search' }}
+                />
+              </div>
 
               <IconButton className={classes.moneyButton} color="inherit">
                 <AttachMoneyIcon />
