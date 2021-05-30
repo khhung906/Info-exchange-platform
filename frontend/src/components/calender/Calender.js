@@ -14,14 +14,22 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Button from '@material-ui/core/Button';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
-
+import { useEffect } from "react"; 
+import axios from 'axios'
+const API_ROOT = 'http://localhost:4000'
+const instance = axios.create({
+  baseURL: API_ROOT,
+})
 
 const localizer = momentLocalizer(moment);
 
 // improve resize of screen
 
 function Calender(props) {
-    const [courseList, setList] = useState(['DSA(CS1108)', 'SP(CS1022)', 'Web(EE2252)']);
+    const {userinfo} = props; 
+    // console.log(userinfo);
+    const [courseList, setList] = useState([]);
+    //['DSA(CS1108)', 'SP(CS1022)', 'Web(EE2252)']
     const [courses, setCourse] = useState({
       'DSA(CS1108)': true,
       'SP(CS1022)': true,
@@ -74,7 +82,20 @@ function Calender(props) {
     const handleCloseAdd = (value) => {
         setOpenAdd(false);
     };
+    const loadcourse = async() => {
+      const email = userinfo;
+      console.log("test2")
+      const {
+        data : {classinfo} 
+      } = await instance.post('api/loadcourse' ,{
+        email
+      });
+      setList(classinfo)
+    }
 
+    useEffect(() => {
+      loadcourse();
+    }, [])
     return (
       <div>
         <MainPageTopBar/>
@@ -88,7 +109,7 @@ function Calender(props) {
         </div>
         <CalenderPanel courseList={courseList} setList={setList} courses={courses} setCourse={setCourse}
                       otherList={otherList} setoList={setoList} others={others} setoState={setoState}
-                      showEvents={showEvents} setShow={setShow} events={events}/>
+                      showEvents={showEvents} setShow={setShow} events={events} userinfo={userinfo} />
         <div style={{marginLeft:'40pt', marginTop:'0pt', height: '450pt', width:'700pt' ,float:'left'}}>
           <Calendar
             events={showEvents}

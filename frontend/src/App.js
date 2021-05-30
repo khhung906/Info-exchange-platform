@@ -9,6 +9,7 @@ import Calender from './components/calender/Calender';
 //language function undesigned
 function App() {
   const [login, setLogin] = useState(false)
+  const [userinfo, setUserinfo] = useState("");
   const log_in = () =>{
     setLogin(true);
   }
@@ -20,10 +21,10 @@ function App() {
         <NavLink className="redirect" to="/help">Help</NavLink>
       </div> */}
       <Switch>
-          <Route exact path="/" component={login? ()=><MainPage />: ()=><HomePage log_in = {log_in}/>} />
-          <Route exact path="/help" component={Help} />
-          <Route exact path="/aboutus" component={AboutUs} />
-          <Route exact path="/calender" component={Calender} />
+          <Route exact path="/" component={login? ()=><MainPage userinfo={userinfo}/>: ()=><HomePage log_in = {log_in}  setUserinfo={setUserinfo}/>} />
+          <Route exact path="/help" component={() => <Help userinfo={userinfo}/>}/>
+          <Route exact path="/aboutus" component={() => <AboutUs userinfo={userinfo}/>} />
+          <Route exact path="/calender" component={() => <Calender userinfo={userinfo}/>} />
           <Redirect from="/home" to="/" />
       </Switch>
     </div>

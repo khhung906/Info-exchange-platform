@@ -16,6 +16,7 @@ import DeleteCourse from './DeleteCourse';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
 
+
 const useStyles = makeStyles((theme) => ({
   root: {
     marginLeft:'5pt', 
@@ -55,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
 
 function CalenderPanel(props) {
     const classes = useStyles();
-    const { courseList, setList, courses, setCourse, otherList, setoList, others, setoState, showEvents, setShow, events} = props;
+    const { courseList, setList, courses, setCourse, otherList, setoList, others, setoState, showEvents, setShow, events, userinfo} = props;
 
     const addcourse = (course) =>{
         let list = [...courseList];
@@ -127,7 +128,7 @@ function CalenderPanel(props) {
                             label={course} className={classes.formControlLabel}
                         />))}
                     </FormGroup>
-                    <AddCourse open={openAdd} onClose={handleCloseAdd} add={addcourse}/>
+                    <AddCourse open={openAdd} onClose={handleCloseAdd} add={addcourse} userinfo={userinfo}/>
                     <Button  size='small' className={classes.button} onClick={handleClickOpenAdd} >
                         <AddIcon style ={{
                             color: "gray",

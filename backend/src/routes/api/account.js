@@ -15,6 +15,7 @@ router.post('/CreateUser', async function (req, res) {
     else {
       data.credit = 100;
       data.money = 0;
+      data.course = [];
       console.log("register successfully");
       res.send({message : "register successfully"});
       await data.save();

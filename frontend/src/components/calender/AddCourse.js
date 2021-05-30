@@ -12,7 +12,13 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DateFnsUtils from '@date-io/date-fns'; 
 import {KeyboardDatePicker, MuiPickersUtilsProvider,} from '@material-ui/pickers';
+import axios from 'axios'
 
+const API_ROOT = 'http://localhost:4000'
+
+const instance = axios.create({
+  baseURL: API_ROOT,
+})
 const useStyles = makeStyles((theme) => ({
     avatar: {
         backgroundColor: blue[100],
@@ -29,16 +35,25 @@ const useStyles = makeStyles((theme) => ({
 //select, pickers
 function AddCourse(props) {
   const classes = useStyles();
-  const { open, onClose , add} = props;
+  const { open, onClose , add, userinfo } = props;
   const [classname, setname] = useState('');
   const [classid, setid] = useState('');
   const handleClose = () => {
     onClose();
   };
-
-  const handleAdd = () => {
+  console.log(userinfo);
+  const handleAdd = async() => {
     //connect to backend find whether id exist
-    add(classid)
+    const email = userinfo;
+    const course_id = classid;
+    const {
+      data : {message, classinfo}
+    } = await instance.post('api/addcourse', {
+      course_id, email
+    });
+    if (message === "Add successfully"){
+      add(classinfo+"("+classid+")")
+    }
     onClose();
   };
 

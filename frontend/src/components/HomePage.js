@@ -10,7 +10,7 @@ const instance = axios.create({
   baseURL: API_ROOT,
 })
 
-function HomePage({log_in}) {
+function HomePage({log_in, setUserinfo}) {
   const [guest, setGuest] = useState({email:'', password:''})
   const [error, setError] = useState('')
   const [FormType, setType] = useState('login')
@@ -31,6 +31,7 @@ function HomePage({log_in}) {
     });
     setError(message)
     if(message === 'login successfully'){
+        setUserinfo(email);
         log_in();
     }
   }
