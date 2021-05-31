@@ -15,11 +15,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Button from '@material-ui/core/Button';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import { useEffect } from "react"; 
-import axios from 'axios'
-const API_ROOT = 'http://localhost:4000'
-const instance = axios.create({
-  baseURL: API_ROOT,
-})
+import instance from '../../axios';
 
 const localizer = momentLocalizer(moment);
 
@@ -30,35 +26,14 @@ function Calender(props) {
     // console.log(userinfo);
     const [courseList, setList] = useState([]);
     //['DSA(CS1108)', 'SP(CS1022)', 'Web(EE2252)']
-    const [courses, setCourse] = useState({
-      'DSA(CS1108)': true,
-      'SP(CS1022)': true,
-      'Web(EE2252)': true,
-    });
+    const [courses, setCourse] = useState({});
     const [otherList, setoList] = useState(['Speaking', 'WVS Club', 'Basketball']);
     const [others, setoState] = useState({
-      'Speaking': true,
-      'WVS Club': true,
-      'Basketball': true,
+      'Speaking': false,
+      'WVS Club': false,
+      'Basketball': false,
     });
-    const [events, setEvents] = useState([
-      {
-          id: 0,
-          title: 'DSA test',
-          allDay: true,
-          divider: 'DSA(CS1108)',
-          start: new Date(2021, 5, 3),
-          end: new Date(2021, 5, 18),
-      },
-      {
-        id: 1,
-        title: 'Web final',
-        allDay: true,
-        divider: 'Web(EE2252)',
-        start: new Date(2021, 5, 20),
-        end: new Date(2021, 5, 21),
-      },
-    ]);
+    const [events, setEvents] = useState([]);
     const [showEvents, setShow] = useState(events);
 
     const onSelect = (event) =>{
@@ -84,22 +59,48 @@ function Calender(props) {
     };
     const loadcourse = async() => {
       const email = userinfo;
-      console.log("test2")
       const {
         data : {classinfo} 
       } = await instance.post('api/loadcourse' ,{
         email
       });
+      console.log(classinfo)
       setList(classinfo)
+      let tmp_c = {}
+      for(let c = 0; c < classinfo.length; c++){
+        tmp_c[classinfo[c]] = false;
+      }
+      setCourse(tmp_c);
+    }
+
+    const loadschedule = async() => {
+      const email = userinfo;
+      const {
+        data : {message, scheduleinfo} 
+      } = await instance.post('api/loadschedule' ,{
+        email
+      });
+      if(message === 'Load schedule success'){
+        setEvents(scheduleinfo)
+        console.log(scheduleinfo)
+      }
+      // setList(classinfo)
+      // let tmp_c = {}
+      // for(let c = 0; c < classinfo.length; c++){
+      //   tmp_c[classinfo[c]] = false;
+      // }
+      // setCourse(tmp_c);
     }
 
     useEffect(() => {
       loadcourse();
+      loadschedule();
     }, [])
+
     return (
       <div>
         <MainPageTopBar/>
-        <AddSchedule open={openAdd} onClose={handleCloseAdd}/>
+        <AddSchedule open={openAdd} onClose={handleCloseAdd} courseList={courseList} events={events} setEvents={setEvents}/>
         <div style={{marginLeft:'240pt', marginTop:'10pt' ,float:'top'}}>
           <Button onClick={handleClickOpenAdd} >
             <AddCircleOutlineIcon style ={{
@@ -109,7 +110,8 @@ function Calender(props) {
         </div>
         <CalenderPanel courseList={courseList} setList={setList} courses={courses} setCourse={setCourse}
                       otherList={otherList} setoList={setoList} others={others} setoState={setoState}
-                      showEvents={showEvents} setShow={setShow} events={events} userinfo={userinfo} />
+                      showEvents={showEvents} setShow={setShow} events={events} userinfo={userinfo} 
+                      loadschedule = {loadschedule}/>
         <div style={{marginLeft:'40pt', marginTop:'0pt', height: '450pt', width:'700pt' ,float:'left'}}>
           <Calendar
             events={showEvents}

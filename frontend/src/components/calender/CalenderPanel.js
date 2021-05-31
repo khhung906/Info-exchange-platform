@@ -1,5 +1,5 @@
 import React from 'react';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
@@ -56,7 +56,8 @@ const useStyles = makeStyles((theme) => ({
 
 function CalenderPanel(props) {
     const classes = useStyles();
-    const { courseList, setList, courses, setCourse, otherList, setoList, others, setoState, showEvents, setShow, events, userinfo} = props;
+    const { courseList, setList, courses, setCourse, otherList, 
+        setoList, others, setoState, showEvents, setShow, events, userinfo, loadschedule} = props;
 
     const addcourse = (course) =>{
         let list = [...courseList];
@@ -67,29 +68,30 @@ function CalenderPanel(props) {
         setCourse(clist);
     }
 
-    const handleChange = (event) => {
-        let c = { ...courses};
-        let o = { ...others};
-        // c[event.target.name] = event.target.checked;
-        if(c[event.target.name]) c[event.target.name] = false;
-        else c[event.target.name] = true;
-        if(o[event.target.name]) c[event.target.name] = false;
-        else o[event.target.name] = true;
-        setCourse(c);
+    const ShowList = (c, o) =>{
         let show = [];
-        console.log(c);
         for(let i = 0; i < events.length; i++){
-            console.log(c[events[i].divider])
-            console.log(o[events[i].divider])
-            if(c[events[i].divider] && o[events[i].divider]===undefined){
-                show.push(events[i]);
-            }
-            else if(o[events[i].divider] && c[events[i].divider]===undefined){
+            if(c[events[i].divider]){
                 show.push(events[i]);
             }
         }
         setShow(show);
-        console.log(show);
+    }
+
+    const handleChange = (event) => {
+        let c = { ...courses};
+        let o = { ...others};
+        // c[event.target.name] = event.target.checked;
+        if(Object.keys(c).includes(event.target.name)){
+            if(c[event.target.name]) c[event.target.name] = false;
+            else c[event.target.name] = true;
+        }
+        if(Object.keys(o).includes(event.target.name)){
+            if(o[event.target.name]) o[event.target.name] = false;
+            else o[event.target.name] = true;
+        }
+        setCourse(c, o);
+        ShowList(c, o);
     };
     
     const [openAdd, setOpenAdd] = useState(false);
@@ -108,6 +110,11 @@ function CalenderPanel(props) {
     const handleCloseDelete = (value) => {
         setOpenDelete(false);
     };
+
+    useEffect(() => {
+        ShowList(courses, others)
+    }, [courses, others])
+
 
     return (
         <div className={classes.root}>
@@ -128,7 +135,7 @@ function CalenderPanel(props) {
                             label={course} className={classes.formControlLabel}
                         />))}
                     </FormGroup>
-                    <AddCourse open={openAdd} onClose={handleCloseAdd} add={addcourse} userinfo={userinfo}/>
+                    <AddCourse open={openAdd} onClose={handleCloseAdd} add={addcourse} userinfo={userinfo} loadschedule={loadschedule}/>
                     <Button  size='small' className={classes.button} onClick={handleClickOpenAdd} >
                         <AddIcon style ={{
                             color: "gray",

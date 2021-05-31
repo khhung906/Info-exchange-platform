@@ -12,13 +12,10 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DateFnsUtils from '@date-io/date-fns'; 
 import {KeyboardDatePicker, MuiPickersUtilsProvider,} from '@material-ui/pickers';
-import axios from 'axios'
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
+import instance from '../../axios';
 
-const API_ROOT = 'http://localhost:4000'
-
-const instance = axios.create({
-  baseURL: API_ROOT,
-})
 const useStyles = makeStyles((theme) => ({
     avatar: {
         backgroundColor: blue[100],
@@ -35,13 +32,16 @@ const useStyles = makeStyles((theme) => ({
 //select, pickers
 function AddCourse(props) {
   const classes = useStyles();
-  const { open, onClose , add, userinfo } = props;
+  const { open, onClose , add, userinfo, loadschedule } = props;
   const [classname, setname] = useState('');
+  const [alertopen, setAlert] = useState(false);
   const [classid, setid] = useState('');
+  const [iderror, setIderror] = useState(false);
+  const [namerror, setNamerror] = useState(false);
   const handleClose = () => {
     onClose();
   };
-  console.log(userinfo);
+
   const handleAdd = async() => {
     //connect to backend find whether id exist
     const email = userinfo;
@@ -53,9 +53,18 @@ function AddCourse(props) {
     });
     if (message === "Add successfully"){
       add(classinfo+"("+classid+")")
+      onClose();
+      loadschedule();
     }
-    onClose();
+    else{
+      setIderror(true);
+      setNamerror(true);
+    }
   };
+
+  const alertClose = () =>{
+    setAlert(false);
+  } 
 
   const typeName = (e) =>{
     //connect to backend to give hint
@@ -66,57 +75,54 @@ function AddCourse(props) {
     setid(e.target.value);
   }
 
-  const [selectedDate, handleDateChange] = useState(new Date());
   return (
-    <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open}>
-      <DialogTitle id="simple-dialog-title">Add Course</DialogTitle>
-      <DialogContent>
-        <DialogContentText>
-          Enter Your Course Information
-        </DialogContentText>
-        <TextField
-          autoFocus
-          margin="dense"
-          id="class-id"
-          label="Class ID"
-          fullWidth
-          onChange={typeID}
-        />
-        <TextField
-          margin="dense"
-          id="course-name"
-          label="Course Name"
-          fullWidth
-          onChange={typeName}
-        />
-        <TextField
-          margin="dense"
-          id="professor-name"
-          label="Professor Name"
-          fullWidth
-        />
-        {/* {<MuiPickersUtilsProvider utils={DateFnsUtils}>
-          <KeyboardDatePicker
-            clearable
-            value={selectedDate}
-            placeholder="10/10/2018"
-            onChange={date => handleDateChange(date)}
-            minDate={new Date()}
-            format="MM/dd/yyyy"
-            style={{marginTop: '15px'}}
-            label="Exam Date"
+    <>
+      <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open}>
+        <DialogTitle id="simple-dialog-title">Add Course</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Enter Your Course Information
+          </DialogContentText>
+          <TextField
+            error = {iderror}
+            autoFocus
+            margin="dense"
+            id="class-id"
+            label="Class ID"
+            fullWidth
+            onChange={typeID}
           />
-        </MuiPickersUtilsProvider>} */}
-      </DialogContent>
-      <DialogActions>
-        <Button onClick={handleClose} color="primary">
-          Cancel
-        </Button>
-        <Button onClick={handleAdd} color="primary">
-          Add
-        </Button>
-      </DialogActions>
-    </Dialog>
+          <TextField
+            error = {namerror}
+            margin="dense"
+            id="course-name"
+            label="Course Name"
+            fullWidth
+            onChange={typeName}
+          />
+          {/* {<MuiPickersUtilsProvider utils={DateFnsUtils}>
+            <KeyboardDatePicker
+              clearable
+              value={selectedDate}
+              placeholder="10/10/2018"
+              onChange={date => handleDateChange(date)}
+              minDate={new Date()}
+              format="MM/dd/yyyy"
+              style={{marginTop: '15px'}}
+              label="Exam Date"
+            />
+          </MuiPickersUtilsProvider>} */}
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="primary">
+            Cancel
+          </Button>
+          <Button onClick={handleAdd} color="primary">
+            Add
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </>
   );
 }
 

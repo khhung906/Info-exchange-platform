@@ -10,15 +10,8 @@ import TextField from '@material-ui/core/TextField';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
-import Grid from '@material-ui/core/Grid';
-import DateFnsUtils from '@date-io/date-fns';
-import {
-  MuiPickersUtilsProvider,
-  KeyboardTimePicker,
-  KeyboardDatePicker,
-} from '@material-ui/pickers';
 import MenuItem from '@material-ui/core/MenuItem';
-
+import instance from '../../axios';
 
 const useStyles = makeStyles((theme) => ({
     avatar: {
@@ -32,39 +25,54 @@ const useStyles = makeStyles((theme) => ({
       },
     },
 }));
-const dividers = [
-    {
-      value: 'DSA(CS1108)',
-      label: 'DSA(CS1108)',
-    },
-    {
-      value: 'SP(CS1022)',
-      label: 'SP(CS1022)',
-    },
-  ];
 
 //select, pickers
 function AddSchedule(props) {
   const classes = useStyles();
-  const { open, onClose } = props;
+  const { open, onClose ,courseList, events, setEvents} = props;
   const [title, setTitle] = useState('');
   const [start, setStart] = useState("2021-05-29T10:30");
   const [end, setEnd] = useState("2021-05-29T10:30");
+  const [category, setCategory] = useState('');
+  const [error, setError] = useState(false);
   const handleClose = () => {
     onClose();
   };
 
-  const handleAdd = () => {
+  const handleAdd = async() => {
     //add new schedule to calender
     //...
-    onClose();
+    if(title && category){
+      let tmp_event = [...events]
+      const new_event = {
+        id: tmp_event.length,
+        title: title,
+        divider: category,
+        start: new Date(start),
+        end: new Date(end),
+      }
+      tmp_event.push(new_event)
+      const {
+        data : {message, classinfo}
+      } = await instance.post('api/addschedule', {
+        new_event
+      });
+      if (message === "Add successfully"){
+        setEvents(tmp_event)
+        onClose();
+      }
+      else{
+        setError(true);
+      }
+    }
+    else{
+      setError(true);
+    }
   };
 
   const typeTitle = (e) =>{
     setTitle(e.target.value);
   }
-
-  const [category, setCategory] = React.useState('');
 
   const ChangeCategory = (event) => {
     setCategory(event.target.value);
@@ -86,6 +94,7 @@ function AddSchedule(props) {
           Add schedule to your calendar
         </DialogContentText>
         <TextField
+          error = {error}
           autoFocus
           margin="dense"
           id="add-title"
@@ -116,16 +125,17 @@ function AddSchedule(props) {
             onChange={ChangeEnd}
         />
         <TextField
+          error = {error}
           id="standard-select-currency"
           select
           label="Category"
           value={category}
           onChange={ChangeCategory}
-          helperText="Please select category"
+          helperText="Please select a category"
         >
-          {dividers.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
+          {courseList.map((course) => (
+            <MenuItem key={course} value={course} style ={{height:"50px"}}>
+              {course}
             </MenuItem>
           ))}
         </TextField>

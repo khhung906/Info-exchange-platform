@@ -2,13 +2,7 @@ import React, {useState} from 'react'
 import LoginForm from "./LoginForm"
 import RegisterForm from './RegisterForm'
 import { NavLink, Switch, Route, Redirect } from "react-router-dom";
-import axios from 'axios'
-
-const API_ROOT = 'http://localhost:4000'
-
-const instance = axios.create({
-  baseURL: API_ROOT,
-})
+import instance from '../axios';
 
 function HomePage({log_in, setUserinfo}) {
   const [guest, setGuest] = useState({email:'', password:''})
