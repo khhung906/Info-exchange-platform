@@ -1,7 +1,8 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import Cards from './Cards'
 import MainPageTopBar from './MainPageTopBar'
+import HashLoader from 'react-spinners/HashLoader'
 
 const useStyles = makeStyles((theme) => ({
   feature_selection: {
@@ -10,19 +11,42 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
+
 function MainPage() {
     console.log('main page')
     const classes = useStyles();
-    return (
 
-      <div className="background">
-        <MainPageTopBar/>
-        <div className={classes.feature_selection}>
-          <Cards/>
+    const [loading, setLoading] = useState(true)
+
+    useEffect(()=>{
+        const loadData = async () => {
+          await new Promise((r) => setTimeout(r, 2000))
+          setLoading((loading) => !loading)
+        }
+        loadData()
+    }, [])
+
+    if (loading) {
+        return (
+          <div style={{position: "fixed", top: "50%", left: "50%", transform: "translate(-50%, -50%)"}}>
+            <HashLoader size={100}/>
+          </div>
+        )
+    }
+
+    else {
+      return (
+
+        <div className="background">
+          <MainPageTopBar/>
+          <div className={classes.feature_selection}>
+            <Cards/>
+          </div>
         </div>
-      </div>
 
-    );
+      );
+    }
 }
   
   export default MainPage;

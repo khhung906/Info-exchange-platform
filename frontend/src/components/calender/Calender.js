@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import MainPageTopBar from '../MainPageTopBar';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import AddSchedule from './AddSchedule';
@@ -14,8 +14,9 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Button from '@material-ui/core/Button';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
-import { useEffect } from "react"; 
+import HashLoader from 'react-spinners/HashLoader'
 import axios from 'axios'
+
 const API_ROOT = 'http://localhost:4000'
 const instance = axios.create({
   baseURL: API_ROOT,
@@ -96,33 +97,54 @@ function Calender(props) {
     useEffect(() => {
       loadcourse();
     }, [])
-    return (
-      <div>
-        <MainPageTopBar/>
-        <AddSchedule open={openAdd} onClose={handleCloseAdd}/>
-        <div style={{marginLeft:'240pt', marginTop:'10pt' ,float:'top'}}>
-          <Button onClick={handleClickOpenAdd} >
-            <AddCircleOutlineIcon style ={{
-                color: "Aquamarine",
-                }}/><p style ={{color: "gray",}}>Add schedule</p>
-          </Button>
+
+    const [loading, setLoading] = useState(true)
+
+    useEffect(()=>{
+        const loadData = async () => {
+          await new Promise((r) => setTimeout(r, 2000))
+          setLoading((loading) => !loading)
+        }
+        loadData()
+    }, [])
+
+    if (loading) {
+        return (
+          <div style={{position: "fixed", top: "50%", left: "50%", transform: "translate(-50%, -50%)"}}>
+            <HashLoader size={100}/>
+          </div>
+        )
+    }
+
+    else {
+      return (
+        <div>
+          <MainPageTopBar/>
+          <AddSchedule open={openAdd} onClose={handleCloseAdd}/>
+          <div style={{marginLeft:'240pt', marginTop:'10pt' ,float:'top'}}>
+            <Button onClick={handleClickOpenAdd} >
+              <AddCircleOutlineIcon style ={{
+                  color: "Aquamarine",
+                  }}/><p style ={{color: "gray",}}>Add schedule</p>
+            </Button>
+          </div>
+          <CalenderPanel courseList={courseList} setList={setList} courses={courses} setCourse={setCourse}
+                        otherList={otherList} setoList={setoList} others={others} setoState={setoState}
+                        showEvents={showEvents} setShow={setShow} events={events} userinfo={userinfo} />
+          <div style={{marginLeft:'40pt', marginTop:'0pt', height: '450pt', width:'700pt' ,float:'left'}}>
+            <Calendar
+              events={showEvents}
+              views={["month", "week", "day"]}
+              startAccessor="start"
+              endAccessor="end"
+              onSelectEvent={onSelect}
+              defaultDate={moment().toDate()}
+              localizer={localizer}
+            />
+          </div>
         </div>
-        <CalenderPanel courseList={courseList} setList={setList} courses={courses} setCourse={setCourse}
-                      otherList={otherList} setoList={setoList} others={others} setoState={setoState}
-                      showEvents={showEvents} setShow={setShow} events={events} userinfo={userinfo} />
-        <div style={{marginLeft:'40pt', marginTop:'0pt', height: '450pt', width:'700pt' ,float:'left'}}>
-          <Calendar
-            events={showEvents}
-            views={["month", "week", "day"]}
-            startAccessor="start"
-            endAccessor="end"
-            onSelectEvent={onSelect}
-            defaultDate={moment().toDate()}
-            localizer={localizer}
-          />
-        </div>
-      </div>
-    );
+      );
+    }
   }
   
   export default Calender;
