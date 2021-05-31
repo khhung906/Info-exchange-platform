@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import MainPageTopBar from '../MainPageTopBar';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import AddSchedule from './AddSchedule';
@@ -14,8 +14,9 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Button from '@material-ui/core/Button';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
-import { useEffect } from "react"; 
 import instance from '../../axios';
+import HashLoader from 'react-spinners/HashLoader'
+
 
 const localizer = momentLocalizer(moment);
 
@@ -97,7 +98,26 @@ function Calender(props) {
       loadschedule();
     }, [])
 
-    return (
+    const [loading, setLoading] = useState(true)
+
+    useEffect(()=>{
+        const loadData = async () => {
+          await new Promise((r) => setTimeout(r, 2000))
+          setLoading((loading) => !loading)
+        }
+        loadData()
+    }, [])
+
+    if (loading) {
+        return (
+          <div style={{position: "fixed", top: "50%", left: "50%", transform: "translate(-50%, -50%)"}}>
+            <HashLoader size={100}/>
+          </div>
+        )
+    }
+
+    else {
+      return (
       <div>
         <MainPageTopBar/>
         <AddSchedule open={openAdd} onClose={handleCloseAdd} courseList={courseList} events={events} setEvents={setEvents}/>
@@ -122,9 +142,8 @@ function Calender(props) {
             defaultDate={moment().toDate()}
             localizer={localizer}
           />
-        </div>
-      </div>
-    );
+      )
+    }
   }
   
   export default Calender;

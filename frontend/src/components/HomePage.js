@@ -1,8 +1,9 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import LoginForm from "./LoginForm"
 import RegisterForm from './RegisterForm'
 import { NavLink, Switch, Route, Redirect } from "react-router-dom";
 import instance from '../axios';
+import HashLoader from 'react-spinners/HashLoader'
 
 function HomePage({log_in, setUserinfo}) {
   const [guest, setGuest] = useState({email:'', password:''})
@@ -69,45 +70,66 @@ function HomePage({log_in, setUserinfo}) {
     }
   }
 
-  return (
-    <div>
-      <div className="navBar">
-        <NavLink style={{fontFamily: "copperplate", float: 'left'}} to="/home">Info Exchange</NavLink>
-        <NavLink className="redirect" to="/aboutus">About Us</NavLink>
-        <NavLink className="redirect" to="/help">Help</NavLink>
+  const [loading, setLoading] = useState(true)
+
+  useEffect(()=>{
+      const loadData = async () => {
+        await new Promise((r) => setTimeout(r, 2000))
+        setLoading((loading) => !loading)
+      }
+      loadData()
+  }, [])
+
+  if (loading) {
+      return (
+        <div style={{position: "fixed", top: "50%", left: "50%", transform: "translate(-50%, -50%)"}}>
+          <HashLoader size={100}/>
+        </div>
+      )
+  }
+
+  else {
+
+    return (
+      <div>
+        <div className="navBar">
+          <NavLink style={{fontFamily: "copperplate", float: 'left'}} to="/home">Info Exchange</NavLink>
+          <NavLink className="redirect" to="/aboutus">About Us</NavLink>
+          <NavLink className="redirect" to="/help">Help</NavLink>
+        </div>
+        <hr className="bar-line"/>
+          <ul>
+              <li className="title">
+                  <div>
+                  <h1>
+                    <div className="title-name" id="title-name1">Where </div>
+                    <div className="title-name" id="title-name2">you </div>
+                    <div className="title-name" id="title-name3">find </div>
+                    <div className="title-name" id="title-name4">what </div>
+                    <div className="title-name" id="title-name5">you </div>
+                    <div className="title-name" id="title-name6">need?</div>
+                  </h1>
+                  <p className="title-context">use some dynamic design here</p>
+                  <p className="title-context"></p>
+                  <p className="title-context"></p>
+                  <p className="title-context"></p>
+                  <p className="rights">@2021 NTU All Rigts Reserved.</p>
+                  </div>
+              </li>
+              <li className="App">
+              {(guest.email !== "")?(
+                  <div>
+                  <h1>Welcome</h1>
+                  <button onClick={Logout}>Logout</button>
+                  </div>
+              ):(
+                  (FormType === "login")?(<LoginForm Login={Login} error={error} Change={FormSwitch}/>):(
+                  <RegisterForm CreateAccount={CreateAccount} error={error} Change={FormSwitch}/>))}
+              </li>
+          </ul>
       </div>
-      <hr className="bar-line"/>
-        <ul>
-            <li className="title">
-                <div>
-                <h1>
-                  <div className="title-name" id="title-name1">Where </div>
-                  <div className="title-name" id="title-name2">you </div>
-                  <div className="title-name" id="title-name3">find </div>
-                  <div className="title-name" id="title-name4">what </div>
-                  <div className="title-name" id="title-name5">you </div>
-                  <div className="title-name" id="title-name6">need?</div>
-                </h1>
-                <p className="title-context">use some dynamic design here</p>
-                <p className="title-context"></p>
-                <p className="title-context"></p>
-                <p className="title-context"></p>
-                <p className="rights">@2021 NTU All Rigts Reserved.</p>
-                </div>
-            </li>
-            <li className="App">
-            {(guest.email !== "")?(
-                <div>
-                <h1>Welcome</h1>
-                <button onClick={Logout}>Logout</button>
-                </div>
-            ):(
-                (FormType === "login")?(<LoginForm Login={Login} error={error} Change={FormSwitch}/>):(
-                <RegisterForm CreateAccount={CreateAccount} error={error} Change={FormSwitch}/>))}
-            </li>
-        </ul>
-    </div>
-  );
+    );
+  }
 }
 
 export default HomePage;
