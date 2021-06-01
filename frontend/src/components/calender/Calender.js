@@ -142,6 +142,8 @@ function Calender(props) {
             defaultDate={moment().toDate()}
             localizer={localizer}
           />
+        </div>
+      </div>
       )
     }
   }
