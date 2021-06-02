@@ -35,6 +35,7 @@ function AddSchedule(props) {
   const [end, setEnd] = useState("2021-05-29T10:30");
   const [category, setCategory] = useState('');
   const [error, setError] = useState(false);
+  const [description, setDis] = useState('');
   const handleClose = () => {
     onClose();
   };
@@ -45,11 +46,12 @@ function AddSchedule(props) {
     if(title && category){
       let tmp_event = [...events]
       const new_event = {
-        id: tmp_event.length,
+        id: title+category,
         title: title,
         divider: category,
         start: new Date(start),
         end: new Date(end),
+        description: description
       }
       tmp_event.push(new_event)
       const {
@@ -86,6 +88,10 @@ function AddSchedule(props) {
     setEnd(event.target.value);
   }
 
+  const ChangeDis = (event) =>{
+    setDis(event.target.value);
+  }
+
   return (
     <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open}>
       <DialogTitle id="simple-dialog-title">Add Course</DialogTitle>
@@ -102,6 +108,14 @@ function AddSchedule(props) {
           fullWidth
           onChange={typeTitle}
         />
+        <TextField
+        autoFocus
+        margin="dense"
+        id="add-description"
+        fullWidth
+        onChange={ChangeDis}
+        label="Add description"
+       />
         <TextField
             id="datetime-local"
             label="From"
@@ -133,6 +147,7 @@ function AddSchedule(props) {
           onChange={ChangeCategory}
           helperText="Please select a category"
         >
+        
           {courseList.map((course) => (
             <MenuItem key={course} value={course} style ={{height:"50px"}}>
               {course}

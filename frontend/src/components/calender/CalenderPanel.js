@@ -15,20 +15,22 @@ import AddCourse from './AddCourse';
 import DeleteCourse from './DeleteCourse';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
-
+import AddOthers from './AddOthers';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import UpcomingTable from'./UpcomingTable';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     marginLeft:'5pt', 
-    marginTop:'100pt', 
+    marginTop:'0pt', 
     height: '450pt', 
-    width:'200pt',
+    width:'240pt',
     float:'left',
     border: 'none',
     boxSizing: 'border-box'
   },
   heading: {
-    fontSize: theme.typography.pxToRem(15),
+    fontSize: theme.typography.pxToRem(18),
     fontWeight: theme.typography.fontWeightRegular,
   },
   accordion:{
@@ -57,21 +59,34 @@ const useStyles = makeStyles((theme) => ({
 function CalenderPanel(props) {
     const classes = useStyles();
     const { courseList, setList, courses, setCourse, otherList, 
-        setoList, others, setoState, showEvents, setShow, events, userinfo, loadschedule} = props;
+        setoList, others, setOthers, showEvents, setShow, events, userinfo, loadschedule} = props;
 
     const addcourse = (course) =>{
         let list = [...courseList];
         list.push(course);
         setList(list);
         let clist = {...courses};
-        clist[course] = true;
+        clist[course] = false;
         setCourse(clist);
     }
 
+    const addothers = (other) =>{
+        let list = [...otherList];
+        list.push(other);
+        setoList(list);
+        let clist = {...others};
+        clist[other] = false;
+        setOthers(clist);
+    } 
+
     const ShowList = (c, o) =>{
         let show = [];
+        console.log(events)
         for(let i = 0; i < events.length; i++){
             if(c[events[i].divider]){
+                show.push(events[i]);
+            }
+            else if(o[events[i].divider]){
                 show.push(events[i]);
             }
         }
@@ -94,12 +109,20 @@ function CalenderPanel(props) {
         ShowList(c, o);
     };
     
-    const [openAdd, setOpenAdd] = useState(false);
-    const handleClickOpenAdd = () => {
-        setOpenAdd(true);
+    const [openAdd1, setOpenAdd1] = useState(false);
+    const handleClickOpenAdd1 = () => {
+        setOpenAdd1(true);
     };
-    const handleCloseAdd = (value) => {
-        setOpenAdd(false);
+    const handleCloseAdd1 = (value) => {
+        setOpenAdd1(false);
+    };
+
+    const [openAdd2, setOpenAdd2] = useState(false);
+    const handleClickOpenAdd2 = () => {
+        setOpenAdd2(true);
+    };
+    const handleCloseAdd2 = (value) => {
+        setOpenAdd2(false);
     };
 
 
@@ -118,6 +141,7 @@ function CalenderPanel(props) {
 
     return (
         <div className={classes.root}>
+        <UpcomingTable events={events}/>
         <Accordion className={classes.accordion} defaultExpanded='true'>
             <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
@@ -128,6 +152,7 @@ function CalenderPanel(props) {
             </AccordionSummary>
             <AccordionDetails>
                 <FormControl component="fieldset" className={classes.formControl}>
+                    <FormHelperText>course you have subscribe</FormHelperText>
                     <FormGroup>
                         {courseList.map(course => (<FormControlLabel  control={<Checkbox style ={{
                         color: "#00e676",
@@ -135,8 +160,8 @@ function CalenderPanel(props) {
                             label={course} className={classes.formControlLabel}
                         />))}
                     </FormGroup>
-                    <AddCourse open={openAdd} onClose={handleCloseAdd} add={addcourse} userinfo={userinfo} loadschedule={loadschedule}/>
-                    <Button  size='small' className={classes.button} onClick={handleClickOpenAdd} >
+                    <AddCourse open={openAdd1} onClose={handleCloseAdd1} add={addcourse} userinfo={userinfo} loadschedule={loadschedule}/>
+                    <Button  size='small' className={classes.button} onClick={handleClickOpenAdd1} >
                         <AddIcon style ={{
                             color: "gray",
                             }}/><p style ={{color: "gray",}}>Add Course</p>
@@ -144,7 +169,7 @@ function CalenderPanel(props) {
                 </FormControl>
             </AccordionDetails>
         </Accordion>
-        <Accordion className={classes.accordion} defaultExpanded='true'>
+        {/*<Accordion className={classes.accordion} defaultExpanded='true'>
             <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel1a-content"
@@ -152,7 +177,7 @@ function CalenderPanel(props) {
                 >
             <Typography className={classes.heading}>Others</Typography>
             </AccordionSummary>
-            <AccordionDetails>
+              <AccordionDetails>
                 <FormControl component="fieldset" className={classes.formControl}>
                     <FormGroup>
                         {otherList.map(other => (<FormControlLabel control={<Checkbox style ={{
@@ -161,9 +186,15 @@ function CalenderPanel(props) {
                             label={other} className={classes.formControlLabel}
                         />))}
                     </FormGroup>
+                    <AddOthers open={openAdd2} onClose={handleCloseAdd2} add={addothers} userinfo={userinfo} loadschedule={loadschedule}/>
+                    <Button  size='small' className={classes.button} onClick={handleClickOpenAdd2} >
+                        <AddIcon style ={{
+                            color: "gray",
+                            }}/><p style ={{color: "gray",}}>Add Others</p>
+                    </Button>
                 </FormControl>
-            </AccordionDetails>
-        </Accordion>
+            </AccordionDetails>} 
+        </Accordion>*/}
 
         </div>
     );

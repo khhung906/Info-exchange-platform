@@ -16,6 +16,7 @@ import Button from '@material-ui/core/Button';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import instance from '../../axios';
 import HashLoader from 'react-spinners/HashLoader'
+import EventDetail from './EventDetail';
 
 
 const localizer = momentLocalizer(moment);
@@ -23,33 +24,20 @@ const localizer = momentLocalizer(moment);
 // improve resize of screen
 
 function Calender(props) {
+
     const {userinfo} = props; 
     // console.log(userinfo);
     const [courseList, setList] = useState([]);
     //['DSA(CS1108)', 'SP(CS1022)', 'Web(EE2252)']
     const [courses, setCourse] = useState({});
     const [otherList, setoList] = useState(['Speaking', 'WVS Club', 'Basketball']);
-    const [others, setoState] = useState({
+    const [others, setOthers] = useState({
       'Speaking': false,
       'WVS Club': false,
       'Basketball': false,
     });
     const [events, setEvents] = useState([]);
     const [showEvents, setShow] = useState(events);
-
-    const onSelect = (event) =>{
-      console.log(event)
-      // console.log('open');
-      // let e = [...events];
-      // e.push({
-      //     id: 4,
-      //     title: 'hihi',
-      //     allDay: true,
-      //     start: new Date(2021, 5, 4),
-      //     end: new Date(2021, 5, 25),
-      // })
-      //setEvents(e);
-    }
 
     const [openAdd, setOpenAdd] = useState(false);
     const handleClickOpenAdd = () => {
@@ -58,6 +46,20 @@ function Calender(props) {
     const handleCloseAdd = (value) => {
         setOpenAdd(false);
     };
+
+    const [openDetail, setOpenDetail] = useState(false);
+    const [detail, setDetail] = useState({});
+
+    const onSelect = (event) =>{
+      console.log(event)
+      setDetail(event);
+      setOpenDetail(true);
+    }
+
+    const handleCloseDetail = (value) => {
+      setOpenDetail(false);
+    };
+
     const loadcourse = async() => {
       const email = userinfo;
       const {
@@ -121,6 +123,7 @@ function Calender(props) {
       <div>
         <MainPageTopBar/>
         <AddSchedule open={openAdd} onClose={handleCloseAdd} courseList={courseList} events={events} setEvents={setEvents}/>
+        <EventDetail open={openDetail} onClose={handleCloseDetail} courseList={courseList} detail={detail} events={events} setEvents={setEvents}/>
         <div style={{marginLeft:'240pt', marginTop:'10pt' ,float:'top'}}>
           <Button onClick={handleClickOpenAdd} >
             <AddCircleOutlineIcon style ={{
@@ -129,13 +132,13 @@ function Calender(props) {
           </Button>
         </div>
         <CalenderPanel courseList={courseList} setList={setList} courses={courses} setCourse={setCourse}
-                      otherList={otherList} setoList={setoList} others={others} setoState={setoState}
+                      otherList={otherList} setoList={setoList} others={others} setOthers={setOthers}
                       showEvents={showEvents} setShow={setShow} events={events} userinfo={userinfo} 
                       loadschedule = {loadschedule}/>
-        <div style={{marginLeft:'40pt', marginTop:'0pt', height: '450pt', width:'700pt' ,float:'left'}}>
+        <div style={{marginLeft:'20pt', marginTop:'0pt', height: '450pt', width:'700pt' ,float:'left'}}>
           <Calendar
             events={showEvents}
-            views={["month", "week", "day"]}
+            views={["month"]}
             startAccessor="start"
             endAccessor="end"
             onSelectEvent={onSelect}
