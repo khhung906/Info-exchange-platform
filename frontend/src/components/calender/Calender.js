@@ -25,7 +25,7 @@ const localizer = momentLocalizer(moment);
 
 function Calender(props) {
 
-    const {userinfo} = props; 
+    const {userinfo,log_in} = props; 
     // console.log(userinfo);
     const [courseList, setList] = useState([]);
     //['DSA(CS1108)', 'SP(CS1022)', 'Web(EE2252)']
@@ -121,7 +121,7 @@ function Calender(props) {
     else {
       return (
       <div>
-        <MainPageTopBar/>
+        <MainPageTopBar log_in = {log_in}/>
         <AddSchedule open={openAdd} onClose={handleCloseAdd} courseList={courseList} events={events} setEvents={setEvents}/>
         <EventDetail open={openDetail} onClose={handleCloseDetail} courseList={courseList} detail={detail} events={events} setEvents={setEvents}/>
         <div style={{marginLeft:'240pt', marginTop:'10pt' ,float:'top'}}>

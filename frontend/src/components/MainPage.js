@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-function MainPage() {
+function MainPage({log_in}) {
     console.log('main page')
     const classes = useStyles();
 
@@ -39,7 +39,7 @@ function MainPage() {
       return (
 
         <div className="background">
-          <MainPageTopBar/>
+          <MainPageTopBar log_in={log_in}/>
           <div className={classes.feature_selection}>
             <Cards/>
           </div>

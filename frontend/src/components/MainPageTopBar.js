@@ -6,16 +6,10 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import Badge from '@material-ui/core/Badge';
 import clsx from 'clsx';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
@@ -115,18 +109,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function MainPageTopBar(props) {
-    const topbarTitles = {mainpage: 'Main Page', calendar: 'Calendar'}
+function MainPageTopBar({log_in}) {
     const classes = useStyles();
-
-    const [anchorEl, setAnchorEl] = useState(null);
-
-    const handleClick = e => {
-      setAnchorEl(e.currentTarget);
-    };
-    const handleClose = () => {
-      setAnchorEl(null);
-    };
 
     const [state, setState]=useState({left:false})
     const toggleDrawer = (anchor, open) => (event) => {
@@ -145,7 +129,7 @@ function MainPageTopBar(props) {
         // onClick={toggleDrawer(anchor, false)}
         // onKeyDown={toggleDrawer(anchor, false)}
       >
-        <SideBar/>
+        <SideBar log_in={log_in}/>
       </div>
     )
 

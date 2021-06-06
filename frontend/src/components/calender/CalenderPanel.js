@@ -121,6 +121,7 @@ function CalenderPanel(props) {
     const handleClickOpenAdd2 = () => {
         setOpenAdd2(true);
     };
+    
     const handleCloseAdd2 = (value) => {
         setOpenAdd2(false);
     };

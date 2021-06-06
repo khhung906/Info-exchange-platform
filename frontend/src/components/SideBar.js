@@ -29,12 +29,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SideBar() {
+function SideBar({log_in}) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
   const handleClick = () => {
     setOpen(!open);
+  };
+
+  const logout = () =>{
+    log_in(false);
   };
 
   return (
@@ -90,7 +94,7 @@ export default function SideBar() {
           </ListItem>
         </List>
       </Collapse>
-      <ListItem button style={{marginTop:'540px'}}>
+      <ListItem button style={{marginTop:'540px'}} onClick={logout}>
         <ListItemIcon>
           <ExitToAppIcon />
         </ListItemIcon>
@@ -98,4 +102,6 @@ export default function SideBar() {
       </ListItem>
     </List>
   );
-}
+};
+
+export default SideBar;

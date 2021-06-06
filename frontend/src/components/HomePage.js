@@ -27,7 +27,7 @@ function HomePage({log_in, setUserinfo}) {
     setError(message)
     if(message === 'login successfully'){
         setUserinfo(email);
-        log_in();
+        log_in(true);
     }
   }
 
@@ -89,7 +89,6 @@ function HomePage({log_in, setUserinfo}) {
   }
 
   else {
-
     return (
       <div>
         <div className="navBar">
