@@ -17,6 +17,8 @@ import CalendarTodayTwoToneIcon from '@material-ui/icons/CalendarTodayTwoTone';
 import MapTwoToneIcon from '@material-ui/icons/MapTwoTone';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import { Link } from 'react-router-dom';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -40,6 +42,8 @@ function SideBar({log_in}) {
   const logout = () =>{
     log_in(false);
   };
+
+  const CustomLink = props => <Link to='/' {...props} />;
 
   return (
     <List
@@ -94,7 +98,7 @@ function SideBar({log_in}) {
           </ListItem>
         </List>
       </Collapse>
-      <ListItem button style={{marginTop:'540px'}} onClick={logout}>
+      <ListItem button style={{marginTop:'540px'}} onClick={logout} component={CustomLink}>
         <ListItemIcon>
           <ExitToAppIcon />
         </ListItemIcon>
