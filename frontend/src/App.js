@@ -13,8 +13,8 @@ const LOCALSTORAGE_LOGIN = false;
 function App() {
   const savedUser = localStorage.getItem(LOCALSTORAGE_USER);
   const savedLogin = localStorage.getItem(LOCALSTORAGE_LOGIN);
-  const [login, setLogin] = useState(false )
-  const [userinfo, setUserinfo] = useState("" );
+  const [login, setLogin] = useState(false || LOCALSTORAGE_LOGIN)
+  const [userinfo, setUserinfo] = useState("" || LOCALSTORAGE_USER);
   const log_in = (bool) =>{
     setLogin(bool);
   }
