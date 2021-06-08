@@ -103,12 +103,12 @@ router.post('/loadschedule', async function(req, res) {
 router.post('/changecourse', async function(req, res) {
     try {
         const data = new Course(req.body);
-        const course = await Course.findOne({course_id : data.course_id});
-        await course.updateOne({coursre_id : data.course_id, 
-                                course_name : data.course_name,
-                                course_dayofweek : data.course_dayofweek,  
-                                course_time : data.course_time, 
-                                activity : data.activity});
+        // const course = await Course.findOne({course_id : data.course_id});
+        await Course.updateOne({course_id : data.course_id},
+                                { course_name : data.course_name,
+                                 course_dayofweek : data.course_dayofweek,  
+                                 course_time : data.course_time, 
+                                 activity : data.activity});
         res.send({message : "Update successfully", courseinfo : data});
     } catch(e) {
         res.send({message : "something went wrong"})
