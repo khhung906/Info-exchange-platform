@@ -49,8 +49,8 @@ function AddSchedule(props) {
         id: title+category,
         title: title,
         divider: category,
-        start: new Date(start),
-        end: new Date(end),
+        start: new Date(start).toDateString(),
+        end: new Date(end).toDateString(),
         description: description
       }
       tmp_event.push(new_event)
