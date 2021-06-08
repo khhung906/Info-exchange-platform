@@ -25,7 +25,7 @@ const cards = [{name:'Course Calendar',
                {name:'Library Map', 
                 dis:'Library Seats',
                 imgsrc:'/img/Map.png',
-                route:'/library'
+                route:'/map'
                 },
                {
                 name:'Other Features', 

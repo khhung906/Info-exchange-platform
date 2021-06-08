@@ -126,6 +126,7 @@ function AddSchedule(props) {
             shrink: true,
             }}
             onChange={ChangeStart}
+            style={{marginTop:'8px'}}
         />
         <TextField
             id="datetime-local"
@@ -137,6 +138,7 @@ function AddSchedule(props) {
             shrink: true,
             }}
             onChange={ChangeEnd}
+            style={{marginTop:'8px'}}
         />
         <TextField
           error = {error}
@@ -146,6 +148,7 @@ function AddSchedule(props) {
           value={category}
           onChange={ChangeCategory}
           helperText="Please select a category"
+          style={{marginTop:'8px'}}
         >
         
           {courseList.map((course) => (
