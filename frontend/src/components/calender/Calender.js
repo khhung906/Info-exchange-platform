@@ -135,7 +135,7 @@ function Calender(props) {
                       otherList={otherList} setoList={setoList} others={others} setOthers={setOthers}
                       showEvents={showEvents} setShow={setShow} events={events} userinfo={userinfo} 
                       loadschedule = {loadschedule}/>
-        <div style={{marginLeft:'20pt', marginTop:'0pt', height: '450pt', width:'700pt' ,float:'left'}}>
+        <div style={{marginLeft:'20pt', marginTop:'0pt', height: '740px', width:'1082px' ,float:'left'}}>
           <Calendar
             events={showEvents}
             views={["month"]}

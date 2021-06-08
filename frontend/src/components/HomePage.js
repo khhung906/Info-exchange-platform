@@ -3,7 +3,7 @@ import LoginForm from "./LoginForm"
 import RegisterForm from './RegisterForm'
 import { NavLink, Switch, Route, Redirect } from "react-router-dom";
 import instance from '../axios';
-import HashLoader from 'react-spinners/HashLoader'
+import HashLoader from 'react-spinners/HashLoader';
 
 function HomePage({log_in, setUserinfo}) {
   const [guest, setGuest] = useState({email:'', password:''})
@@ -108,7 +108,6 @@ function HomePage({log_in, setUserinfo}) {
                     <div className="title-name" id="title-name5">you </div>
                     <div className="title-name" id="title-name6">need?</div>
                   </h1>
-                  <p className="title-context">use some dynamic design here</p>
                   <p className="title-context"></p>
                   <p className="title-context"></p>
                   <p className="title-context"></p>
