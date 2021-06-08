@@ -76,9 +76,10 @@ input, button {
 
 .title-name {
   font-family: "copperplate", fantasy;
-  animation: movein 5s infinite;
+  animation: movein 5s;
   position: relative;
   animation-timing-function: 4s;
+  animation-iteration-count: 1;
 }
 
 #title-name1 {animation-timing-function: linear;}
@@ -87,13 +88,7 @@ input, button {
 #title-name4 {animation-timing-function: ease-out;}
 #title-name5 {animation-timing-function: ease-in-out;}
 #title-name6 {animation-timing-function: linear;}
-#title-name7 {animation-timing-function: ease;}
-#title-name8 {animation-timing-function: ease-in;}
-#title-name9 {animation-timing-function: ease-out;}
-#title-name10 {animation-timing-function: ease;}
-#title-name11 {animation-timing-function: ease;}
-#title-name12 {animation-timing-function: ease;}
-#title-name13 {animation-timing-function: ease;}
+
 
 @keyframes movein {
     from {right: 300px}
@@ -357,4 +352,21 @@ form .form-inner input[type="submit"]:hover {
   padding: 12px 16px;
   text-decoration: none;
   display: block;
+}
+
+.map-container {
+  height: 775px;
+}
+
+.map-sidebar {
+  background-color: rgba(35,55,75,0.9);
+  color: #ffffff;
+  padding: 6px 12px;
+  font-family: monospace;
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 12px;
+  border-radius: 4px;
 }
