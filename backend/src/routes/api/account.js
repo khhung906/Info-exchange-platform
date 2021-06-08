@@ -49,4 +49,20 @@ router.get('/GetUserInfo', async function(req, res) {
     res.json({ message : "Something went wrong"});
   }
 });
+
+router.post('/deleteCourse', async function(req, res) {
+  try {
+      const delete_class = req.body.delete_class;
+      const data = new Account(req.body);
+      const account = await Account.findOne({email : data.email})
+      let courses = account.course;
+      const idx = courses.indexOf(delete_class);
+      courses.splice(idx,1);
+      await Account.updateOne({email : account.email}, {course : courses});
+      
+  } catch(e) {
+    res.send({message : "Something went wrong"});
+  }
+})
+
 export default router;
