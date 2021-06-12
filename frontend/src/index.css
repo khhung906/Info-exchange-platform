@@ -370,3 +370,21 @@ form .form-inner input[type="submit"]:hover {
   margin: 12px;
   border-radius: 4px;
 }
+
+.marker {
+  background-image: url('./components/map/library-15\ 2.png');
+  background-size: cover;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.mapboxgl-popup {
+  max-width: 200px;
+}
+
+.mapboxgl-popup-content {
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+}

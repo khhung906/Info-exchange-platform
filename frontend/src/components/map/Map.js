@@ -1,36 +1,71 @@
 import React, {useState, useEffect, useRef} from 'react'
+import ReactDOM from 'react-dom'
 import MainPageTopBar from '../MainPageTopBar';
 import HashLoader from 'react-spinners/HashLoader'
 import mapboxgl from 'mapbox-gl';
+import geoJson from './library-data.json';
+
 
 mapboxgl.accessToken = 'pk.eyJ1Ijoic3R2MTIyMiIsImEiOiJja3BvMzR2ZXI0a3l3MnVueGR0bGxrZjdmIn0.34CD3AHK7plUolQwFSje-Q'
 
-function DefaultMap(){
+const Marker = ({ onClick, children, feature}) => {
+    const _onClick = (e) => {
+        onClick(feature.properties.seats)
+    }
+    return (
+        <button onClick={_onClick} className="marker">
+            {children}
+        </button>
+    )
+}
+
+// Marker Clicked alert 
+const markerClicked = (title) => {
+    window.alert("Seats Availablle: \n" + title)
+}
+
+const DefaultMap = () => {
     const mapContainer = useRef(null);
     const map = useRef(null);
-    const [lng, setLng] = useState(120.4);
-    const [lat, setLat] = useState(23.44);
-    const [zoom, setZoom] = useState(7);
+    const [lng, setLng] = useState(121.5398);
+    const [lat, setLat] = useState(25.0165);
+    const [zoom, setZoom] = useState(14.87);
+    
 
     useEffect(() => {
-        if (map.current) return; //initialize map only once
-        map.current = new mapboxgl.Map({
+        const map = new mapboxgl.Map({
             container: mapContainer.current,
             style: 'mapbox://styles/mapbox/streets-v11',
             center: [lng, lat],
             zoom: zoom
         })
-    })
+        
 
-    useEffect(() => {
-        if (!map.current) return; 
-        map.current.on('move', () => {
-            setLng(map.current.getCenter().lng.toFixed(4));
-            setLat(map.current.getCenter().lat.toFixed(4));
-            setZoom(map.current.getZoom().toFixed(2));
+        // Create markers and map data
+        geoJson.features.map((feature) => {
+            const ref = React.createRef();
+            ref.current = document.createElement('div');
+            ReactDOM.render(
+                <Marker onClick={markerClicked} feature={feature}/>,
+                ref.current
+            );
+            new mapboxgl.Marker(ref.current).setLngLat(feature.geometry.coordinates).addTo(map)
+            
         })
-    })
-    
+
+        // Add navigation control (+/- zoom buttons)
+        map.addControl(new mapboxgl.NavigationControl(), 'top-right')
+
+        map.on('move', () => {
+            setLng(map.getCenter().lng.toFixed(4));
+            setLat(map.getCenter().lat.toFixed(4));
+            setZoom(map.getZoom().toFixed(2));
+        })
+        
+        return () => map.remove();
+}, [])
+
+
     return(
         <div>
             <div ref={mapContainer} className="map-container">
