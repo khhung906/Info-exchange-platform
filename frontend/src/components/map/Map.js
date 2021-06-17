@@ -5,10 +5,9 @@ import HashLoader from 'react-spinners/HashLoader'
 import mapboxgl from 'mapbox-gl';
 import geoJson from './library-data.json';
 import SideInfo from './SideInfo';
-import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css';
 import Geocoder from 'react-map-gl-geocoder';
 
-mapboxgl.accessToken = 'pk.eyJ1Ijoic3R2MTIyMiIsImEiOiJja3BvMzR2ZXI0a3l3MnVueGR0bGxrZjdmIn0.34CD3AHK7plUolQwFSje-Q'
+mapboxgl.accessToken = 'pk.eyJ1Ijoic3R2MTIyMiIsImEiOiJja3Bud3duc2YwZDFrMnVsZnR3bzJwdnh1In0.8NeYXbzz2K0qztqEULiY-w'
 
 const Marker = ({ onClick, children, feature}) => {
     const _onClick = (e) => {
@@ -59,7 +58,9 @@ const DefaultMap = () => {
                 <Marker onClick={markerClicked} feature={feature}/>,
                 ref.current
             );
-            new mapboxgl.Marker(ref.current).setLngLat(feature.geometry.coordinates).addTo(map)
+            new mapboxgl.Marker(ref.current)
+            .setLngLat(feature.geometry.coordinates)
+            .addTo(map)
             
         })
 
@@ -71,6 +72,15 @@ const DefaultMap = () => {
             setLat(map.getCenter().lat.toFixed(4));
             setZoom(map.getZoom().toFixed(2));
         })
+
+        // Add search bar
+        map.addControl(
+            new MapboxGeocoder({
+                zoom: 14,
+                placeholder: 'Enter search e.g. National Taiwan University',
+                mapboxgl: mapboxgl
+            }, 'top-right')
+        )
         
         return () => map.remove();
     }, [])
