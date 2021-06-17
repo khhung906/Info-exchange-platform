@@ -1,10 +1,12 @@
-import React, {useState, useEffect, useRef} from 'react'
+import React, {useState, useEffect, useRef, useCallback} from 'react'
 import ReactDOM from 'react-dom'
 import MainPageTopBar from '../MainPageTopBar';
 import HashLoader from 'react-spinners/HashLoader'
 import mapboxgl from 'mapbox-gl';
 import geoJson from './library-data.json';
-
+import SideInfo from './SideInfo';
+import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css';
+import Geocoder from 'react-map-gl-geocoder';
 
 mapboxgl.accessToken = 'pk.eyJ1Ijoic3R2MTIyMiIsImEiOiJja3BvMzR2ZXI0a3l3MnVueGR0bGxrZjdmIn0.34CD3AHK7plUolQwFSje-Q'
 
@@ -20,9 +22,17 @@ const Marker = ({ onClick, children, feature}) => {
 }
 
 // Marker Clicked alert 
-const markerClicked = (title) => {
-    window.alert("Seats Availablle: \n" + title)
+const markerClicked = (data) => {
+    // window.alert("Seats Availablle: \n" + data)
+    console.log(data)
+    return (
+        <SideInfo data={data}/>
+    )
 }
+
+
+
+
 
 const DefaultMap = () => {
     const mapContainer = useRef(null);
@@ -63,7 +73,7 @@ const DefaultMap = () => {
         })
         
         return () => map.remove();
-}, [])
+    }, [])
 
 
     return(
@@ -83,6 +93,7 @@ const DefaultMap = () => {
 
 
 function Map (props) {
+
     const {userinfo,log_in} = props; 
 
     const [loading, setLoading] = useState(true)
@@ -114,3 +125,4 @@ function Map (props) {
 }
 
 export default Map;
+

@@ -389,3 +389,25 @@ form .form-inner input[type="submit"]:hover {
   text-align: center;
   font-family: 'Open Sans', sans-serif;
 }
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 50px;
+  left: 0;
+  background-color: rgb(248, 237, 237);
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}

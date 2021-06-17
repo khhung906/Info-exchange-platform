@@ -20,6 +20,8 @@
     "react-big-calendar": "^0.33.4",
     "react-calendar": "^3.4.0",
     "react-dom": "^17.0.2",
+    "react-map-gl": "^6.1.16",
+    "react-map-gl-geocoder": "^2.1.6",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.3",
     "react-spinners": "^0.11.0",
@@ -48,5 +50,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "json-loader": "^0.5.7",
+    "transform-loader": "^0.2.4",
+    "webworkify-webpack": "^1.0.6"
   }
 }
