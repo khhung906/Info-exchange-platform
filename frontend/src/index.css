@@ -363,12 +363,14 @@ form .form-inner input[type="submit"]:hover {
   color: #ffffff;
   padding: 6px 12px;
   font-family: monospace;
+  font-size: 8px;
   z-index: 1;
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 700px;
+  left: 10;
   margin: 12px;
   border-radius: 4px;
+
 }
 
 .marker {
