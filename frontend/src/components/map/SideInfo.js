@@ -8,14 +8,13 @@ const closeInfo = () => {
 }
 
 
-function SideInfo (data) {
+function SideInfo () {
 
-    document.getElementById("sidebar").style.width = "250px";
-    console.log('click')
+
     return (
         <div id="sidebar" className='sidenav'>
-            <a href="javascript:void(0)" class="closebtn" onClick={closeInfo}>&times;</a>
-            <p>{data}</p>
+            <a href="javascript:void(0)" className="closebtn">&times;</a>
+            <p>Hello</p>
         </div>
     )
 }
