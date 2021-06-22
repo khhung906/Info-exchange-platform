@@ -1,20 +1,15 @@
 import React from 'react';
 
-const openInfo = () => {
-    document.getElementById("sidebar").style.width = "250px";
-}
-const closeInfo = () => {
-    document.getElementById("sidebar").style.width = "0";
-}
-
-
-function SideInfo () {
-
+function SideInfo (props) {
+    //alert('side')
+    const {info} = props;
+    console.log(info)
 
     return (
         <div id="sidebar" className='sidenav'>
-            <a href="javascript:void(0)" className="closebtn">&times;</a>
-            <p>Hello</p>
+            {/* <a href="javascript:void(0)" className="closebtn">&times;</a> */}
+            <p>side bar</p>
+            <p>{(info === null) ? "":info.Name}</p>
         </div>
     )
 }

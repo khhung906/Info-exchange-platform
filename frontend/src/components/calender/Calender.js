@@ -1,17 +1,10 @@
 import React, {useState, useEffect} from 'react'
 import MainPageTopBar from '../MainPageTopBar';
-import AddCircleIcon from '@material-ui/icons/AddCircle';
 import AddSchedule from './AddSchedule';
 import CalenderPanel from './CalenderPanel';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import FormLabel from '@material-ui/core/FormLabel';
-import FormControl from '@material-ui/core/FormControl';
-import FormGroup from '@material-ui/core/FormGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import Button from '@material-ui/core/Button';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import instance from '../../axios';

@@ -6,16 +6,13 @@ import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import FormLabel from '@material-ui/core/FormLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import AddCourse from './AddCourse';
-import DeleteCourse from './DeleteCourse';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
-import AddOthers from './AddOthers';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import UpcomingTable from'./UpcomingTable';
 

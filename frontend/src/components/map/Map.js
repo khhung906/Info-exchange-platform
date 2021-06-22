@@ -14,8 +14,7 @@ const MAPBOX_TOKEN =
   "pk.eyJ1Ijoic3R2MTIyMiIsImEiOiJja3Bud3duc2YwZDFrMnVsZnR3bzJwdnh1In0.8NeYXbzz2K0qztqEULiY-w";
 
 function Map(props) {
-
-    const {userinfo,log_in} = props; 
+  const {userinfo,log_in} = props; 
 
   const [viewport, setViewport] = useState({
     latitude: 25.0175,
@@ -27,7 +26,6 @@ function Map(props) {
     (newViewport) => setViewport(newViewport),
     []
   );
-
 
   const handleGeocoderViewportChange = useCallback(
     (newViewport) => {
@@ -67,7 +65,8 @@ function Map(props) {
         return (
             <div>
                 <MainPageTopBar log_in = {log_in}/>
-                <div style={{ height: "773px" }}>
+                <div style={{ height: "1000px" }}>
+                <SideInfo info={popupInfo}/>
                 <MapGL
                     ref={mapRef}
                     {...viewport}
@@ -82,6 +81,7 @@ function Map(props) {
                     onViewportChange={handleGeocoderViewportChange}
                     mapboxApiAccessToken={MAPBOX_TOKEN}
                     position="top-left"
+                    style={{right:'50px',top:'10px'}}
                     />
                     <Pins data={libraryData} onClick={setPopupInfo}/>
                     {popupInfo && (
@@ -96,10 +96,10 @@ function Map(props) {
                             <LibraryInfo info={popupInfo}/>
                         </Popup>
                     )}
-                    <NavigationControl style={{left:'1400px',top:'10px'}}/>
-                    <ScaleControl maxWidth={100} unit="metric" style={{left:'1330px', top:'730px'}}/>
-                    <GeolocateControl style={{left:'1400px', top:'120px'}}positionOptions={{enableHighAccuracy: true}} trackUserLocation={true} auto/>
-                    <div className="map-sidebar">
+                    <NavigationControl style={{right:'50px',top:'10px'}}/>
+                    <ScaleControl maxWidth={100} unit="metric" style={{right:'50px', bottom:'30px'}}/>
+                    <GeolocateControl style={{right:'50px', top:'120px'}}positionOptions={{enableHighAccuracy: true}} trackUserLocation={true} auto/>
+                    <div className="map-sidebar" style={{left:'50px', bottom:'30px'}}>
                         Longitude: {viewport.longitude} | Latitude: {viewport.latitude} | Zoom: {viewport.zoom}
                     </div>
                 </MapGL>

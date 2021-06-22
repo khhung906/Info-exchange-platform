@@ -366,11 +366,8 @@ form .form-inner input[type="submit"]:hover {
   font-size: 8px;
   z-index: 1;
   position: absolute;
-  top: 700px;
-  left: 10;
   margin: 12px;
   border-radius: 4px;
-
 }
 
 .marker {
@@ -393,16 +390,15 @@ form .form-inner input[type="submit"]:hover {
 }
 
 .sidenav {
-  height: 100%;
-  width: 0;
+  height: 45%;
+  width: 20%;
   position: fixed;
   z-index: 1;
-  top: 50px;
-  left: 0;
-  background-color: rgb(248, 237, 237);
+  top: 10%;
+  left: 30px;
+  background-color: white;
   overflow-x: hidden;
   transition: 0.5s;
-  padding-top: 60px;
 }
 
 .sidenav a {
