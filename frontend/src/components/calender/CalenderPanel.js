@@ -15,7 +15,7 @@ import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import UpcomingTable from'./UpcomingTable';
-
+import instance from '../../axios';
 const useStyles = makeStyles((theme) => ({
   root: {
     marginLeft:'5pt', 
@@ -57,7 +57,9 @@ function CalenderPanel(props) {
     const classes = useStyles();
     const { courseList, setList, courses, setCourse, otherList, 
         setoList, others, setOthers, showEvents, setShow, events, userinfo, loadschedule} = props;
-
+    const [search_course, setSearchcourse] = useState([]);
+    const [search_courseid, setSearchcourseid] = useState([]);
+    
     const addcourse = (course) =>{
         let list = [...courseList];
         list.push(course);
@@ -112,6 +114,8 @@ function CalenderPanel(props) {
     };
     const handleCloseAdd1 = (value) => {
         setOpenAdd1(false);
+        handleSearch("",0);
+        handleSearch("",1);
     };
 
     const [openAdd2, setOpenAdd2] = useState(false);
@@ -131,6 +135,19 @@ function CalenderPanel(props) {
     const handleCloseDelete = (value) => {
         setOpenDelete(false);
     };
+
+    const handleSearch = async(keyword, which) => {
+        // const keyword = classname;
+        const {
+          data : {final, message}
+        } = await instance.post('api/search', {
+          keyword, which
+        });
+        console.log(final,message);
+        if (which === 1) setSearchcourse(final);
+        else setSearchcourseid(final);
+        
+    }
 
     useEffect(() => {
         ShowList(courses, others)
@@ -158,7 +175,7 @@ function CalenderPanel(props) {
                             label={course} className={classes.formControlLabel}
                         />))}
                     </FormGroup>
-                    <AddCourse open={openAdd1} onClose={handleCloseAdd1} add={addcourse} userinfo={userinfo} loadschedule={loadschedule}/>
+                    <AddCourse open={openAdd1} onClose={handleCloseAdd1} add={addcourse} userinfo={userinfo} loadschedule={loadschedule} search_course={search_course} search_courseid={search_courseid}/>
                     <Button  size='small' className={classes.button} onClick={handleClickOpenAdd1} >
                         <AddIcon style ={{
                             color: "gray",

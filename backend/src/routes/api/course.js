@@ -99,6 +99,31 @@ router.post('/loadschedule', async function(req, res) {
     }
 })
 
+router.post('/search', async function(req, res) {
+    //keyword email 
+    try{
+        console.log(req.body.which);
+        let all = [];
+        let result = []
+        if (req.body.which === 1) {
+            all = await Course.find({course_name : {"$regex": req.body.keyword, "$options": "i"}})
+            result = all.map(e => e.course_name)
+        }
+        else {
+            all = await Course.find({course_id : {"$regex": req.body.keyword, "$options": "i"}})
+            result = all.map(e => e.course_id)
+        }
+        console.log(all);
+        let final = [];
+        for (let i = 0; i < result.length; i++) {
+            final.push({name : result[i]});
+        }
+        res.send({message : "search success", final})
+    }catch(e) {
+        console.log(e);
+        res.send({message : "Something went wrong"});
+    }
+})
 
 router.post('/changecourse', async function(req, res) {
     try {

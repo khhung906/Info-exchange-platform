@@ -8,6 +8,7 @@ import TextField from '@material-ui/core/TextField';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
+import Autocomplete from '@material-ui/lab/Autocomplete';
 import instance from '../../axios';
 
 const useStyles = makeStyles((theme) => ({
@@ -26,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
 //select, pickers
 function AddCourse(props) {
   const classes = useStyles();
-  const { open, onClose , add, userinfo, loadschedule } = props;
+  const { open, onClose , add, userinfo, loadschedule, search_course, search_courseid} = props;
   const [classname, setname] = useState('');
   const [alertopen, setAlert] = useState(false);
   const [classid, setid] = useState('');
@@ -77,22 +78,29 @@ function AddCourse(props) {
           <DialogContentText>
             Enter Your Course Information
           </DialogContentText>
-          <TextField
-            error = {iderror}
-            autoFocus
-            margin="dense"
-            id="class-id"
-            label="Class ID"
-            fullWidth
-            onChange={typeID}
+          <Autocomplete
+              id="course_id"
+              options={search_courseid}
+              getOptionLabel={(option) => option.name}
+              // style={{ width: 300, display: "flex", flexWrap : "wrap"}}
+              renderOption={(option) => (
+                <React.Fragment >
+                  {option.name} 
+                </React.Fragment>
+              )}
+              renderInput={(params) => <TextField {...params} label="Course ID" variant="outlined" />}
           />
-          <TextField
-            error = {namerror}
-            margin="dense"
-            id="course-name"
-            label="Course Name"
-            fullWidth
-            onChange={typeName}
+          <Autocomplete
+              id="course_name"
+              options={search_course}
+              getOptionLabel={(option) => option.name}
+              style={{ width: 300 }}
+              renderOption={(option) => (
+                <React.Fragment>
+                  {option.name}
+                </React.Fragment>
+              )}
+              renderInput={(params) => <TextField {...params} label="Course Name" variant="outlined" />}
           />
           {/* {<MuiPickersUtilsProvider utils={DateFnsUtils}>
             <KeyboardDatePicker
