@@ -6,7 +6,7 @@ import Geocoder from "react-map-gl-geocoder";
 import MainPageTopBar from '../MainPageTopBar';
 import HashLoader from 'react-spinners/HashLoader';
 import Pins from './Pins';
-import libraryData from './libraryData.json';
+import Data from './Data.json';
 import LibraryInfo from './LibraryInfo';
 import SideInfo from './SideInfo';
 
@@ -65,11 +65,12 @@ function Map(props) {
         return (
             <div>
                 <MainPageTopBar log_in = {log_in}/>
-                <div style={{ height: "1000px" }}>
+                <div style={{ height: "773px" }}>
                 <SideInfo info={popupInfo}/>
                 <MapGL
                     ref={mapRef}
                     {...viewport}
+                    mapStyle="mapbox://styles/mapbox/outdoors-v11"
                     width="100%"
                     height="100%"
                     onViewportChange={handleViewportChange}
@@ -83,7 +84,7 @@ function Map(props) {
                     position="top-left"
                     style={{right:'50px',top:'10px'}}
                     />
-                    <Pins data={libraryData} onClick={setPopupInfo}/>
+                    <Pins data={Data} onClick={setPopupInfo}/>
                     {popupInfo && (
                         <Popup
                             tipSize={10}
@@ -96,10 +97,10 @@ function Map(props) {
                             <LibraryInfo info={popupInfo}/>
                         </Popup>
                     )}
-                    <NavigationControl style={{right:'50px',top:'10px'}}/>
-                    <ScaleControl maxWidth={100} unit="metric" style={{right:'50px', bottom:'30px'}}/>
-                    <GeolocateControl style={{right:'50px', top:'120px'}}positionOptions={{enableHighAccuracy: true}} trackUserLocation={true} auto/>
-                    <div className="map-sidebar" style={{left:'50px', bottom:'30px'}}>
+                    <NavigationControl style={{right:'10px',top:'10px'}}/>
+                    <ScaleControl maxWidth={100} unit="metric" style={{right:'10px', bottom:'25px'}}/>
+                    <GeolocateControl style={{right:'10px', top:'120px'}}positionOptions={{enableHighAccuracy: true}} trackUserLocation={true} auto/>
+                    <div className="map-sidebar" style={{left:'90px', bottom:'0px'}}>
                         Longitude: {viewport.longitude} | Latitude: {viewport.latitude} | Zoom: {viewport.zoom}
                     </div>
                 </MapGL>
