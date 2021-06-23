@@ -34,13 +34,14 @@ function Row(props) {
   const { row } = props;
   const [open, setOpen] = useState(false);
   const classes = useRowStyles();
+  const showtime = row.end.split('G')[0]
 
   return (
     <React.Fragment>
       <TableRow classdivider={classes.root}>
         <TableCell component="th" scope="row">{row.divider}</TableCell>
         <TableCell align="right">{row.title}</TableCell>
-        <TableCell align="right">{row.end}</TableCell>
+        <TableCell align="right">{showtime}</TableCell>
         <TableCell align="right">{row.description}</TableCell>
       </TableRow>
     </React.Fragment>

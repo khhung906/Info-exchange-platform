@@ -15,6 +15,7 @@ import CalendarTodayTwoToneIcon from '@material-ui/icons/CalendarTodayTwoTone';
 import MapTwoToneIcon from '@material-ui/icons/MapTwoTone';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import AppsTwoToneIcon from '@material-ui/icons/AppsTwoTone';
 import { Link } from 'react-router-dom';
 
 
@@ -59,7 +60,7 @@ function SideBar({log_in}) {
         <ListItemIcon>
           <AccountCircleIcon />
         </ListItemIcon>
-        <ListItemText primary="Profile" />
+        <ListItemText primary="Profile" component={Link} to="/profile"/>
       </ListItem>
       <ListItem button>
         <ListItemIcon>
@@ -82,13 +83,19 @@ function SideBar({log_in}) {
       </ListItem>
       <Collapse in={open} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
-          <ListItem button className={classes.nested}>
+        <ListItem button className={classes.nested} component={Link} to="/">
+            <ListItemIcon>
+              <AppsTwoToneIcon/>
+            </ListItemIcon>
+            <ListItemText primary="Home" />
+          </ListItem>
+          <ListItem button className={classes.nested} component={Link} to="/calendar">
             <ListItemIcon>
               <CalendarTodayTwoToneIcon/>
             </ListItemIcon>
-            <ListItemText primary="Course Calender" />
+            <ListItemText primary="Course Calendar" />
           </ListItem>
-          <ListItem button className={classes.nested}>
+          <ListItem button className={classes.nested} component={Link} to="/map">
             <ListItemIcon>
               <MapTwoToneIcon/>
             </ListItemIcon>
@@ -96,7 +103,7 @@ function SideBar({log_in}) {
           </ListItem>
         </List>
       </Collapse>
-      <ListItem button style={{marginTop:'540px'}} onClick={logout} component={CustomLink}>
+      <ListItem button style={{position: "fixed",bottom: 0, width: 250}} onClick={logout} component={CustomLink}>
         <ListItemIcon>
           <ExitToAppIcon />
         </ListItemIcon>

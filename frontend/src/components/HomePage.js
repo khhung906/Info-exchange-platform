@@ -111,7 +111,7 @@ function HomePage({log_in, setUserinfo}) {
                   <p className="title-context"></p>
                   <p className="title-context"></p>
                   <p className="title-context"></p>
-                  <p className="rights">@2021 NTU All Rigts Reserved.</p>
+                  <p className="rights">@2021 NTU All Rights Reserved.</p>
                   </div>
               </li>
               <li className="App">

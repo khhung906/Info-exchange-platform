@@ -1,6 +1,4 @@
 import React, {useState} from 'react'
-import MuiAlert from '@material-ui/lab';
-import Snackbar from '@material-ui/core/Snackbar';
 
 function LoginForm({Login, error, Change}) {
     const [details, setDetails]=useState({email:'',password:''})

@@ -41,7 +41,7 @@ function Calender(props) {
     };
 
     const [openDetail, setOpenDetail] = useState(false);
-    const [detail, setDetail] = useState({});
+    const [detail, setDetail] = useState({start:"", end:""});
 
     const onSelect = (event) =>{
       console.log(event)

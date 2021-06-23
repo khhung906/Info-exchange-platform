@@ -40,15 +40,15 @@ function AddSchedule(props) {
 
   const handleAdd = async() => {
     //add new schedule to calender
-    //...
+    //..
     if(title && category){
       let tmp_event = [...events]
       const new_event = {
         id: title+category,
         title: title,
         divider: category,
-        start: new Date(start).toDateString(),
-        end: new Date(end).toDateString(),
+        start: new Date(start).toString(),
+        end: new Date(end).toString(),
         description: description
       }
       tmp_event.push(new_event)

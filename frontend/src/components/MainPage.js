@@ -7,14 +7,14 @@ import HashLoader from 'react-spinners/HashLoader'
 const useStyles = makeStyles((theme) => ({
   feature_selection: {
     display: 'flex',
-    flexWrap: 'wrap', '& >*': {margin: theme.spacing(3), width: theme.spacing(38), height: theme.spacing(42)},
+    backgroundColor:"white",
+    flexWrap: 'wrap', '& >*': {margin: theme.spacing(5), width: theme.spacing(38), height: theme.spacing(42)},
   },
 }));
 
 
 
 function MainPage({log_in}) {
-    console.log('main page')
     const classes = useStyles();
 
     const [loading, setLoading] = useState(true)
@@ -38,7 +38,7 @@ function MainPage({log_in}) {
     else {
       return (
 
-        <div className="background">
+        <div className={classes.background}>
           <MainPageTopBar log_in={log_in}/>
           <div className={classes.feature_selection}>
             <Cards/>

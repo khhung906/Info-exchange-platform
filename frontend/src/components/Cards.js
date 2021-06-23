@@ -8,10 +8,13 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom'
+import calander_img from './img/Calendar.jpg'
+import map_img from './img/Map.jpg'
 
 const useStyles = makeStyles({
   root: {
     maxWidth: 345,
+    background: '#f6f7f7',
   },
   media: {
     height: 180,
@@ -19,44 +22,43 @@ const useStyles = makeStyles({
 });
 const cards = [{name:'Course Calendar', 
                 dis:'HW/EXAMS due dates',
-                imgsrc:'/img/Calendar.jpg',
-                route:'/calender'
+                imgsrc: calander_img,
+                route: '/calendar'
                 },
                {name:'Library Map', 
                 dis:'Library Seats',
-                imgsrc:'/img/Map.png',
+                imgsrc: map_img,
                 route:'/map'
                 },
-               {
-                name:'Other Features', 
-                dis:'Other Features1',
-                imgsrc:'',
-                route:''
-                },
-               {
-                name:'Other Features', 
-                dis:'Other Features2',
-                imgsrc:'',
-                route:''
-                },
-               {
-                name:'Other Features', 
-                dis:'Other Features3',
-                imgsrc:'',
-                route:''
-                },
-               
-              
+              //  {
+              //   name:'Other Features', 
+              //   dis:'Other Features1',
+              //   imgsrc:'',
+              //   route:''
+              //   },
+              //  {
+              //   name:'Other Features', 
+              //   dis:'Other Features2',
+              //   imgsrc:'',
+              //   route:''
+              //   },
+              //  {
+              //   name:'Other Features', 
+              //   dis:'Other Features3',
+              //   imgsrc:'',
+              //   route:''
+              //   },
 ];
 
-const card = (classes, message) =>{
+const card = (classes, message, id) =>{
     return(
-        <Card className={classes.root}>
+        <Card className={classes.root} key = {id}>
           <CardActionArea component={Link} to={message.route}>
               <CardMedia
-              className={classes.media}
-              image={message.imgsrc}
-              title="icon"
+                component="img"
+                className={classes.media}
+                image={message.imgsrc}
+                title="icon"
               />
               <CardContent>
               <Typography gutterBottom variant="h5" component="h2" >
@@ -81,7 +83,7 @@ export default function Cards() {
   const classes = useStyles();
   return (
     <>
-        {cards.map(x => card(classes, x))}
+        {cards.map((x, id) => card(classes, x, id))}
     </>
   );
 }
