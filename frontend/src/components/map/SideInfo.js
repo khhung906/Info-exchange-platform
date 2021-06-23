@@ -29,9 +29,6 @@ const useStyles = makeStyles((theme) => ({
 function SideInfo (props) {
     //alert('side')
     const {info} = props;
-
-    
-    console.log((info === null) ? "":info.Seats)
     const changecolor = (change) => {
         
         console.log(change)
@@ -84,7 +81,7 @@ function SideInfo (props) {
                     <Typography variant="body1" style={{display:'inline-block'}}>
                     {(info === null) ? "": ("Seats Availablle:")}
                     </Typography>
-                    <Typography variant="body1" style={{display:'inline-block', paddingLeft: '30px', color: changecolor((info === null) ? "": info.Seats.change)}}>
+                    <Typography variant="body1" style={{display:'inline-block', paddingLeft: '30px', color: changecolor((info === null) ? "": info.Seats)}}>
                     {(info === null) ? "": info.Seats}
                     </Typography>
                 </div>
