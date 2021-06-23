@@ -12,16 +12,19 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import instance from '../../axios';
 
 const useStyles = makeStyles((theme) => ({
-    avatar: {
-        backgroundColor: blue[100],
-        color: blue[600],
-    },
-    root: {
-      '& > *': {
-        margin: theme.spacing(1),
-        width: '25ch',
-      },
-    },
+  input: {
+    width: "100%",
+    height: "1vw", // Changed from 2vw
+    fontSize: "1.1vw",
+  },
+  option: {
+    fontSize: "1.1vw",
+    height: "3vw",
+    width: "100%",
+  },
+  // root: {
+  //   width:"1000px"
+  // }
 }));
 
 //select, pickers
@@ -61,59 +64,54 @@ function AddCourse(props) {
     setAlert(false);
   } 
 
-  const typeName = (e) =>{
-    //connect to backend to give hint
-    setname(e.target.value);
-  } 
-
-  const typeID = (e) =>{
-    setid(e.target.value);
-  }
-
   return (
     <>
-      <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open}>
+      <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open} className={classes.root}>
         <DialogTitle id="simple-dialog-title">Add Course</DialogTitle>
         <DialogContent>
           <DialogContentText>
             Enter Your Course Information
           </DialogContentText>
           <Autocomplete
-              id="course_id"
-              options={search_courseid}
-              getOptionLabel={(option) => option.name}
-              // style={{ width: 300, display: "flex", flexWrap : "wrap"}}
-              renderOption={(option) => (
-                <React.Fragment >
-                  {option.name} 
-                </React.Fragment>
-              )}
-              renderInput={(params) => <TextField {...params} label="Course ID" variant="outlined" />}
-          />
-          <Autocomplete
               id="course_name"
               options={search_course}
               getOptionLabel={(option) => option.name}
-              style={{ width: 300 }}
+              classes={{
+                option: classes.option,
+                input: classes.input
+              }}
+              style={{ width: 400}}
               renderOption={(option) => (
                 <React.Fragment>
                   {option.name}
                 </React.Fragment>
               )}
-              renderInput={(params) => <TextField {...params} label="Course Name" variant="outlined" />}
+              renderInput={(params) => <TextField style={{ width: "100%" }}
+                                        {...params} label="Course Name" variant="outlined" />}
+              onInputChange={(event, newInputValue) => {
+                setname(newInputValue);
+              }}
           />
-          {/* {<MuiPickersUtilsProvider utils={DateFnsUtils}>
-            <KeyboardDatePicker
-              clearable
-              value={selectedDate}
-              placeholder="10/10/2018"
-              onChange={date => handleDateChange(date)}
-              minDate={new Date()}
-              format="MM/dd/yyyy"
-              style={{marginTop: '15px'}}
-              label="Exam Date"
-            />
-          </MuiPickersUtilsProvider>} */}
+          <Autocomplete
+              id="course_id"
+              options={search_courseid}
+              getOptionLabel={(option) => option.name}
+              classes={{
+                option: classes.option,
+                input: classes.input
+              }}
+              style={{ width: 400}}
+              renderOption={(option) => (
+                <React.Fragment>
+                  {option.name}
+                </React.Fragment>
+              )}
+              renderInput={(params) => <TextField style={{ width: "100%" }}
+                                        {...params} label="Course ID" variant="outlined" />}
+              onInputChange={(event, newInputValue) => {
+                setid(newInputValue);
+              }}
+          />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">

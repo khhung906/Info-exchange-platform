@@ -72,8 +72,8 @@ function UpcomingTable(props) {
         <TableContainer component={Paper} title="Editable Example">
         <Table aria-label="collapsible table" >
             <TableBody>
-            {rows.map((row) => (
-                <Row key={row.divider+row.title+row.description} row={row} />
+            {rows.map((row, id) => (
+                <Row key={id} row={row} />
             ))}
             </TableBody>
         </Table>
