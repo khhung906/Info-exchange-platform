@@ -5,6 +5,7 @@ import AddInfo from './AddInfo';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+import LeaveComment from './LeaveComment';
 
 const useStyles = makeStyles((theme) => ({
     section1: {
@@ -50,6 +51,13 @@ function SideInfo (props) {
     const handleCloseAdd1 = () => {
         setOpenAdd1(false);
     };
+    const [openAdd2, setOpenAdd2] = useState(false);
+    const handleClickOpenAdd2 = () => {
+        setOpenAdd2(true);
+    };
+    const handleCloseAdd2 = () => {
+        setOpenAdd2(false);
+    };
 
     const classes = useStyles();
 
@@ -68,7 +76,7 @@ function SideInfo (props) {
                     </Grid>
                     {(info === null) ? "": 
                         <Typography color="textSecondary" variant="body2">
-                        University Library
+                        {(info === null) ? "": info.Description}
                         </Typography>
                     }
                 </div>
@@ -78,23 +86,34 @@ function SideInfo (props) {
                     {(info === null) ? "": <Divider variant="middle" className={classes.divider}/>}
                 </div>
                 <div className={classes.section2}>
+                    {(info === null) ? "":
+                        <Typography variant="body1">
+                        Total Seats: {info.TotalSeats}
+                        </Typography>
+                    }   
+                </div>
+                <div className={classes.section2}>
                     <Typography variant="body1" style={{display:'inline-block'}}>
                     {(info === null) ? "": ("Seats Availablle:")}
                     </Typography>
-                    <Typography variant="body1" style={{display:'inline-block', paddingLeft: '30px', color: changecolor((info === null) ? "": info.Seats)}}>
+                    <Typography variant="body1" style={{display:'inline-block', fontSize:'20px', paddingLeft: '30px', color: changecolor((info === null) ? "": info.Seats)}}>
                     {(info === null) ? "": info.Seats}
                     </Typography>
                 </div>
                 <div className={classes.section2}>
-                    {(info === null) ? "": 
+                    {(info === null) ? "":
                         <Typography variant="body1">
-                        Open Hours: 8AM-10PM
+                        Open Hours: {info.OpenHours}
                         </Typography>
-                    }
+                    }   
                 </div>
-                <div className={classes.section3}>
+                <div className={classes.section3} style={{display:'inline-block'}}>
                     <AddInfo open={openAdd1} onClose={handleCloseAdd1}/>
-                    {(info === null) ? "": <Button color="primary" onClick={handleClickOpenAdd1}>Add Info</Button>}
+                    {(info === null) ? "": <Button onClick={handleClickOpenAdd1} style={{display:'inline-block', backgroundColor: 'grey', color: '#FFFFFF'}}>Add Info</Button>}
+                </div>
+                <div className={classes.section3} style={{display:'inline-block'}}>
+                    <LeaveComment open={openAdd2} onClose={handleCloseAdd2}/>
+                    {(info === null) ? "": <Button onClick={handleClickOpenAdd2} style={{display:'inline-block', backgroundColor: 'grey', color: '#FFFFFF'}}>Leave Comment</Button>}
                 </div>
             </div>
             }

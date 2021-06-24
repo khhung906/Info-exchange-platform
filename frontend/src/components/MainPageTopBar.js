@@ -114,7 +114,7 @@ function MainPageTopBar({log_in}) {
 
     return (
         <div>
-          <AppBar position="static" style={{ background: 'DarkTurquoise' }}>
+          <AppBar position="static" style={{ background: 'black' }}>
             <Toolbar>
               {['left'].map((anchor) => (
                 <React.Fragment key={anchor}>

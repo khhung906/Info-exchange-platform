@@ -13,8 +13,9 @@ const SIZE = 20;
 function Pins(props) {
   const {data, onClick} = props;
 
-  const ChangeIcon = () => {
-    if (data.id === "library") {
+  console.log(data.id)
+  const ChangeIcon = (change) => {
+    if (change === "library") {
       return libraryIcon;
     }
     else {
@@ -39,7 +40,7 @@ function Pins(props) {
         <path d={ICON} />
       </svg> */}
       <img 
-        src={libraryIcon} 
+        src={ChangeIcon(ab.id)} 
         onClick={() => onClick(ab)} 
         height='40px'
         style={{
