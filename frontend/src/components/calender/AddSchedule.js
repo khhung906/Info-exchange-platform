@@ -10,7 +10,6 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import MenuItem from '@material-ui/core/MenuItem';
 import instance from '../../axios';
-
 const useStyles = makeStyles((theme) => ({
     avatar: {
         backgroundColor: blue[100],
@@ -143,6 +142,9 @@ function AddSchedule(props) {
           id="standard-select-currency"
           select
           label="Category"
+          SelectProps={{
+            native: true,
+          }}
           value={category}
           onChange={ChangeCategory}
           helperText="Please select a category"
@@ -150,9 +152,9 @@ function AddSchedule(props) {
         >
         
           {courseList.map((course) => (
-            <MenuItem key={course} value={course} style ={{height:"50px"}}>
+            <option key={course} value={course} style ={{height:"50px", overflowX : "hidden", overflowY : "auto"}}>
               {course}
-            </MenuItem>
+            </option>
           ))}
         </TextField>
       </DialogContent>

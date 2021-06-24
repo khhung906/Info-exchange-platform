@@ -29,7 +29,7 @@ function connectMongo() {
 }
 
 connectMongo();
-//dataInit();
+dataInit();
 
 
 
