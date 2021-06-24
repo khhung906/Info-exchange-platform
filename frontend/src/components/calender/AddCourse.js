@@ -38,6 +38,8 @@ function AddCourse(props) {
   const [classid, setid] = useState('');
   const [iderror, setIderror] = useState(false);
   const [namerror, setNamerror] = useState(false);
+  const [nameLabel, setNameLabel] = useState("Course Name")
+  const [idLabel, setIdLabel] = useState("Course ID")
   const handleClose = () => {
     onClose();
   };
@@ -76,8 +78,14 @@ function AddCourse(props) {
       course_name, course_id, which
     });
     console.log(info)
-    if (which === 1) setid(info)
-    else setname(info);
+    if (which === 1) {
+      setid(info)
+      setIdLabel(info);
+    }
+    else {
+      setname(info);
+      setNameLabel(info);
+    }
   }
 
   return (
@@ -103,7 +111,7 @@ function AddCourse(props) {
                 </React.Fragment>
               )}
               renderInput={(params) => <TextField style={{ width: "100%" }}
-                                        {...params} label="Course Name" variant="outlined" />}
+                                        {...params} label={nameLabel} variant="outlined" />}
               onInputChange={(event, newInputValue) => {
                 setname(newInputValue);
                 getinfo(1, newInputValue);
@@ -124,7 +132,7 @@ function AddCourse(props) {
                 </React.Fragment>
               )}
               renderInput={(params) => <TextField style={{ width: "100%" }}
-                                        {...params} label="Course ID" variant="outlined" />}
+                                        {...params} label={idLabel} variant="outlined" />}
               onInputChange={(event, newInputValue) => {
                 setid(newInputValue);
                 getinfo(0, newInputValue);

@@ -14,7 +14,7 @@ import instance from '../../axios';
 
 //select, pickers
 function EventDetail(props) {
-  const {open, onClose, detail, events, setEvents} = props;
+  const {open, onClose, detail, events, setEvents, showEvents, setShow} = props;
   const [onEdit, setEdit] = useState(false);
   const [start, setStart] = useState("");
   const [end, setEnd] = useState("");
@@ -44,9 +44,17 @@ function EventDetail(props) {
     // console.log(title)
     console.log(start)
     console.log(title)
+    let current_events = [...events]
+    console.log(events)
     const idx = detail.divider.indexOf('(');
     const course_name = detail.divider.slice(0, idx);
-    const activity = {start : detail.start, end : detail.end, title : detail.title};
+    const activity = {
+      start : detail.start, 
+      end : detail.end, 
+      title : detail.title, 
+      category : detail.category, 
+      description : detail.description
+    };
     const newActivity = {
       id : title+category,
       start : new Date(start).toString(),
@@ -61,9 +69,22 @@ function EventDetail(props) {
     } = await instance.post('api/changecourse', {
       course_name, activity, newActivity
     });
-    const final_info = info.map(e => JSON.parse(e));
-    console.log(final_info)
-    setEvents(final_info)
+    // const final_info = info.map(e => JSON.parse(e));
+    // console.log(final_info)
+   
+    let idx_ =current_events.findIndex(e => 
+      e.start === activity.start && 
+      e.end === activity.end && 
+      e.title === activity.title && 
+      e.description === activity.description && 
+      e.category === activity.category
+    );
+    current_events.splice(idx_, 1);
+    console.log(idx_)
+    current_events.push(newActivity);
+    console.log(current_events)
+    setEvents(current_events);
+    setShow(current_events);
     handleClose();
   }
 //problem : 1. useState Latency 2.calender render
@@ -81,8 +102,14 @@ function EventDetail(props) {
     } = await instance.post('api/deleteActivity', {
       course_name, activity
     });
-    console.log(info);
-    setEvents(info);
+    // console.log(info);
+    let current_events = [...events]
+    // console.log(current_events)
+    let idx_ =current_events.findIndex(e => e.start === activity.start && e.end === activity.end && e.title === activity.title);
+    current_events.splice(idx_, 1);
+    // console.log(current_events)
+    setEvents(current_events);
+    setShow(current_events);
     handleClose();
   }
 

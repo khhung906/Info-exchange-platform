@@ -163,9 +163,14 @@ router.post('/changecourse', async function(req, res) {
         console.log(req.body)
         const course = await Course.findOne({course_name : req.body.course_name});
         let activity = [...course.activity];
-        let idx = activity.findIndex(e => JSON.parse(e).start === req.body.activity.start && JSON.parse(e).end === req.body.activity.end && JSON.parse(e).title === req.body.activity.title)
-        // console.log(idx)
-        activity.splice(idx);
+        let idx = activity.findIndex(e => 
+            JSON.parse(e).start === req.body.activity.start && 
+            JSON.parse(e).end === req.body.activity.end && 
+            JSON.parse(e).title === req.body.activity.title &&
+            JSON.parse(e).description === req.body.activity.description && 
+            JSON.parse(e).category === req.body.activity.category
+        )
+        activity.splice(idx, 1);
         activity.push(JSON.stringify(req.body.newActivity));
         console.log(JSON.stringify(req.body.newActivity));
         console.log(activity)
@@ -182,9 +187,14 @@ router.post('/deleteActivity', async function(req, res) {
         const course = await Course.findOne({course_name : req.body.course_name})
         let activity = [...course.activity];
         // console.log(activity)
-        let idx = activity.findIndex(e => JSON.parse(e).start === req.body.activity.start && JSON.parse(e).end === req.body.activity.end && JSON.parse(e).title === req.body.activity.title)
-        // console.log(idx)
-        activity.splice(idx);
+        let idx = activity.findIndex(e => 
+            JSON.parse(e).start === req.body.activity.start && 
+            JSON.parse(e).end === req.body.activity.end && 
+            JSON.parse(e).title === req.body.activity.title &&
+            JSON.parse(e).description === req.body.activity.description && 
+            JSON.parse(e).category === req.body.activity.category
+        )
+        activity.splice(idx, 1);
         await course.update({activity : activity});
         res.send({message : "Update successfully", info : activity});
     } catch(e) {
