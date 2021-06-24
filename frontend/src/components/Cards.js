@@ -71,7 +71,7 @@ const card = (classes, message, id) =>{
               </CardContent>
           </CardActionArea>
           <CardActions>
-            <Button size="small" style={{backgroundColor: 'grey', color: '#FFFFFF'}}>
+            <Button size="small" color="primary">
               Delete
             </Button>
           </CardActions>

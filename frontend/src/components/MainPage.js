@@ -7,8 +7,7 @@ import HashLoader from 'react-spinners/HashLoader'
 const useStyles = makeStyles((theme) => ({
   feature_selection: {
     display: 'flex',
-    backgroundColor:"grey",
-    minHeight:'93vh',
+    backgroundColor:"white",
     flexWrap: 'wrap', '& >*': {margin: theme.spacing(5), width: theme.spacing(38), height: theme.spacing(42)},
   },
 }));

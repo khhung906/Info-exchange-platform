@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
   input: {
     width: "100%",
     height: "1vw", // Changed from 2vw
-    fontSize: "1.1vw",
+    fontSize: "1.2vw",
   },
   option: {
     fontSize: "1.1vw",
@@ -20,27 +20,36 @@ const useStyles = makeStyles((theme) => ({
     overflowY:"auto"
   },
 }));
-let courses = ['ADA', 'DSA', 'SP'];
+
+function createData(name, test, year) {
+  return { name, test, year };
+}
 
 function Search(props) {
     const classes = useStyles();
+    const [courses, setCourses] = useState([]);
     const [course, setCourse] = useState('');
     const {setFlies} = props;
 
-    // const handleSearch = async(keyword, which) => {
-    //   // const keyword = classname;
-    //   const {
-    //     data : {final, message}
-    //   } = await instance.post('api/search', {
-    //     keyword, which
-    //   });
-    //   console.log(final,message);
-    //   if (which === 1) setSearchcourse(final);
-    //   else setSearchcourseid(final);
-    // }
+    const getcourse = async(which, keyword) => {
+      // const keyword = classname;
+      const {
+        data : {message, final}
+      } = await instance.post('api/search', {
+        which, keyword
+      });
+      setCourses(final)
+    }
+
     useEffect(()=>{
       //get course info from backend
+      getcourse(1, "")
     }, [])
+
+    const handleclick = () =>{
+      //call backend and find course list of files
+      setFlies([createData('final-test', 'quiz2', '2015'), createData('hihi', 'midterm', '2017')])
+    }
 
     return (
       <>
@@ -48,7 +57,7 @@ function Search(props) {
           <Autocomplete
                 id="course_name"
                 options={courses}
-                getOptionLabel={(option) => option}
+                getOptionLabel={(option) => option.name}
                 classes={{
                   option: classes.option,
                   input: classes.input
@@ -56,7 +65,7 @@ function Search(props) {
                 style={{ width: 400}}
                 renderOption={(option) => (
                   <React.Fragment>
-                    {option}
+                    {option.name}
                   </React.Fragment>
                 )}
                 
@@ -68,8 +77,8 @@ function Search(props) {
             />
         </div>  
         <div style={{float:"left"}}>
-          <IconButton type="submit" className={classes.iconButton} aria-label="search">
-            <SearchIcon />
+          <IconButton type="submit" className={classes.iconButton} aria-label="search" color="black">
+            <SearchIcon onClick={handleclick}/>
           </IconButton>
         </div>
       </>

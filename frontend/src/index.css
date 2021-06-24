@@ -16,7 +16,7 @@ ul {
 
 .navBar {
   overflow: hidden;
-  background-color: grey;
+  background-color: #f8f5f5;
   position: fixed;
   top: 0;
   width: 100%;
@@ -28,7 +28,7 @@ ul {
 
 .navBar a{
   display: block;
-  color: white;
+  color: black;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
@@ -53,11 +53,11 @@ input, button {
 }
 
 .App {
-  height: 110vh;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: grey;
+  background-color: #f7f3f3;
   width:100%;
 }
 
@@ -70,9 +70,8 @@ input, button {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: grey;
+  background-color: #f7f3f3;
   width:100%;
-  color: white;
 }
 
 .title-name {
@@ -391,7 +390,7 @@ form .form-inner input[type="submit"]:hover {
 }
 
 .sidenav {
-  height: 670px;
+  height: 650px;
   width: 350px;
   position: fixed;
   z-index: 1;
@@ -410,7 +409,5 @@ form .form-inner input[type="submit"]:hover {
   margin-right: 5%;
 }
 
-.enter-mapinfo-dialog {
 
-}
 
