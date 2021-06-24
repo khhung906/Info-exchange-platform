@@ -16,6 +16,7 @@ import MapTwoToneIcon from '@material-ui/icons/MapTwoTone';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import AppsTwoToneIcon from '@material-ui/icons/AppsTwoTone';
+import ImportContactsTwoToneIcon from '@material-ui/icons/ImportContactsTwoTone';
 import { Link } from 'react-router-dom';
 
 
@@ -83,7 +84,7 @@ function SideBar({log_in}) {
       </ListItem>
       <Collapse in={open} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
-        <ListItem button className={classes.nested} component={Link} to="/">
+          <ListItem button className={classes.nested} component={Link} to="/">
             <ListItemIcon>
               <AppsTwoToneIcon/>
             </ListItemIcon>
@@ -100,6 +101,12 @@ function SideBar({log_in}) {
               <MapTwoToneIcon/>
             </ListItemIcon>
             <ListItemText primary="Library Map" />
+          </ListItem>
+          <ListItem button className={classes.nested} component={Link} to="/pastexams">
+            <ListItemIcon>
+              <ImportContactsTwoToneIcon/>
+            </ListItemIcon>
+            <ListItemText primary="Past Exams" />
           </ListItem>
         </List>
       </Collapse>

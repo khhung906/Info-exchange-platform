@@ -6,6 +6,7 @@ import Help from './components/Help'
 import MainPage from './components/MainPage';
 import Calender from './components/calender/Calender';
 import Map from './components/map/Map';
+import PastExams from './components/pastexam/PastExams'
 
 //language function undesigned
 const LOCALSTORAGE_USER = "";
@@ -40,6 +41,7 @@ function App() {
           <Route exact path="/aboutus" component={() => <AboutUs userinfo={userinfo}/>} />
           <Route exact path="/calendar" component={() => <Calender userinfo={userinfo} log_in = {log_in}/>} />
           <Route exact path="/map" component={() => <Map userinfo={userinfo} log_in = {log_in}/>} />
+          <Route exact path="/pastexams" component={() => <PastExams userinfo={userinfo} log_in = {log_in}/>} />
           <Redirect from="/home" to="/" />
       </Switch>
     </div>

@@ -7,9 +7,10 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { Link } from 'react-router-dom'
-import calander_img from './img/Calendar.jpg'
-import map_img from './img/Map.jpg'
+import { Link } from 'react-router-dom';
+import calander_img from './img/Calendar.jpg';
+import map_img from './img/Map.jpg';
+import book_img from './img/book.jpg'
 
 const useStyles = makeStyles({
   root: {
@@ -26,16 +27,16 @@ const cards = [{name:'Course Calendar',
                 route: '/calendar'
                 },
                {name:'Library Map', 
-                dis:'Library Seats',
+                dis:'Real-time Library Seats',
                 imgsrc: map_img,
                 route:'/map'
                 },
-              //  {
-              //   name:'Other Features', 
-              //   dis:'Other Features1',
-              //   imgsrc:'',
-              //   route:''
-              //   },
+               {
+                name:'Past Exams', 
+                dis:'Past Midterms/Finals Problem',
+                imgsrc: book_img,
+                route:'/pastexams'
+                },
               //  {
               //   name:'Other Features', 
               //   dis:'Other Features2',

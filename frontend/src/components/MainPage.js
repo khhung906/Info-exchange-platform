@@ -37,7 +37,6 @@ function MainPage({log_in}) {
 
     else {
       return (
-
         <div className={classes.background}>
           <MainPageTopBar log_in={log_in}/>
           <div className={classes.feature_selection}>
