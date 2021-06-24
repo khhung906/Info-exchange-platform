@@ -111,11 +111,12 @@ function CalenderPanel(props) {
     const [openAdd1, setOpenAdd1] = useState(false);
     const handleClickOpenAdd1 = () => {
         setOpenAdd1(true);
+        handleSearch("",0);
+        handleSearch("",1);
     };
     const handleCloseAdd1 = (value) => {
         setOpenAdd1(false);
-        handleSearch("",0);
-        handleSearch("",1);
+       
     };
 
     const [openAdd2, setOpenAdd2] = useState(false);
