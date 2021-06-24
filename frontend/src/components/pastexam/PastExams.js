@@ -49,7 +49,7 @@ function PastExams(props) {
     }
     else {
         return (
-            <div style={{}}>
+            <div style={{backgroundColor:'#f7f3f3'}}>
                 <MainPageTopBar log_in = {log_in}/>
                 <div style={{marginLeft: "80px", marginTop: "70px", float:"left"}}>
                     <Search setFlies={setFlies}/>
