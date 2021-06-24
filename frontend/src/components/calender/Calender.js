@@ -113,22 +113,22 @@ function Calender(props) {
 
     else {
       return (
-      <div>
+      <div style={{backgroundColor:'grey', height:'100vh'}}>
         <MainPageTopBar log_in = {log_in}/>
         <AddSchedule open={openAdd} onClose={handleCloseAdd} courseList={courseList} events={events} setEvents={setEvents}/>
         <EventDetail open={openDetail} onClose={handleCloseDetail} courseList={courseList} detail={detail} events={events} setEvents={setEvents}/>
-        <div style={{marginLeft:'240pt', marginTop:'10pt' ,float:'top'}}>
+        <div style={{marginLeft:'257pt', marginTop:'10pt' ,float:'top'}}>
           <Button onClick={handleClickOpenAdd} >
             <AddCircleOutlineIcon style ={{
-                color: "Aquamarine",
-                }}/><p style ={{color: "gray",}}>Add schedule</p>
+                color: "white",
+                }}/><p style ={{color: "white",}}>Add schedule</p>
           </Button>
         </div>
         <CalenderPanel courseList={courseList} setList={setList} courses={courses} setCourse={setCourse}
                       otherList={otherList} setoList={setoList} others={others} setOthers={setOthers}
                       showEvents={showEvents} setShow={setShow} events={events} userinfo={userinfo} 
                       loadschedule = {loadschedule}/>
-        <div style={{marginLeft:'20pt', marginTop:'0pt', height: '740px', width:'1082px' ,float:'left'}}>
+        <div style={{marginLeft:'20pt', marginTop:'0pt', height: '720px', width:'1082px' ,float:'left'}}>
           <Calendar
             events={showEvents}
             views={["month"]}
@@ -137,6 +137,7 @@ function Calender(props) {
             onSelectEvent={onSelect}
             defaultDate={moment().toDate()}
             localizer={localizer}
+            style={{color:'white'}}
           />
         </div>
       </div>

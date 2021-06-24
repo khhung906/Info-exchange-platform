@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import Button from '@material-ui/core/Button';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
@@ -14,13 +14,22 @@ import instance from '../../axios';
 
 //select, pickers
 function EventDetail(props) {
-  const {open, onClose, detail} = props;
+  const {open, onClose, detail, events, setEvents} = props;
   const [onEdit, setEdit] = useState(false);
-  const [start, setStart] = useState("2021-05-29T10:30");
-  const [end, setEnd] = useState("2021-05-29T10:30");
-  const [category, setCategory] = useState('');
-  const [description, setDis] = useState('');
+  const [start, setStart] = useState("");
+  const [end, setEnd] = useState("");
+  const [title, setTitle] = useState("");
+  const [category, setCategory] = useState("");
+  const [description, setDis] = useState("");
 
+  useEffect(() => {
+    setStart(detail.start)
+    setEnd(detail.end)
+    setTitle(detail.title)
+    setCategory(detail.divider)
+    setDis(detail.description)
+    // console.log(detail)
+},[detail])
   const handleEdit = () => {
     setEdit(true)
   }
@@ -30,36 +39,92 @@ function EventDetail(props) {
     onClose();
   };
 
-  const handleSave = () =>{
+  const handleSave = async() =>{
     //call backend and making changes
+    // console.log(title)
+    console.log(start)
+    console.log(title)
+    const idx = detail.divider.indexOf('(');
+    const course_name = detail.divider.slice(0, idx);
+    const activity = {start : detail.start, end : detail.end, title : detail.title};
+    const newActivity = {
+      id : title+category,
+      start : new Date(start).toString(),
+      end : new Date(end).toString(), 
+      divider: category,
+      title : title,
+      description : description
+    };
+      
+    const {
+      data : {message, info}
+    } = await instance.post('api/changecourse', {
+      course_name, activity, newActivity
+    });
+    const final_info = info.map(e => JSON.parse(e));
+    console.log(final_info)
+    setEvents(final_info)
     handleClose();
   }
-
-  const handleDelete = () =>{
-    //call backend and delete 
+//problem : 1. useState Latency 2.calender render
+  const handleDelete = async() =>{
+    //call backend and delete
+    const idx = detail.divider.indexOf('(');
+    const course_name = detail.divider.slice(0, idx);
+    const activity = {
+      start : detail.start, 
+      end : detail.end, 
+      title : detail.title
+    };
+    const {
+      data : {message, info}
+    } = await instance.post('api/deleteActivity', {
+      course_name, activity
+    });
+    console.log(info);
+    setEvents(info);
     handleClose();
   }
 
   const ChangeCategory = (event) => {
+    console.log(event.target.value)
     setCategory(event.target.value);
   };
 
   const ChangeStart = (event) =>{
+    console.log(event.target.value)
     setStart(event.target.value);
   }
 
   const ChangeEnd = (event) =>{
+    console.log(event.target.value)
     setEnd(event.target.value);
   }
 
   const ChangeDis = (event) =>{
+    console.log(event.target.value)
     setDis(event.target.value);
+  }
+
+  const ChangeTitle = (event) =>{
+    console.log(event.target.value)
+    setTitle(event.target.value);
   }
 
   if(onEdit){
     return(
       <Dialog fullWidth  maxWidth="sm" open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-          <DialogTitle id="form-dialog-title">{detail.title}</DialogTitle>
+          <DialogTitle id="form-dialog-title">
+            <TextField 
+                id="add-title"
+                label="Add title"
+                defaultValue={detail.title}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                onChange={ChangeTitle}
+            />
+          </DialogTitle>
           <DialogContent>
               <TextField
                 id="datetime-local"

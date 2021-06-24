@@ -10,19 +10,19 @@ import DialogContent from '@material-ui/core/DialogContent';
 import instance from '../../axios';
 
 const useStyles = makeStyles((theme) => ({
-  avatar: {
-      backgroundColor: blue[100],
-      color: blue[600],
-  },
-  root: {
-    '& > *': {
-      margin: theme.spacing(1),
-      width: '25ch',
+    avatar: {
+        backgroundColor: blue[100],
+        color: blue[600],
     },
-  },
+    root: {
+      '& > *': {
+        margin: theme.spacing(1),
+        width: '25ch',
+      },
+    },
 }));
 
-function AddInfo(props) {
+function LeaveComment(props) {
   const classes = useStyles();
   const { open, onClose } = props;
 
@@ -33,21 +33,21 @@ function AddInfo(props) {
 
   return (
     <>
-      <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open} className="enter-mapinfo-dialog" >
-        <DialogTitle id="simple-dialog-title">Add Info</DialogTitle>
+      <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open} maxWidth="sm" fullWidth>
+        <DialogTitle id="simple-dialog-title">Leave Comments</DialogTitle>
         <DialogContent>
           <TextField
             autoFocus
             margin="dense"
-            label="Seats Remaining"
+            label="Give Comments here"
             fullWidth
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color='primary'>
+          <Button onClick={handleClose} color="primary">
             Cancel
           </Button>
-          <Button color='primary'>
+          <Button color="primary">
             Submit
           </Button>
         </DialogActions>
@@ -56,4 +56,4 @@ function AddInfo(props) {
   );
 }
 
-export default AddInfo;
+export default LeaveComment;

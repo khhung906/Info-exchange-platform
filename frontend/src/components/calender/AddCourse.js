@@ -21,12 +21,14 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "1.1vw",
     height: "3vw",
     width: "100%",
+    overflowX : "hidden",
+    overflowY : "auto"
+    // backgroundColor : "red"
   },
   // root: {
   //   width:"1000px"
   // }
 }));
-
 //select, pickers
 function AddCourse(props) {
   const classes = useStyles();
@@ -64,6 +66,20 @@ function AddCourse(props) {
     setAlert(false);
   } 
 
+  const getinfo = async(which, idOrname) => {
+    let course_name = "", course_id = ""
+    if (which === 1) course_name = idOrname
+    else course_id = idOrname
+    const {
+      data : {message, info}
+    } = await instance.post('api/getInfo', {
+      course_name, course_id, which
+    });
+    console.log(info)
+    if (which === 1) setid(info)
+    else setname(info);
+  }
+
   return (
     <>
       <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open} className={classes.root}>
@@ -90,6 +106,7 @@ function AddCourse(props) {
                                         {...params} label="Course Name" variant="outlined" />}
               onInputChange={(event, newInputValue) => {
                 setname(newInputValue);
+                getinfo(1, newInputValue);
               }}
           />
           <Autocomplete
@@ -110,6 +127,7 @@ function AddCourse(props) {
                                         {...params} label="Course ID" variant="outlined" />}
               onInputChange={(event, newInputValue) => {
                 setid(newInputValue);
+                getinfo(0, newInputValue);
               }}
           />
         </DialogContent>

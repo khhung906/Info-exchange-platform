@@ -9,7 +9,6 @@ function LibraryInfo(props) {
     <div>
       <div>
         {displayName}
-        <p>Seats Availablle:{displaySeats}</p>
       </div>
       <img width={160} src={info.image} />
     </div>
