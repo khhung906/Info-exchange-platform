@@ -11,7 +11,7 @@ import Paper from '@material-ui/core/Paper';
 
 const useRowStyles = makeStyles({
   title:{
-    color:"white",
+    color:"black",
     marginLeft:"20px",
   },
   root: {

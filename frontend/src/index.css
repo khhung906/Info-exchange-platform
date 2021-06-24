@@ -390,7 +390,7 @@ form .form-inner input[type="submit"]:hover {
 }
 
 .sidenav {
-  height: 650px;
+  height: 80vh;
   width: 350px;
   position: fixed;
   z-index: 1;

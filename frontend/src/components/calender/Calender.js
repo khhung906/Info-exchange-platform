@@ -113,15 +113,15 @@ function Calender(props) {
 
     else {
       return (
-      <div style={{backgroundColor:'grey', height:'100vh'}}>
+      <div style={{backgroundColor:'#f7f3f3', height:'100vh'}}>
         <MainPageTopBar log_in = {log_in}/>
         <AddSchedule open={openAdd} onClose={handleCloseAdd} courseList={courseList} events={events} setEvents={setEvents}/>
         <EventDetail open={openDetail} onClose={handleCloseDetail} courseList={courseList} detail={detail} events={events} setEvents={setEvents}/>
         <div style={{marginLeft:'257pt', marginTop:'10pt' ,float:'top'}}>
           <Button onClick={handleClickOpenAdd} >
             <AddCircleOutlineIcon style ={{
-                color: "white",
-                }}/><p style ={{color: "white",}}>Add schedule</p>
+                color: "black",
+                }}/><p style ={{color: "black",}}>Add schedule</p>
           </Button>
         </div>
         <CalenderPanel courseList={courseList} setList={setList} courses={courses} setCourse={setCourse}
@@ -137,7 +137,7 @@ function Calender(props) {
             onSelectEvent={onSelect}
             defaultDate={moment().toDate()}
             localizer={localizer}
-            style={{color:'white'}}
+            style={{color:'black'}}
           />
         </div>
       </div>
