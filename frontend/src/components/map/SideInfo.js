@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
 
 function SideInfo (props) {
     //alert('side')
-    const {info} = props;
+    const {info, setInfo} = props;
     const changecolor = (change) => {
         
         console.log(change)
@@ -108,7 +108,7 @@ function SideInfo (props) {
                     }   
                 </div>
                 <div className={classes.section3} style={{display:'inline-block'}}>
-                    <AddInfo open={openAdd1} onClose={handleCloseAdd1}/>
+                    <AddInfo open={openAdd1} onClose={handleCloseAdd1} setInfo={setInfo} info={info}/>
                     {(info === null) ? "": <Button onClick={handleClickOpenAdd1} style={{display:'inline-block', backgroundColor: 'grey', color: '#FFFFFF'}}>Add Info</Button>}
                 </div>
                 <div className={classes.section3} style={{display:'inline-block'}}>

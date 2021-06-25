@@ -6,16 +6,16 @@ import Geocoder from "react-map-gl-geocoder";
 import MainPageTopBar from '../MainPageTopBar';
 import HashLoader from 'react-spinners/HashLoader';
 import Pins from './Pins';
-import Data from './Data.json';
+// import Data from './Data.json';
 import LibraryInfo from './LibraryInfo';
 import SideInfo from './SideInfo';
-
+import instance from '../../axios';
 const MAPBOX_TOKEN =
   "pk.eyJ1Ijoic3R2MTIyMiIsImEiOiJja3Bud3duc2YwZDFrMnVsZnR3bzJwdnh1In0.8NeYXbzz2K0qztqEULiY-w";
 
 function Map(props) {
   const {userinfo,log_in} = props; 
-
+  const [Data, setData] = useState([]);
   const [viewport, setViewport] = useState({
     latitude: 25.0175,
     longitude: 121.54,
@@ -52,6 +52,18 @@ function Map(props) {
         loadData()
     }, [])
 
+    const LoadAllData = async() => {
+      const {
+        data : {message, Data}
+      } = await instance.post('api/loadAllData');
+      // console.log(message, Data)
+      console.log(Data)
+      setData(Data);
+    }
+    useEffect(()=> {
+      LoadAllData()
+    }, [])
+
     if (loading) {
         return (
         <div style={{position: "fixed", top: "50%", left: "50%", transform: "translate(-50%, -50%)"}}>
@@ -66,7 +78,7 @@ function Map(props) {
             <div>
                 <MainPageTopBar log_in = {log_in}/>
                 <div style={{ height: "92vh" }}>
-                <SideInfo info={popupInfo}/>
+                <SideInfo info={popupInfo} setInfo={setPopupInfo}/>
                 <MapGL
                     ref={mapRef}
                     {...viewport}

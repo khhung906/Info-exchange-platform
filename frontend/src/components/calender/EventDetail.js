@@ -142,17 +142,20 @@ function EventDetail(props) {
     return(
       <Dialog fullWidth  maxWidth="sm" open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
           <DialogTitle id="form-dialog-title">
-            <TextField 
-                id="add-title"
-                label="Add title"
-                defaultValue={detail.title}
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                onChange={ChangeTitle}
-            />
+            {detail.divider}
           </DialogTitle>
           <DialogContent>
+            <TextField 
+                  id="add-title"
+                  label="Add title"
+                  defaultValue={detail.title}
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  onChange={ChangeTitle}
+              />
+              <br></br>
+              <br></br>
               <TextField
                 id="datetime-local"
                 label="From"
@@ -174,7 +177,7 @@ function EventDetail(props) {
               onChange={ChangeEnd}
           />
             <br/><br/>
-            <TextField
+            {/* <TextField
               id="input-with-icon-textfield"
               defaultValue={detail.divider}
               InputProps={{
@@ -186,7 +189,7 @@ function EventDetail(props) {
               }}
               onChange={ChangeCategory}
             />
-            <br/><br/>
+            <br/><br/> */}
             <TextField
               id="input-with-icon-textfield"
               defaultValue={detail.description}
