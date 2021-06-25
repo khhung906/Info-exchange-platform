@@ -23,8 +23,8 @@ const useStyles = makeStyles((theme) => ({
       },
 }));
 
-function Review () {
-
+function Review (props) {
+    const {info} = props;
 
     const classes = useStyles();
 
@@ -34,7 +34,7 @@ function Review () {
                 Reviews
             </Typography>
             <br/>
-            <div>
+            {/* <div>
                 <Avatar className={classes.orange}>N</Avatar>
                 <br/>
                 <p style={{fontSize:'15px', fontFamily:'Roboto,Arial,sans-serif'}}>UserName1</p>
@@ -49,8 +49,20 @@ function Review () {
                 <p style={{fontSize:'15px', fontFamily:'Roboto,Arial,sans-serif'}}>UserName2</p>
                 <br/>
                 <p style={{fontSize:'12px'}}>Very Bad</p>
-            </div>
-            <Divider variant="middle" className={classes.divider}/>
+            </div>        
+            <Divider variant="middle" className={classes.divider}/> */}
+            {info.comments.map(e => 
+                <>
+                    <div>
+                        <Avatar className={classes.purple}>H</Avatar>
+                        <br/>
+                        <p style={{fontSize:'15px', fontFamily:'Roboto,Arial,sans-serif'}}>{e.UserName}</p>
+                        <br/>
+                        <p style={{fontSize:'12px'}}>{e.comment}</p>
+                    </div>        
+                    <Divider variant="middle" className={classes.divider}/>
+                </>
+            )}
         </div>
     )
 }

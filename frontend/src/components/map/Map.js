@@ -78,7 +78,7 @@ function Map(props) {
             <div>
                 <MainPageTopBar log_in = {log_in}/>
                 <div style={{ height: "92vh" }}>
-                <SideInfo info={popupInfo} setInfo={setPopupInfo}/>
+                <SideInfo info={popupInfo} setInfo={setPopupInfo} userinfo={userinfo}/>
                 <MapGL
                     ref={mapRef}
                     {...viewport}
