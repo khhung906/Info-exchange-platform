@@ -6,6 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import LeaveComment from './LeaveComment';
+import Review from './Review';
 
 const useStyles = makeStyles((theme) => ({
     section1: {
@@ -114,6 +115,10 @@ function SideInfo (props) {
                 <div className={classes.section3} style={{display:'inline-block'}}>
                     <LeaveComment open={openAdd2} onClose={handleCloseAdd2}/>
                     {(info === null) ? "": <Button onClick={handleClickOpenAdd2} style={{display:'inline-block', backgroundColor: 'grey', color: '#FFFFFF'}}>Leave Comment</Button>}
+                </div>
+                <Divider variant="middle" className={classes.divider}/>
+                <div className={classes.section2}>
+                    <Review/>
                 </div>
             </div>
             }
