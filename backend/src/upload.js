@@ -61,7 +61,8 @@ const map_data_init = [
         "OpenHours": "8am-10pm",
         "Description": "University Library, more detailed chemistry books.",
         "latitude":25.018681,
-        "longitude":121.537957
+        "longitude":121.537957,
+        "comments":[]
     },
     {"Name":"NTU Main Library",
         "id":"library",
@@ -71,7 +72,8 @@ const map_data_init = [
         "OpenHours": "8am-10pm",
         "Description": "University Library, 1-4 floors for both books and study area, B1 is a whole self-study area. ",
         "latitude":25.017369,
-        "longitude":121.540974
+        "longitude":121.540974,
+        "comments":[]
     },
     {"Name":"NTU department of Physics Library",
         "id":"library",
@@ -81,7 +83,8 @@ const map_data_init = [
         "OpenHours": "8am-10pm",
         "Description": "University Library, more detailed physics books.",
         "latitude":25.021763,
-        "longitude":121.536652
+        "longitude":121.536652,
+        "comments":[]
     },
     {"Name":"Koo Chen-Fu Memorial Library",
         "id":"library",
@@ -91,7 +94,8 @@ const map_data_init = [
         "OpenHours": "8am-10pm",
         "Description": "University Library, well-designed library, cozy, 1-2 floors for both reading and studying area.",
         "latitude":25.020428,
-        "longitude":121.542291
+        "longitude":121.542291,
+        "comments":[]
     },
     {"Name":"NTU department of Law Library",
         "id":"library",
@@ -101,7 +105,8 @@ const map_data_init = [
         "OpenHours": "8am-10pm",
         "Description": "University Library, more detailed law books.",
         "latitude":25.020075,
-        "longitude":121.544843
+        "longitude":121.544843,
+        "comments":[]
     },
     {"Name":"丹提咖啡",
         "id":"Cafe",
@@ -111,7 +116,8 @@ const map_data_init = [
         "OpenHours": "8am-10pm",
         "Description": "University Cafe, locate in Office of International Affairs, beside Departement of Management.",
         "latitude":25.014414,
-        "longitude":121.538007
+        "longitude":121.538007,
+        "comments":[]
     },
     {"Name":"Louisa Coffee",
         "id":"Cafe",
@@ -121,7 +127,8 @@ const map_data_init = [
         "OpenHours": "8am-8pm",
         "Description": "University Cafe, locate in Office of International Affairs, beside Departement of Management.",
         "latitude":25.014457,
-        "longitude": 121.538068
+        "longitude": 121.538068,
+        "comments":[]
     },
     {"Name":"找到咖啡",
         "id":"Cafe",
@@ -131,7 +138,8 @@ const map_data_init = [
         "OpenHours": "11am-9pm",
         "Description": "University Cafe, locate in the corner of Xinsheng South Road and Fam Palm Avene, beside tennis court, light meal is also available.",
         "latitude":25.018523,
-        "longitude":121.534038
+        "longitude":121.534038,
+        "comments":[]
     },
     {"Name":"找到日光咖啡",
         "id":"Cafe",
@@ -141,7 +149,8 @@ const map_data_init = [
         "OpenHours": "8am-8pm",
         "Description": "University Cafe, locate in the building of Gallery of NTU History, facing Royal Palm Blvd.",
         "latitude":25.017561,
-        "longitude": 121.535333
+        "longitude": 121.535333,
+        "comments":[]
     }
 ]
 

@@ -12,7 +12,8 @@ const mapSchema = new Schema({
    OpenHours : String,
    Description : String,
    latitude : Number,
-   longitude : Number
+   longitude : Number,
+   comments : [String]
 })
 
 export default mongoose.model('Map', mapSchema);

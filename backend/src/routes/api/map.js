@@ -29,4 +29,17 @@ router.post('/updateInfo', async function(req, res) {
     }
 })
 
+
+router.post('/updateComment', async function(req, res) {
+    //user, comment, Name(site)
+    try {
+        const site = await Map.findOne({Name : req.body.name})
+        let comments = JSON.parse(site.comments);
+        comments.push({UserName : req.body.UserName, comment : req.body.comment});
+        res.send({message : "updateMessage Successfully", comments})
+        await Map.update({Name : req.body.Name}, {comments : JSON.stringify(comments)});
+    } catch(e) {
+        res.send({message : "Something went wrong"});
+    }
+})
 export default router;
