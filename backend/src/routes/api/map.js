@@ -15,7 +15,7 @@ router.post('/loadAllData',async function(req, res) {
                 return (data[i].comments[idx] = JSON.parse(val));
             })
         }
-        console.log(data)
+        //console.log(data)
         res.send({message : "load Successfully", Data : data});
     }catch(e) {
         res.send({message : "Something went wrong"});
