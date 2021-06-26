@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import DialogTitle from '@material-ui/core/DialogTitle';
@@ -24,12 +24,37 @@ const useStyles = makeStyles((theme) => ({
 
 function AddInfo(props) {
   const classes = useStyles();
-  const { open, onClose } = props;
-
+  const { open, onClose , setInfo, info} = props;
+  const [seats, setSeats] = useState(0);
   const handleClose = () => {
     onClose();
   };
 
+  const updateSeats = async() => {
+    // console.log(e.target)
+    // const seats = e.target.value;
+    console.log(seats)
+    const Name = info.Name;
+    const {
+      data : {message, newinfo}
+    } = await instance.post('api/updateInfo', {
+      Name, seats
+    }) ;
+    let updateInfo = info;
+    updateInfo.Seats = seats;
+    console.log(updateInfo)
+    setInfo(updateInfo);
+    handleClose();
+  }
+
+  const changeValue = (e) => {
+    setSeats(parseInt(e.target.value), 10);
+  }
+
+  useEffect(() => {
+    setSeats(info.Seats);
+    console.log(seats)
+  }, [])
 
   return (
     <>
@@ -41,13 +66,14 @@ function AddInfo(props) {
             margin="dense"
             label="Seats Remaining"
             fullWidth
+            onChange={changeValue}
           />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color='primary'>
             Cancel
           </Button>
-          <Button color='primary'>
+          <Button color='primary' onClick={updateSeats}>
             Submit
           </Button>
         </DialogActions>

@@ -24,13 +24,34 @@ const useStyles = makeStyles((theme) => ({
 
 function LeaveComment(props) {
   const classes = useStyles();
-  const { open, onClose } = props;
-
+  const { open, onClose , info, setInfo, userinfo} = props;
+  const [comment, setComment] = useState("");
   const handleClose = () => {
     onClose();
   };
 
+  const updateComments = async() => {
+  //userName, comment, Name(site)
+    console.log(comment);
+    const Name = info.Name;
+    const UserName = userinfo;
+    const {
+      data : {message, comments}
+    } = await instance.post('api/updateComment', {
+      Name, UserName, comment
+    }) ;
+    // console.log(message, comments);
+    console.log(info)
+    let newinfo = info;
+    newinfo.comments.push({UserName : UserName, comment : comment});
+    console.log(newinfo);
+    setInfo(newinfo);
+    handleClose();
+  }
 
+  const changeComment = (e) => {
+    setComment(e.target.value);
+  }
   return (
     <>
       <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open} maxWidth="sm" fullWidth>
@@ -41,13 +62,14 @@ function LeaveComment(props) {
             margin="dense"
             label="Give Comments here"
             fullWidth
+            onChange={changeComment}
           />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
             Cancel
           </Button>
-          <Button color="primary">
+          <Button color="primary" onClick={updateComments}>
             Submit
           </Button>
         </DialogActions>

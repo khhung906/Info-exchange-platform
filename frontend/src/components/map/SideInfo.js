@@ -6,6 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import LeaveComment from './LeaveComment';
+import Review from './Review';
 
 const useStyles = makeStyles((theme) => ({
     section1: {
@@ -29,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
 
 function SideInfo (props) {
     //alert('side')
-    const {info} = props;
+    const {info, setInfo, userinfo} = props;
     const changecolor = (change) => {
         
         console.log(change)
@@ -108,12 +109,16 @@ function SideInfo (props) {
                     }   
                 </div>
                 <div className={classes.section3} style={{display:'inline-block'}}>
-                    <AddInfo open={openAdd1} onClose={handleCloseAdd1}/>
+                    <AddInfo open={openAdd1} onClose={handleCloseAdd1} setInfo={setInfo} info={info}/>
                     {(info === null) ? "": <Button onClick={handleClickOpenAdd1} style={{display:'inline-block', backgroundColor: 'grey', color: '#FFFFFF'}}>Add Info</Button>}
                 </div>
                 <div className={classes.section3} style={{display:'inline-block'}}>
-                    <LeaveComment open={openAdd2} onClose={handleCloseAdd2}/>
+                    <LeaveComment open={openAdd2} onClose={handleCloseAdd2} setInfo={setInfo} info={info} userinfo={userinfo}/>
                     {(info === null) ? "": <Button onClick={handleClickOpenAdd2} style={{display:'inline-block', backgroundColor: 'grey', color: '#FFFFFF'}}>Leave Comment</Button>}
+                </div>
+                <Divider variant="middle" className={classes.divider}/>
+                <div className={classes.section2}>
+                    <Review info={info}/>
                 </div>
             </div>
             }
