@@ -4,6 +4,7 @@ import MainPageTopBar from '../MainPageTopBar';
 import FileTable from './FileTable';
 import Search from "./Search";
 import Upload from './Upload';
+import instance from '../../axios';
 
 function createData(name, test, year) {
     return { name, test, year };
@@ -31,6 +32,22 @@ function PastExams(props) {
     const {userinfo,log_in} = props; 
     const [loading, setLoading] = useState(true);
     const [files, setFlies] = useState([]);
+    const [courses, setCourses] = useState([]);
+    
+    const getcourse = async(which, keyword) => {
+        // const keyword = classname;
+        const {
+          data : {message, final}
+        } = await instance.post('api/search', {
+          which, keyword
+        });
+        setCourses(final)
+      }
+  
+    useEffect(()=>{
+        //get course info from backend
+        getcourse(1, "")
+    }, [])
 
     useEffect(()=>{
         const loadData = async () => {
@@ -52,10 +69,10 @@ function PastExams(props) {
             <div style={{backgroundColor:'#f7f3f3'}}>
                 <MainPageTopBar log_in = {log_in}/>
                 <div style={{marginLeft: "80px", marginTop: "70px", float:"left"}}>
-                    <Search setFlies={setFlies}/>
+                    <Search setFlies={setFlies} courses={courses}/>
                 </div>
                 <div style={{marginRight: "100px", marginTop: "70px", float:"right"}}>
-                    <Upload/>
+                    <Upload courses={courses}/>
                 </div>
 
                 <div style={{marginLeft: "70px", marginRight: "70px",marginTop: "130px"}}>

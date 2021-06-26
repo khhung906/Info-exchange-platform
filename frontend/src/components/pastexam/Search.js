@@ -10,10 +10,10 @@ const useStyles = makeStyles((theme) => ({
   input: {
     width: "100%",
     height: "1vw", // Changed from 2vw
-    fontSize: "1.2vw",
+    fontSize: "1.3vw",
   },
   option: {
-    fontSize: "1.1vw",
+    fontSize: "1.3vw",
     height: "3vw",
     width: "100%",
     overflowX:"hidden",
@@ -21,34 +21,22 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function createData(name, test, year) {
-  return { name, test, year };
-}
 
 function Search(props) {
     const classes = useStyles();
-    const [courses, setCourses] = useState([]);
+    
     const [course, setCourse] = useState('');
-    const {setFlies} = props;
+    const {setFlies, courses} = props;
 
-    const getcourse = async(which, keyword) => {
-      // const keyword = classname;
-      const {
-        data : {message, final}
-      } = await instance.post('api/search', {
-        which, keyword
-      });
-      setCourses(final)
-    }
-
-    useEffect(()=>{
-      //get course info from backend
-      getcourse(1, "")
-    }, [])
-
-    const handleclick = () =>{
+    const handleclick = async() =>{
       //call backend and find course list of files
-      setFlies([createData('final-test', 'quiz2', '2015'), createData('hihi', 'midterm', '2017')])
+      const {
+        data : {message, exams}
+      } = await instance.post('api/findfiles', {course});
+      console.log(exams)
+      exams.sort((a, b) => (a.year+a.semester < b.year+b.semester ? -1: 1))
+      setFlies(exams)
+      //exam sort
     }
 
     return (

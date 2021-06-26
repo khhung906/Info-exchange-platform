@@ -17,6 +17,7 @@ import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import LastPageIcon from '@material-ui/icons/LastPage';
 import Button from '@material-ui/core/Button';
 import SaveIcon from '@material-ui/icons/Save';
+import instance from '../../axios';
 
 const useStyles1 = makeStyles((theme) => ({
     root: {
@@ -101,6 +102,29 @@ function FileTable(props) {
         setRowsPerPage(parseInt(event.target.value, 10));
         setPage(0);
     };
+
+    const handleDownload = async (examid, filename) =>{
+        console.log('onclick')
+        console.log(examid)
+        const {
+            data : {message, exam}
+        } = await instance.post('api/loadfile', {examid});
+        if(message === "load Succesfully"){
+            console.log(exam)
+            const buffer = Buffer.from(exam.file, 'utf8');
+            const blob = new Blob([buffer], { type: 'application/pdf'});
+            const data = window.URL.createObjectURL(blob);
+            var link = document.createElement('a');
+            link.href = data;
+            link.download = filename;
+            link.click();
+        }
+        else{
+            //temp
+            alert('something went wrong')
+        }
+    }
+
     return (
     <>
         {/* <Typography className={classes.title} variant="h6" id="tableTitle" component="div">
@@ -111,8 +135,8 @@ function FileTable(props) {
             <TableHead>
                 <TableRow>
                     <TableCell style={{fontWeight: "bold"}}>File Name</TableCell>
-                    <TableCell align="right" style={{fontWeight: "bold"}}>Test</TableCell>
-                    <TableCell align="right" style={{fontWeight: "bold"}}>Year</TableCell>
+                    <TableCell align="center" style={{fontWeight: "bold"}}>Test</TableCell>
+                    <TableCell align="right" style={{fontWeight: "bold"}}>Academic Year</TableCell>
                     <TableCell align="right" style={{fontWeight: "bold"}}>Download</TableCell>
                 </TableRow>
             </TableHead>
@@ -121,16 +145,15 @@ function FileTable(props) {
                 ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 : rows
             ).map((row, idx) => {
-                console.log(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 return(<TableRow key={idx}>
                 <TableCell component="th" scope="row">
-                    {row.name}
+                    {row.filename}
                 </TableCell>
-                <TableCell style={{ width: 160 }} align="right">
+                <TableCell style={{ width: 160 }} align="center">
                     {row.test}
                 </TableCell>
-                <TableCell style={{ width: 160 }} align="right">
-                    {row.year}
+                <TableCell style={{ width: 160 }} align="center">
+                    {row.year+' '+row.semester}
                 </TableCell>
                 <TableCell style={{ width: 160 }} align="right">
                     <Button
@@ -139,6 +162,7 @@ function FileTable(props) {
                         size="small"
                         className={classes.button}
                         startIcon={<SaveIcon />}
+                        onClick={()=>{handleDownload(row.examid, row.filename)}}
                     >
                         Save
                     </Button>
