@@ -168,7 +168,7 @@ function CalenderPanel(props) {
             </AccordionSummary>
             <AccordionDetails>
                 <FormControl component="fieldset" className={classes.formControl}>
-                    <FormHelperText>Course you have subscribe</FormHelperText>
+                    <FormHelperText>Course you have subscribed</FormHelperText>
                     <FormGroup>
                         {courseList.map(course => (<FormControlLabel  control={<Checkbox style ={{
                         color: "#00e676",

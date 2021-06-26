@@ -9,32 +9,26 @@ import DialogContent from '@material-ui/core/DialogContent';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import instance from '../../axios';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 const useStyles = makeStyles((theme) => ({
   input: {
     width: "100%",
     height: "1vw", // Changed from 2vw
-    fontSize: "1.2vw",
+    fontSize: "18px",
   },
   option: {
-    fontSize: "1.2w",
+    fontSize: "18px",
     height: "3vw",
     width: "100%",
     overflowX:"hidden",
     overflowY:"auto"
   },
+  colorPrimary: {
+    backgroundColor: theme.palette.grey[theme.palette.type === 'light' ? 200 : 700],
+  },
 }));
 
-function getBase64(file) {
-  var reader = new FileReader();
-  reader.readAsDataURL(file);
-  reader.onload = function () {
-    return reader.result
-  };
-  reader.onerror = function (error) {
-    console.log('Error: ', error);
-  };
-}
 
 function Search(props) {
   const classes = useStyles();
@@ -44,10 +38,12 @@ function Search(props) {
   const [test, setTest] = useState("midterm");
   const [course, setCourse] = useState("");
   const [file, setFile] = useState(null);
+  const [loading, setLoad] = useState(false)
   const {courses} = props;
 
   const handleUpload = async() => {
     console.log(file)
+    setLoad(true)
     if(!file || !course || !year || file.type !== "application/pdf"){
       alert('fail')
     }
@@ -76,6 +72,7 @@ function Search(props) {
         alert('something went wrong')
       }
     }
+    setLoad(false)
   }
 
   const handleClose = () => {
@@ -181,6 +178,7 @@ function Search(props) {
             />
           </Button>&nbsp;&nbsp;&nbsp;&nbsp;
           {file? file.name:""}
+          <br/><br/>{loading? <LinearProgress style={{backgroundColor: '#1a90ff', color: '#1a90ff'}}/>: <div/>}
         <DialogActions>
           <Button onClick={handleClose} color="primary">
             Cancel

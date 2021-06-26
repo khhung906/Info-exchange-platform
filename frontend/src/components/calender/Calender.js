@@ -120,8 +120,8 @@ function Calender(props) {
         <div style={{marginLeft:'257pt', marginTop:'10pt' ,float:'top'}}>
           <Button onClick={handleClickOpenAdd} >
             <AddCircleOutlineIcon style ={{
-                color: "black",
-                }}/><p style ={{color: "black",}}>Add schedule</p>
+                color: "#00e676"
+                }}/><p style ={{color: "black"}}>Add schedule</p>
           </Button>
         </div>
         <CalenderPanel courseList={courseList} setList={setList} courses={courses} setCourse={setCourse}

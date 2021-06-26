@@ -111,7 +111,7 @@ function Map(props) {
                     )}
                     <NavigationControl style={{right:'10px',top:'10px'}}/>
                     <ScaleControl maxWidth={100} unit="metric" style={{right:'10px', bottom:'25px'}}/>
-                    <GeolocateControl style={{right:'10px', top:'120px'}}positionOptions={{enableHighAccuracy: true}} trackUserLocation={true} auto/>
+                    <GeolocateControl style={{right:'10px', top:'120px'}}positionOptions={{enableHighAccuracy: true}} trackUserLocation={false} auto/>
                     <div className="map-sidebar" style={{left:'90px', bottom:'0px'}}>
                         Longitude: {viewport.longitude} | Latitude: {viewport.latitude} | Zoom: {viewport.zoom}
                     </div>

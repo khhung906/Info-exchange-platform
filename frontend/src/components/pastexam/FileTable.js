@@ -10,7 +10,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import FirstPageIcon from '@material-ui/icons/FirstPage';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
@@ -90,6 +90,7 @@ function FileTable(props) {
     const { rows } = props;
     const classes = useStyles2();
     const [page, setPage] = useState(0);
+    const [loading, setLoad] = useState(false)
     const [rowsPerPage, setRowsPerPage] = useState(10);
 
     const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
@@ -104,8 +105,9 @@ function FileTable(props) {
     };
 
     const handleDownload = async (examid, filename) =>{
-        console.log('onclick')
-        console.log(examid)
+        // console.log('onclick')
+        // console.log(examid)
+        setLoad(true)
         const {
             data : {message, exam}
         } = await instance.post('api/loadfile', {examid});
@@ -123,6 +125,7 @@ function FileTable(props) {
             //temp
             alert('something went wrong')
         }
+        setLoad(false)
     }
 
     return (
@@ -156,7 +159,7 @@ function FileTable(props) {
                     {row.year+' '+row.semester}
                 </TableCell>
                 <TableCell style={{ width: 160 }} align="right">
-                    <Button
+                    {loading? <CircularProgress size="25px"/>:<Button
                         variant="contained"
                         color="primary"
                         size="small"
@@ -165,7 +168,8 @@ function FileTable(props) {
                         onClick={()=>{handleDownload(row.examid, row.filename)}}
                     >
                         Save
-                    </Button>
+                    </Button>}
+                    
                 </TableCell>
                 </TableRow>)
             })}

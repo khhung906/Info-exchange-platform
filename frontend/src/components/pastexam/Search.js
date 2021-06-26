@@ -10,10 +10,10 @@ const useStyles = makeStyles((theme) => ({
   input: {
     width: "100%",
     height: "1vw", // Changed from 2vw
-    fontSize: "1.3vw",
+    fontSize: "18px",
   },
   option: {
-    fontSize: "1.3vw",
+    fontSize: "18px",
     height: "3vw",
     width: "100%",
     overflowX:"hidden",
