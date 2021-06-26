@@ -97,7 +97,7 @@ function Map(props) {
                     style={{right:'50px',top:'10px'}}
                     />
                     <Pins data={Data} onClick={setPopupInfo}/>
-                    {popupInfo && (
+                    {/* {popupInfo && (
                         <Popup
                             tipSize={10}
                             anchor="top"
@@ -105,13 +105,14 @@ function Map(props) {
                             latitude={popupInfo.latitude}
                             closeOnClick={false}
                             onClose={setPopupInfo}
+
                         >
                             <LibraryInfo info={popupInfo}/>
                         </Popup>
-                    )}
+                    )} */}
                     <NavigationControl style={{right:'10px',top:'10px'}}/>
                     <ScaleControl maxWidth={100} unit="metric" style={{right:'10px', bottom:'25px'}}/>
-                    <GeolocateControl style={{right:'10px', top:'120px'}}positionOptions={{enableHighAccuracy: true}} trackUserLocation={false} auto/>
+                    <GeolocateControl style={{right:'10px', top:'120px'}} positionOptions={{enableHighAccuracy: true}} trackUserLocation={false}/>
                     <div className="map-sidebar" style={{left:'90px', bottom:'0px'}}>
                         Longitude: {viewport.longitude} | Latitude: {viewport.latitude} | Zoom: {viewport.zoom}
                     </div>

@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import LeaveComment from './LeaveComment';
 import Avatar from '@material-ui/core/Avatar';
 import { deepOrange, deepPurple } from '@material-ui/core/colors';
+import CardHeader from '@material-ui/core/CardHeader';
 
 const useStyles = makeStyles((theme) => ({
     divider: {
@@ -16,11 +17,11 @@ const useStyles = makeStyles((theme) => ({
     orange: {
         color: theme.palette.getContrastText(deepOrange[500]),
         backgroundColor: deepOrange[500],
-      },
-      purple: {
+    },
+    purple: {
         color: theme.palette.getContrastText(deepPurple[500]),
         backgroundColor: deepPurple[500],
-      },
+    },
 }));
 
 function Review (props) {
@@ -34,31 +35,21 @@ function Review (props) {
                 Reviews
             </Typography>
             <br/>
-            {/* <div>
-                <Avatar className={classes.orange}>N</Avatar>
-                <br/>
-                <p style={{fontSize:'15px', fontFamily:'Roboto,Arial,sans-serif'}}>UserName1</p>
-                <br/>
-                <p style={{fontSize:'12px'}}>Very Good</p>
-            </div>
-            <Divider variant="middle" className={classes.divider}/>
-            <br/>
-            <div>
-                <Avatar className={classes.purple}>H</Avatar>
-                <br/>
-                <p style={{fontSize:'15px', fontFamily:'Roboto,Arial,sans-serif'}}>UserName2</p>
-                <br/>
-                <p style={{fontSize:'12px'}}>Very Bad</p>
-            </div>        
-            <Divider variant="middle" className={classes.divider}/> */}
             {info.comments.map(e => 
                 <>
                     <div>
-                        <Avatar className={classes.purple}>H</Avatar>
-                        <br/>
-                        <p style={{fontSize:'15px', fontFamily:'Roboto,Arial,sans-serif'}}>{e.UserName}</p>
-                        <br/>
-                        <p style={{fontSize:'12px'}}>{e.comment}</p>
+                        <CardHeader
+                            avatar={
+                            <Avatar aria-label="recipe" className={classes.avatar}>
+                                R
+                            </Avatar>
+                            }
+                            title={e.UserName}
+                            subheader="September 14, 2016"
+                        />
+                        <div style={{display:'block', paddingTop:'5px', paddingLeft:'20px'}}>
+                            <p style={{fontSize:'13px'}}>{e.comment}</p>
+                        </div>
                     </div>        
                     <Divider variant="middle" className={classes.divider}/>
                 </>

@@ -94,7 +94,6 @@ function HomePage({log_in, setUserinfo}) {
         <div className="navBar">
           <NavLink style={{fontFamily: "copperplate", float: 'left'}} to="/home">Info Exchange</NavLink>
           <NavLink className="redirect" to="/aboutus">About Us</NavLink>
-          <NavLink className="redirect" to="/help">Help</NavLink>
         </div>
         <hr className="bar-line"/>
           <ul>

@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme) => ({
   feature_selection: {
     display: 'flex',
     backgroundColor:"#f7f3f3",
-    height:'92vh',
+    minHeight:'95vh',
     flexWrap: 'wrap', '& >*': {margin: theme.spacing(5), width: theme.spacing(38), height: theme.spacing(42)},
   },
 }));
