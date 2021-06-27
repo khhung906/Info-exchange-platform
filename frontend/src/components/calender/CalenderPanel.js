@@ -56,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
 function CalenderPanel(props) {
     const classes = useStyles();
     const { courseList, setList, courses, setCourse, otherList, 
-        setoList, others, setOthers, showEvents, setShow, events, userinfo, loadschedule} = props;
+        setoList, others, setOthers, showEvents, setShow, events, userinfo, loadschedule, placeList, setPlaceList, places, setPlace} = props;
     const [search_course, setSearchcourse] = useState([]);
     const [search_courseid, setSearchcourseid] = useState([]);
     
@@ -68,6 +68,7 @@ function CalenderPanel(props) {
         clist[course] = false;
         setCourse(clist);
     }
+    
 
     const addothers = (other) =>{
         let list = [...otherList];
@@ -169,6 +170,33 @@ function CalenderPanel(props) {
             <AccordionDetails>
                 <FormControl component="fieldset" className={classes.formControl}>
                     <FormHelperText>Course you have subscribed</FormHelperText>
+                    <FormGroup>
+                        {courseList.map(course => (<FormControlLabel  control={<Checkbox style ={{
+                        color: "#00e676",
+                        }} size='small'onChange={handleChange} checked={courses[course]} name={course} />}
+                            label={course} className={classes.formControlLabel}
+                        />))}
+                    </FormGroup>
+                    <AddCourse open={openAdd1} onClose={handleCloseAdd1} add={addcourse} userinfo={userinfo} loadschedule={loadschedule} search_course={search_course} search_courseid={search_courseid}/>
+                    <Button  size='small' className={classes.button} onClick={handleClickOpenAdd1} >
+                        <AddIcon style ={{
+                            color: "gray",
+                            }}/><p style ={{color: "gray",}}>Add Course</p>
+                    </Button>
+                </FormControl>
+            </AccordionDetails>
+        </Accordion>
+        <Accordion className={classes.accordion} defaultExpanded='true'>
+            <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+            >
+            <Typography className={classes.heading}>Places</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+                <FormControl component="fieldset" className={classes.formControl}>
+                    <FormHelperText>Places you frequently visit</FormHelperText>
                     <FormGroup>
                         {courseList.map(course => (<FormControlLabel  control={<Checkbox style ={{
                         color: "#00e676",
