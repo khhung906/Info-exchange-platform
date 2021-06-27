@@ -370,15 +370,6 @@ form .form-inner input[type="submit"]:hover {
   border-radius: 4px;
 }
 
-.marker {
-  background-image: url('./components/img/library-icon.png');
-  background-size: cover;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  cursor: pointer;
-
-}
 
 .mapboxgl-popup {
   max-width: 200px;
