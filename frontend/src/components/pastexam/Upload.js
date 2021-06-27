@@ -177,7 +177,7 @@ function Search(props) {
               onChange={(e) => {setFile(e.target.files[0])}}
             />
           </Button>&nbsp;&nbsp;&nbsp;&nbsp;
-          {file? file.name:""}
+          {file? file.name:"only pdf file"}
           <br/><br/>{loading? <LinearProgress style={{backgroundColor: '#1a90ff', color: '#1a90ff'}}/>: <div/>}
         <DialogActions>
           <Button onClick={handleClose} color="primary">
