@@ -41,7 +41,7 @@ function Review (props) {
                         <CardHeader
                             avatar={
                             <Avatar aria-label="recipe" className={classes.avatar}>
-                                R
+                                {e.UserName[0]}
                             </Avatar>
                             }
                             title={e.UserName}

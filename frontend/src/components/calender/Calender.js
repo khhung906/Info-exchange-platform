@@ -22,7 +22,9 @@ function Calender(props) {
     // console.log(userinfo);
     const [courseList, setList] = useState([]);
     //['DSA(CS1108)', 'SP(CS1022)', 'Web(EE2252)']
+    const [placeList, setPlaceList] = useState([]);
     const [courses, setCourse] = useState({});
+    const [places, setPlace] = useState({});
     const [otherList, setoList] = useState(['Speaking', 'WVS Club', 'Basketball']);
     const [others, setOthers] = useState({
       'Speaking': false,
@@ -52,13 +54,13 @@ function Calender(props) {
     const handleCloseDetail = (value) => {
       setOpenDetail(false);
     };
-
+//load : setList, setCourse
     const loadcourse = async() => {
       const email = userinfo;
       const {
         data : {classinfo} 
       } = await instance.post('api/loadcourse' ,{
-        email
+        email, which : 0
       });
       console.log(classinfo)
       setList(classinfo)
@@ -66,7 +68,25 @@ function Calender(props) {
       for(let c = 0; c < classinfo.length; c++){
         tmp_c[classinfo[c]] = false;
       }
+      console.log(tmp_c)
       setCourse(tmp_c);
+    }
+
+    const loadplace = async() => {
+      const email = userinfo;
+      const {
+        data : {classinfo} 
+      } = await instance.post('api/loadcourse' ,{
+        email, which : 1
+      });
+      console.log(classinfo)
+      setPlaceList(classinfo)
+      let tmp_c = {}
+      for(let c = 0; c < classinfo.length; c++){
+        tmp_c[classinfo[c]] = false;
+      }
+      console.log(tmp_c)
+      setPlace(tmp_c);
     }
 
     const loadschedule = async() => {
@@ -90,6 +110,7 @@ function Calender(props) {
 
     useEffect(() => {
       loadcourse();
+      loadplace();
       loadschedule();
     }, [])
 
@@ -115,8 +136,8 @@ function Calender(props) {
       return (
       <div style={{backgroundColor:'#f7f3f3', height:'100vh'}}>
         <MainPageTopBar log_in = {log_in}/>
-        <AddSchedule open={openAdd} onClose={handleCloseAdd} courseList={courseList} events={events} setEvents={setEvents}/>
-        <EventDetail open={openDetail} onClose={handleCloseDetail} courseList={courseList} detail={detail} events={events} setEvents={setEvents} showEvents={showEvents} setShow={setShow}/>
+        <AddSchedule open={openAdd} onClose={handleCloseAdd} courseList={courseList} placeList={placeList} events={events} setEvents={setEvents}/>
+        <EventDetail open={openDetail} onClose={handleCloseDetail} courseList={courseList} placeList={placeList} detail={detail} events={events} setEvents={setEvents} showEvents={showEvents} setShow={setShow}/>
         <div style={{marginLeft:'257pt', marginTop:'10pt' ,float:'top'}}>
           <Button onClick={handleClickOpenAdd} >
             <AddCircleOutlineIcon style ={{
@@ -124,7 +145,7 @@ function Calender(props) {
                 }}/><p style ={{color: "black"}}>Add schedule</p>
           </Button>
         </div>
-        <CalenderPanel courseList={courseList} setList={setList} courses={courses} setCourse={setCourse}
+        <CalenderPanel courseList={courseList} placeList={placeList} setPlaceList={setPlaceList} setList={setList} courses={courses} places={places} setCourse={setCourse} setPlace={setPlace}
                       otherList={otherList} setoList={setoList} others={others} setOthers={setOthers}
                       showEvents={showEvents} setShow={setShow} events={events} userinfo={userinfo} 
                       loadschedule = {loadschedule}/>

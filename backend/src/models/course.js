@@ -6,7 +6,8 @@ const courseSchema = new Schema({
     course_name : String,
     course_dayofweek : [Number],
     course_time : [Number],
-    activity: [String]
+    activity: [String], 
+    which : Number
 })
 
 export default mongoose.model('Course', courseSchema);

@@ -39,14 +39,26 @@ router.post('/addcourse', async function(req, res) {
         res.send({message : "Something went wrong"});
     }
 })
-
+//todo : addplace(which = 1)
 router.post('/loadcourse', async function(req, res) {
     try{
         const data = new Account(req.body);
         const account = await Account.findOne({email : data.email})
         const courses = account.course;
-        // console.log(account);
-        res.send({classinfo : courses})
+        let ans = [];
+        let ans_ = [];
+        // console.log(courses)
+        for (let i = 0; i < courses.length; i++) {
+            let course_name = courses[i].split("(")[0];
+            let db_course = await Course.findOne({course_name});
+            // console.log(db_course)
+            if (db_course.which === 0) ans.push(courses[i]);
+            else ans_.push(courses[i]);
+        }
+        console.log(ans);
+        console.log(ans_)
+        if (req.body.which === 0) res.send({classinfo : ans})
+        else res.send({classinfo : ans_})
     } catch(e) {
         res.send({message : "Something went wrong"});
     }

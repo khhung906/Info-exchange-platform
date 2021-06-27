@@ -53,6 +53,7 @@ function AddCourse(props) {
     } = await instance.post('api/addcourse', {
       course_id, email
     });
+    // console.log(classinfo);
     if (message === "Add successfully"){
       add(classinfo+"("+classid+")")
       onClose();
