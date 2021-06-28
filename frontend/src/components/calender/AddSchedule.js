@@ -33,6 +33,9 @@ function AddSchedule(props) {
   const [error, setError] = useState(false);
   const [description, setDis] = useState('');
   const handleClose = () => {
+    setError(false)
+    setEnd("2021-05-29T10:30");
+    setStart("2021-05-29T10:30")
     onClose();
   };
 
@@ -57,7 +60,7 @@ function AddSchedule(props) {
       });
       if (message === "Add successfully"){
         setEvents(tmp_event)
-        onClose();
+        handleClose();
       }
       else{
         setError(true);
@@ -70,11 +73,13 @@ function AddSchedule(props) {
 
   const typeTitle = (e) =>{
     setTitle(e.target.value);
+    if(!category){
+      setCategory(courseList[0]);
+    }
   }
 
   const ChangeCategory = (event) => {
     setCategory(event.target.value);
-    console.log(event.target.value)
   };
 
   const ChangeStart = (event) =>{
