@@ -128,6 +128,54 @@ const init_data = [
         course_time : [1,2,3,4,5,6,7],
         activity: [],
         which : 1
+    },
+    {
+        course_id : '台大盃-籃球',
+        course_name : '台大盃-籃球',
+        course_dayofweek : [1,2,3,4,5],
+        course_time : [1,2,3,4,5,6,7],
+        activity: [],
+        which : 2
+    },
+    {
+        course_id : '台大盃-壘球',
+        course_name : '台大盃-壘球',
+        course_dayofweek : [1,2,3,4,5],
+        course_time : [1,2,3,4,5,6,7],
+        activity: [],
+        which : 2
+    },
+    {
+        course_id : '台大盃-足球',
+        course_name : '台大盃-足球',
+        course_dayofweek : [1,2,3,4,5],
+        course_time : [1,2,3,4,5,6,7],
+        activity: [],
+        which : 2
+    },
+    {
+        course_id : '世志社WVS',
+        course_name : '世志社WVS',
+        course_dayofweek : [1,2,3,4,5],
+        course_time : [1,2,3,4,5,6,7],
+        activity: [],
+        which : 3
+    },
+    {
+        course_id : '滑板社SS',
+        course_name : '滑板社SS',
+        course_dayofweek : [1,2,3,4,5],
+        course_time : [1,2,3,4,5,6,7],
+        activity: [],
+        which : 3
+    },
+    {
+        course_id : '蛋糕社ESC',
+        course_name : '蛋糕社ESC',
+        course_dayofweek : [1,2,3,4,5],
+        course_time : [1,2,3,4,5,6,7],
+        activity: [],
+        which : 3
     }
 ]
 
@@ -562,7 +610,7 @@ const map_data_init = [
 
 const dataInit = async () => {
     const checkData = await Course.find()
-    if (checkData.length !== 16) {
+    if (checkData.length !== 22) {
       await Course.remove({})
       await Course.insertMany(init_data)
     }

@@ -12,6 +12,8 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import AddCourse from './AddCourse';
 import AddPlace from './AddPlace';
+import AddGame from './AddGame'
+import AddClub from './AddClub';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
 import FormHelperText from '@material-ui/core/FormHelperText';
@@ -64,6 +66,13 @@ function CalenderPanel(props) {
     const [search_place, setSearchPlace] = useState([]);
     const [search_placeid, setSearchPlaceid] = useState([]);
 
+    const [search_game, setSearchGame] = useState([]);
+    const [search_gameid, setSearchGameid] = useState([]);
+
+    const [search_club, setSearchClub] = useState([]);
+    const [search_clubid, setSearchClubid] = useState([]);
+    const pattern = new RegExp("[\u4E00-\u9FA5]+");
+    const pattern2 = new RegExp("[A-Za-z]+");
     const addcourse = (course) =>{
         let list = [...courseList];
         list.push(course);
@@ -135,7 +144,27 @@ function CalenderPanel(props) {
         setOpenAdd2(false);
     };
 
+    const [openAdd3, setOpenAdd3] = useState(false);
+    const handleClickOpenAdd3 = () => {
+        setOpenAdd3(true);
+        handleSearch("",0,2);
+        handleSearch("",1,2);
+    };
+    
+    const handleCloseAdd3 = (value) => {
+        setOpenAdd3(false);
+    };
 
+    const [openAdd4, setOpenAdd4] = useState(false);
+    const handleClickOpenAdd4 = () => {
+        setOpenAdd4(true);
+        handleSearch("",0,3);
+        handleSearch("",1,3);
+    };
+    
+    const handleCloseAdd4 = (value) => {
+        setOpenAdd4(false);
+    };
     // const [openDelete, setOpenDelete] = useState(false);
     // const handleClickOpenDelete = () => {
     //     setOpenDelete(true);
@@ -157,10 +186,19 @@ function CalenderPanel(props) {
             if (which === 1) setSearchcourse(final);
             else setSearchcourseid(final);
         }
-        else {
+        else if (type === 1){
             console.log(final)
             if (which === 1) setSearchPlace(final);
             else setSearchPlaceid(final);
+        }
+        else if (type === 2) {
+            if (which === 1) setSearchGame(final);
+            else setSearchGameid(final);
+        }
+        else if (type === 3) {
+            console.log(final)
+            if (which === 1) setSearchClub(final);
+            else setSearchClubid(final);
         }
     }
 
@@ -184,7 +222,7 @@ function CalenderPanel(props) {
                 <FormControl component="fieldset" className={classes.formControl}>
                     <FormHelperText>Course you have subscribed</FormHelperText>
                     <FormGroup>
-                        {courseList.filter(e => e.indexOf('(') !== -1).map(course => (<FormControlLabel  control={<Checkbox style ={{
+                        {courseList.filter(e => e.indexOf('(') !== -1 && e.indexOf('-') === -1).map(course => (<FormControlLabel  control={<Checkbox style ={{
                         color: "#00e676",
                         }} size='small'onChange={handleChange} checked={courses[course]} name={course} />}
                             label={course} className={classes.formControlLabel}
@@ -211,7 +249,7 @@ function CalenderPanel(props) {
                 <FormControl component="fieldset" className={classes.formControl}>
                     <FormHelperText>Places you frequently visit</FormHelperText>
                     <FormGroup>
-                        {courseList.filter(e => e.indexOf('(') === -1).map(course => (<FormControlLabel  control={<Checkbox style ={{
+                        {courseList.filter(e => e.indexOf('(') === -1 && e.indexOf('-') === -1 && !pattern2.test(e)).map(course => (<FormControlLabel  control={<Checkbox style ={{
                         color: "#00e676",
                         }} size='small'onChange={handleChange} checked={courses[course]} name={course} />}
                             label={course} className={classes.formControlLabel}
@@ -222,6 +260,60 @@ function CalenderPanel(props) {
                         <AddIcon style ={{
                             color: "gray",
                             }}/><p style ={{color: "gray",}}>Add Place</p>
+                    </Button>
+                </FormControl>
+            </AccordionDetails>
+        </Accordion>
+        <Accordion className={classes.accordion} defaultExpanded='true'>
+            <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+            >
+            <Typography className={classes.heading}>Games</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+                <FormControl component="fieldset" className={classes.formControl}>
+                    <FormHelperText>Games you attend</FormHelperText>
+                    <FormGroup>
+                        {courseList.filter(e => e.indexOf('(') === -1 && e.indexOf('-') !== -1).map(course => (<FormControlLabel  control={<Checkbox style ={{
+                        color: "#00e676",
+                        }} size='small'onChange={handleChange} checked={courses[course]} name={course} />}
+                            label={course} className={classes.formControlLabel}
+                        />))}
+                    </FormGroup>
+                    <AddGame open={openAdd3} onClose={handleCloseAdd3} add={addcourse} userinfo={userinfo} loadschedule={loadschedule} search_place={search_game} search_placeid={search_gameid}/>
+                    <Button  size='small' className={classes.button} onClick={handleClickOpenAdd3} >
+                        <AddIcon style ={{
+                            color: "gray",
+                            }}/><p style ={{color: "gray",}}>Add Game</p>
+                    </Button>
+                </FormControl>
+            </AccordionDetails>
+        </Accordion>
+        <Accordion className={classes.accordion} defaultExpanded='true'>
+            <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+            >
+            <Typography className={classes.heading}>Clubs</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+                <FormControl component="fieldset" className={classes.formControl}>
+                    <FormHelperText>Clubs you join</FormHelperText>
+                    <FormGroup>
+                        {courseList.filter(e => pattern.test(e) && pattern2.test(e) && e.indexOf('(') === -1).map(course => (<FormControlLabel  control={<Checkbox style ={{
+                        color: "#00e676",
+                        }} size='small'onChange={handleChange} checked={courses[course]} name={course} />}
+                            label={course} className={classes.formControlLabel}
+                        />))}
+                    </FormGroup>
+                    <AddClub open={openAdd4} onClose={handleCloseAdd4} add={addcourse} userinfo={userinfo} loadschedule={loadschedule} search_place={search_club} search_placeid={search_clubid}/>
+                    <Button  size='small' className={classes.button} onClick={handleClickOpenAdd4} >
+                        <AddIcon style ={{
+                            color: "gray",
+                            }}/><p style ={{color: "gray",}}>Add Club</p>
                     </Button>
                 </FormControl>
             </AccordionDetails>

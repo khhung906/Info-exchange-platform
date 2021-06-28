@@ -116,7 +116,7 @@ router.post('/search', async function(req, res) {
                 result = all.map(e => e.course_id);
             }
         } 
-        else {
+        else if (req.body.type === 1){
             if (req.body.which === 1) {
                 all = await Course.find({course_name : {"$regex": req.body.keyword, "$options": "i"}, which : 1})
                 result = all.map(e => e.course_name);
@@ -126,7 +126,27 @@ router.post('/search', async function(req, res) {
                 result = all.map(e => e.course_id);
             }
         }
-        console.log(all);
+        else if (req.body.type === 2) {
+            if (req.body.which === 1) {
+                all = await Course.find({course_name : {"$regex": req.body.keyword, "$options": "i"}, which : 2})
+                result = all.map(e => e.course_name);
+            }
+            else {
+                all = await Course.find({course_id : {"$regex": req.body.keyword, "$options": "i"}, which : 2})
+                result = all.map(e => e.course_id);
+            }
+        }
+        else if (req.body.type === 3) {
+            if (req.body.which === 1) {
+                all = await Course.find({course_name : {"$regex": req.body.keyword, "$options": "i"}, which : 3})
+                result = all.map(e => e.course_name);
+            }
+            else {
+                all = await Course.find({course_id : {"$regex": req.body.keyword, "$options": "i"}, which : 3})
+                result = all.map(e => e.course_id);
+            }
+        }
+        console.log(result);
         let final = [];
         for (let i = 0; i < result.length; i++) {
             final.push({name : result[i]});
