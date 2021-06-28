@@ -387,11 +387,11 @@ form .form-inner input[type="submit"]:hover {
 }
 
 .sidenav {
-  height: 80vh;
+  height: 78vh;
   width: 350px;
   position: fixed;
   z-index: 1;
-  top: 15%;
+  top: 13%;
   left: 10px;
   background-color: white;
   overflow-x: hidden;

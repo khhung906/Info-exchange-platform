@@ -7,6 +7,8 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import LeaveComment from './LeaveComment';
 import Review from './Review';
+import CreateIcon from '@material-ui/icons/Create';
+import AddCommentOutlinedIcon from '@material-ui/icons/AddCommentOutlined';
 
 const useStyles = makeStyles((theme) => ({
     section1: {
@@ -14,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     },
 
     section2: {
-      margin: theme.spacing(2),
+      margin: theme.spacing(1),
     },
     section3: {
       margin: theme.spacing(3, 1, 1),
@@ -93,7 +95,7 @@ function SideInfo (props) {
                         </Typography>
                     }   
                 </div>
-                <div className={classes.section2}>
+                <div className={classes.section2} style={{float:"left", marginTop:"20px"}}>
                     <Typography variant="body1" style={{display:'inline-block'}}>
                     {(info === null) ? "": ("Seats Availablle:")}
                     </Typography>
@@ -101,24 +103,28 @@ function SideInfo (props) {
                     {(info === null) ? "": info.Seats}
                     </Typography>
                 </div>
-                <div className={classes.section2}>
+                <div className={classes.section3} style={{display:'inline-block', marginTop:"13px"}}>
+                    <AddInfo open={openAdd1} onClose={handleCloseAdd1} setInfo={setInfo} info={info}/>
+                    {(info === null) ? "": <Button onClick={handleClickOpenAdd1} ><div style={{float:"left"}}><CreateIcon color="primary"/></div>
+                        &nbsp;&nbsp;change</Button>}
+                </div>
+                <div className={classes.section2} style={{display:'inline-block'}}>
                     {(info === null) ? "":
                         <Typography variant="body1">
                         Open Hours: {info.OpenHours}
                         </Typography>
                     }   
                 </div>
-                <div className={classes.section3} style={{display:'inline-block'}}>
-                    <AddInfo open={openAdd1} onClose={handleCloseAdd1} setInfo={setInfo} info={info}/>
-                    {(info === null) ? "": <Button onClick={handleClickOpenAdd1} style={{display:'inline-block', backgroundColor: 'grey', color: '#FFFFFF'}}>Add Info</Button>}
-                </div>
-                <div className={classes.section3} style={{display:'inline-block'}}>
-                    <LeaveComment open={openAdd2} onClose={handleCloseAdd2} setInfo={setInfo} info={info} userinfo={userinfo}/>
-                    {(info === null) ? "": <Button onClick={handleClickOpenAdd2} style={{display:'inline-block', backgroundColor: 'grey', color: '#FFFFFF'}}>Leave Comment</Button>}
-                </div>
                 <Divider variant="middle" className={classes.divider}/>
                 <div className={classes.section2}>
                     <Review info={info}/>
+                </div>
+                <div style={{display:'inline-block'}}>
+                    <LeaveComment open={openAdd2} onClose={handleCloseAdd2} setInfo={setInfo} info={info} userinfo={userinfo}/>
+                    {(info === null) ? "": <Button onClick={handleClickOpenAdd2} style={{display:'inline-block'}}>
+                        <div style={{top:"50%", float:"left"}}><AddCommentOutlinedIcon color="primary"/></div>
+                        &nbsp;&nbsp;add reviews</Button>}
+                    
                 </div>
             </div>
             }
