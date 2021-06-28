@@ -22,7 +22,7 @@ const useStyles = makeStyles({
   },
 });
 const cards = [{name:'Student Calendar', 
-                dis:'HW/EXAMS due dates | Club Activities | NTU Events',
+                dis:'shared calendar for HW/EXAMS due dates | Club Activities | NTU Events',
                 imgsrc: calander_img,
                 route: '/calendar'
                 },
