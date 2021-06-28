@@ -1,29 +1,28 @@
 import React, {useState, useEffect} from 'react'
 import Button from '@material-ui/core/Button';
-import { makeStyles } from '@material-ui/core/styles';
+// import { makeStyles } from '@material-ui/core/styles';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
-import { blue } from '@material-ui/core/colors';
 import TextField from '@material-ui/core/TextField';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import instance from '../../axios';
 
-const useStyles = makeStyles((theme) => ({
-  avatar: {
-      backgroundColor: blue[100],
-      color: blue[600],
-  },
-  root: {
-    '& > *': {
-      margin: theme.spacing(1),
-      width: '25ch',
-    },
-  },
-}));
+// const useStyles = makeStyles((theme) => ({
+//   avatar: {
+//       backgroundColor: blue[100],
+//       color: blue[600],
+//   },
+//   root: {
+//     '& > *': {
+//       margin: theme.spacing(1),
+//       width: '25ch',
+//     },
+//   },
+// }));
 
 function AddInfo(props) {
-  const classes = useStyles();
+  // const classes = useStyles();
   const { open, onClose , setInfo, info} = props;
   const [seats, setSeats] = useState(0);
   const handleClose = () => {
@@ -36,10 +35,11 @@ function AddInfo(props) {
     console.log(seats)
     const Name = info.Name;
     const {
-      data : {message, newinfo}
+      data : {message} //newinfo
     } = await instance.post('api/updateInfo', {
       Name, seats
     }) ;
+    console.log(message)
     let updateInfo = info;
     updateInfo.Seats = seats;
     console.log(updateInfo)

@@ -1,11 +1,8 @@
-import React, {useState} from 'react'
+import React from 'react'
 import Divider from '@material-ui/core/Divider';
-import Button from '@material-ui/core/Button';
-import AddInfo from './AddInfo';
 import { makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import LeaveComment from './LeaveComment';
+// import LeaveComment from './LeaveComment';
 import Avatar from '@material-ui/core/Avatar';
 import { deepOrange, deepPurple } from '@material-ui/core/colors';
 import CardHeader from '@material-ui/core/CardHeader';

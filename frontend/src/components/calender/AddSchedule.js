@@ -51,7 +51,7 @@ function AddSchedule(props) {
       }
       tmp_event.push(new_event)
       const {
-        data : {message, classinfo}
+        data : {message} //classinfo
       } = await instance.post('api/addschedule', {
         new_event
       });

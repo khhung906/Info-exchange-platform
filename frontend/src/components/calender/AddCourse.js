@@ -3,7 +3,6 @@ import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
-import { blue } from '@material-ui/core/colors';
 import TextField from '@material-ui/core/TextField';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -34,7 +33,7 @@ function AddCourse(props) {
   const classes = useStyles();
   const { open, onClose , add, userinfo, loadschedule, search_course, search_courseid } = props;
   const [classname, setname] = useState('');
-  const [alertopen, setAlert] = useState(false);
+  //const [alertopen, setAlert] = useState(false);
   const [classid, setid] = useState('');
   const [iderror, setIderror] = useState(false);
   const [namerror, setNamerror] = useState(false);
@@ -66,9 +65,9 @@ function AddCourse(props) {
     }
   };
 
-  const alertClose = () =>{
-    setAlert(false);
-  } 
+  // const alertClose = () =>{
+  //   setAlert(false);
+  // } 
 
   const getinfo = async(which, idOrname) => {
     console.log(search_course, search_courseid);
@@ -76,7 +75,7 @@ function AddCourse(props) {
     if (which === 1) course_name = idOrname
     else course_id = idOrname
     const {
-      data : {message, info}
+      data : {info}//message
     } = await instance.post('api/getInfo', {
       course_name, course_id, which
     });

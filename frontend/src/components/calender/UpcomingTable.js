@@ -1,5 +1,4 @@
 import React from 'react';
-import {useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -32,7 +31,7 @@ const useRowStyles = makeStyles({
 
 function Row(props) {
   const { row } = props;
-  const [open, setOpen] = useState(false);
+  // const [open, setOpen] = useState(false);
   const classes = useRowStyles();
   const showtime = row.end.split('G')[0]
 

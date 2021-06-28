@@ -1,29 +1,28 @@
 import React, {useState} from 'react'
 import Button from '@material-ui/core/Button';
-import { makeStyles } from '@material-ui/core/styles';
+// import { makeStyles } from '@material-ui/core/styles';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
-import { blue } from '@material-ui/core/colors';
 import TextField from '@material-ui/core/TextField';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import instance from '../../axios';
 
-const useStyles = makeStyles((theme) => ({
-    avatar: {
-        backgroundColor: blue[100],
-        color: blue[600],
-    },
-    root: {
-      '& > *': {
-        margin: theme.spacing(1),
-        width: '25ch',
-      },
-    },
-}));
+// const useStyles = makeStyles((theme) => ({
+//     avatar: {
+//         backgroundColor: blue[100],
+//         color: blue[600],
+//     },
+//     root: {
+//       '& > *': {
+//         margin: theme.spacing(1),
+//         width: '25ch',
+//       },
+//     },
+// }));
 
 function LeaveComment(props) {
-  const classes = useStyles();
+  // const classes = useStyles();
   const { open, onClose , info, setInfo, userinfo} = props;
   const [comment, setComment] = useState("");
   const handleClose = () => {
@@ -36,11 +35,11 @@ function LeaveComment(props) {
     const Name = info.Name;
     const UserName = userinfo;
     const {
-      data : {message, comments}
+      data : {message}// comments
     } = await instance.post('api/updateComment', {
       Name, UserName, comment
     }) ;
-    // console.log(message, comments);
+    console.log(message);
     console.log(info)
     let newinfo = info;
     newinfo.comments.push({UserName : UserName, comment : comment});

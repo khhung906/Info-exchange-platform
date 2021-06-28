@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback, useEffect } from "react";
+import React, { useState } from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import IconButton from '@material-ui/core/IconButton';
@@ -6,7 +6,7 @@ import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import instance from '../../axios';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   input: {
     width: "100%",
     height: "1vw", // Changed from 2vw
@@ -31,7 +31,7 @@ function Search(props) {
     const handleclick = async() =>{
       //call backend and find course list of files
       const {
-        data : {message, exams}
+        data : { exams }//message
       } = await instance.post('api/findfiles', {course});
       console.log(exams)
       exams.sort((a, b) => (a.year+a.semester < b.year+b.semester ? -1: 1))

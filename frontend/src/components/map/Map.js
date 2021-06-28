@@ -7,7 +7,7 @@ import MainPageTopBar from '../MainPageTopBar';
 import HashLoader from 'react-spinners/HashLoader';
 import Pins from './Pins';
 // import Data from './Data.json';
-import LibraryInfo from './LibraryInfo';
+// import LibraryInfo from './LibraryInfo';
 import SideInfo from './SideInfo';
 import instance from '../../axios';
 const MAPBOX_TOKEN =
@@ -54,7 +54,7 @@ function Map(props) {
 
     const LoadAllData = async() => {
       const {
-        data : {message, Data}
+        data : {Data} //message
       } = await instance.post('api/loadAllData');
       // console.log(message, Data)
       console.log(Data)

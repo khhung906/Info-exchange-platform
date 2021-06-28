@@ -56,8 +56,8 @@ const useStyles = makeStyles((theme) => ({
 
 function CalenderPanel(props) {
     const classes = useStyles();
-    const { courseList, setList, courses, setCourse, otherList, 
-        setoList, others, setOthers, showEvents, setShow, events, userinfo, loadschedule} = props;
+    const { courseList, setList, courses, setCourse, 
+         others, setShow, events, userinfo, loadschedule} = props;//otherList, setoList,setOthers, showEvents,
     const [search_course, setSearchcourse] = useState([]);
     const [search_courseid, setSearchcourseid] = useState([]);
     
@@ -75,14 +75,14 @@ function CalenderPanel(props) {
     }
     
 
-    const addothers = (other) =>{
-        let list = [...otherList];
-        list.push(other);
-        setoList(list);
-        let clist = {...others};
-        clist[other] = false;
-        setOthers(clist);
-    } 
+    // const addothers = (other) =>{
+    //     let list = [...otherList];
+    //     list.push(other);
+    //     setoList(list);
+    //     let clist = {...others};
+    //     clist[other] = false;
+    //     setOthers(clist);
+    // } 
 
     const ShowList = (c, o) =>{
         let show = [];
@@ -136,18 +136,18 @@ function CalenderPanel(props) {
     };
 
 
-    const [openDelete, setOpenDelete] = useState(false);
-    const handleClickOpenDelete = () => {
-        setOpenDelete(true);
-    };
-    const handleCloseDelete = (value) => {
-        setOpenDelete(false);
-    };
+    // const [openDelete, setOpenDelete] = useState(false);
+    // const handleClickOpenDelete = () => {
+    //     setOpenDelete(true);
+    // };
+    // const handleCloseDelete = (value) => {
+    //     setOpenDelete(false);
+    // };
 
     const handleSearch = async(keyword, which, type) => {
         // const keyword = classname;
         const {
-          data : {final, message}
+          data : {final }//message
         } = await instance.post('api/search', {
           keyword, which, type
         });

@@ -1,8 +1,7 @@
 import React, {useState, useEffect} from 'react'
-import { NavLink, Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import HomePage from './components/HomePage'
 import AboutUs from './components/AboutUs'
-import Help from './components/Help'
 import MainPage from './components/MainPage';
 import Calender from './components/calender/Calender';
 import Map from './components/map/Map';
@@ -26,7 +25,7 @@ function App() {
       localStorage.setItem(LOCALSTORAGE_USER, userinfo);    
       localStorage.setItem(LOCALSTORAGE_LOGIN, login);
     }   
-  }, [login]);
+  }, [login, userinfo]);
 
   return (
     <div>

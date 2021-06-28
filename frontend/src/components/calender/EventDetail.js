@@ -14,7 +14,7 @@ import instance from '../../axios';
 
 //select, pickers
 function EventDetail(props) {
-  const {open, onClose, detail, events, setEvents, showEvents, setShow} = props;
+  const {open, onClose, detail, events, setEvents, setShow} = props;// showEvents
   const [onEdit, setEdit] = useState(false);
   const [start, setStart] = useState("");
   const [end, setEnd] = useState("");
@@ -42,10 +42,10 @@ function EventDetail(props) {
   const handleSave = async() =>{
     //call backend and making changes
     // console.log(title)
-    console.log(start)
-    console.log(title)
+    // console.log(start)
+    // console.log(title)
     let current_events = [...events]
-    console.log(events)
+    // console.log(events)
     const idx = detail.divider.indexOf('(');
     const course_name = detail.divider.slice(0, idx);
     const activity = {
@@ -65,13 +65,13 @@ function EventDetail(props) {
     };
       
     const {
-      data : {message, info}
+      data : {message} //, info
     } = await instance.post('api/changecourse', {
       course_name, activity, newActivity
     });
     // const final_info = info.map(e => JSON.parse(e));
     // console.log(final_info)
-   
+    console.log(message)
     let idx_ =current_events.findIndex(e => 
       e.start === activity.start && 
       e.end === activity.end && 
@@ -98,10 +98,11 @@ function EventDetail(props) {
       title : detail.title
     };
     const {
-      data : {message, info}
+      data : {message}//, info
     } = await instance.post('api/deleteActivity', {
       course_name, activity
     });
+    console.log(message)
     // console.log(info);
     let current_events = [...events]
     // console.log(current_events)
@@ -113,10 +114,10 @@ function EventDetail(props) {
     handleClose();
   }
 
-  const ChangeCategory = (event) => {
-    console.log(event.target.value)
-    setCategory(event.target.value);
-  };
+  // const ChangeCategory = (event) => {
+  //   console.log(event.target.value)
+  //   setCategory(event.target.value);
+  // };
 
   const ChangeStart = (event) =>{
     console.log(event.target.value)
