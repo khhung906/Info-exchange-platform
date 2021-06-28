@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -22,7 +22,7 @@ const useStyles = makeStyles({
   },
 });
 const cards = [{name:'Student Calendar', 
-                dis:'shared calendar for HW/EXAMS due dates | Club Activities | NTU Events',
+                dis:'Shared calendar for HW/EXAMS due dates | Club Activities | NTU Events',
                 imgsrc: calander_img,
                 route: '/calendar'
                 },
@@ -53,6 +53,7 @@ const cards = [{name:'Student Calendar',
 
 const card = (classes, message, id) =>{
     return(
+      <div>
         <Card className={classes.root} key = {id}>
           <CardActionArea component={Link} to={message.route}>
               <CardMedia
@@ -70,12 +71,13 @@ const card = (classes, message, id) =>{
               </Typography>
               </CardContent>
           </CardActionArea>
-          <CardActions>
+          {/* <CardActions>
             <Button size="small" color="primary">
-              Delete
+              Learn More
             </Button>
-          </CardActions>
+          </CardActions> */}
         </Card>
+      </div>
     );
 }
 

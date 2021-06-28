@@ -15,6 +15,7 @@ import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 import SideBar from './SideBar.js'
 import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
+import GitHubIcon from '@material-ui/icons/GitHub';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -134,32 +135,15 @@ function MainPageTopBar({log_in}) {
               <Typography variant="h6" className={classes.title}>
                 <NavLink className={classes.title} to="/">Info Exchange</NavLink>
               </Typography>
-
-              <div className={classes.search}>
-                <div className={classes.searchIcon}>
-                  <SearchIcon />
-                </div>
-                <InputBase
-                  placeholder="Search…"
-                  classes={{
-                    root: classes.inputRoot,
-                    input: classes.inputInput,
-                  }}
-                  inputProps={{ 'aria-label': 'search' }}
-                />
-              </div>
-
-              <IconButton className={classes.moneyButton} color="inherit">
-                <AttachMoneyIcon />
-                <ListItemText primary={'20'}/>
+              <IconButton color="inherit">
+                <a href={'https://github.com/johnsonhung906/Info-exchange-platform'} className="git-link" style={{color:'white'}}><GitHubIcon/></a>
               </IconButton>
-
               <IconButton className={classes.notificationButton} color="inherit">
                 <Badge badgeContent={4} color="error">
                   <NotificationsIcon />
                 </Badge>
               </IconButton>
-              {/* <ProfileMenu/> */}
+              <NavLink className="redirect" to="/aboutus" style={{color:'white', textDecoration:'none', fontFamily:"copperplate"}}>About Us</NavLink>
             </Toolbar>
           </AppBar>
         </div>
