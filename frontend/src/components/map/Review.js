@@ -43,9 +43,10 @@ function Review (props) {
                             }
                             title={e.UserName}
                             subheader={e.time}
+                            style={{paddingTop:'0px'}}
                         />
-                        <div style={{display:'block', paddingTop:'5px', paddingLeft:'20px'}}>
-                            <p style={{fontSize:'13px'}}>{e.comment}</p>
+                        <div style={{display:'block', paddingTop:'1px', paddingLeft:'25px',paddingBottom:'0px'}}>
+                            <p style={{fontSize:'18px', }}>{e.comment}</p>
                         </div>
                     </div>        
                     <Divider variant="middle" className={classes.divider}/>
