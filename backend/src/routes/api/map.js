@@ -50,8 +50,8 @@ router.post('/updateComment', async function(req, res) {
         // }   
         console.log(comments);
         console.log(json_comments);
-        comments.push({UserName : req.body.UserName, comment : req.body.comment});
-        json_comments.push(JSON.stringify({UserName : req.body.UserName, comment : req.body.comment}))
+        comments.push({UserName : req.body.UserName, comment : req.body.comment, time : req.body.time});
+        json_comments.push(JSON.stringify({UserName : req.body.UserName, comment : req.body.comment, time : req.body.time}))
         res.send({message : "updateMessage Successfully", comments})
         await Map.update({Name : req.body.Name}, {comments : json_comments});
     } catch(e) {

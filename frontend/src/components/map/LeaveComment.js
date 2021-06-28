@@ -28,21 +28,25 @@ function LeaveComment(props) {
   const handleClose = () => {
     onClose();
   };
-
+  const monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+];
   const updateComments = async() => {
   //userName, comment, Name(site)
     console.log(comment);
     const Name = info.Name;
     const UserName = userinfo;
+    const crttime = new Date();
+    const time = monthNames[crttime.getMonth()]+' '+crttime.getDate()+', '+crttime.getFullYear();
     const {
       data : {message}// comments
     } = await instance.post('api/updateComment', {
-      Name, UserName, comment
+      Name, UserName, comment, time
     }) ;
     console.log(message);
     console.log(info)
     let newinfo = info;
-    newinfo.comments.push({UserName : UserName, comment : comment});
+    newinfo.comments.push({UserName : UserName, comment : comment, time : time});
     console.log(newinfo);
     setInfo(newinfo);
     handleClose();

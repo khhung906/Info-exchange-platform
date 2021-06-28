@@ -42,7 +42,7 @@ function Review (props) {
                             </Avatar>
                             }
                             title={e.UserName}
-                            subheader="September 14, 2016"
+                            subheader={e.time}
                         />
                         <div style={{display:'block', paddingTop:'5px', paddingLeft:'20px'}}>
                             <p style={{fontSize:'13px'}}>{e.comment}</p>
