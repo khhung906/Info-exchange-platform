@@ -11,6 +11,7 @@ import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import AddCourse from './AddCourse';
+import AddPlace from './AddPlace';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
 import FormHelperText from '@material-ui/core/FormHelperText';
@@ -56,14 +57,18 @@ const useStyles = makeStyles((theme) => ({
 function CalenderPanel(props) {
     const classes = useStyles();
     const { courseList, setList, courses, setCourse, otherList, 
-        setoList, others, setOthers, showEvents, setShow, events, userinfo, loadschedule, placeList, setPlaceList, places, setPlace} = props;
+        setoList, others, setOthers, showEvents, setShow, events, userinfo, loadschedule} = props;
     const [search_course, setSearchcourse] = useState([]);
     const [search_courseid, setSearchcourseid] = useState([]);
     
+    const [search_place, setSearchPlace] = useState([]);
+    const [search_placeid, setSearchPlaceid] = useState([]);
+
     const addcourse = (course) =>{
         let list = [...courseList];
         list.push(course);
         setList(list);
+        // console.log(course);
         let clist = {...courses};
         clist[course] = false;
         setCourse(clist);
@@ -81,7 +86,7 @@ function CalenderPanel(props) {
 
     const ShowList = (c, o) =>{
         let show = [];
-        console.log(events)
+        // console.log(events)
         for(let i = 0; i < events.length; i++){
             if(c[events[i].divider]){
                 show.push(events[i]);
@@ -112,17 +117,18 @@ function CalenderPanel(props) {
     const [openAdd1, setOpenAdd1] = useState(false);
     const handleClickOpenAdd1 = () => {
         setOpenAdd1(true);
-        handleSearch("",0);
-        handleSearch("",1);
+        handleSearch("",0,0);
+        handleSearch("",1,0);
     };
     const handleCloseAdd1 = (value) => {
         setOpenAdd1(false);
-       
     };
 
     const [openAdd2, setOpenAdd2] = useState(false);
     const handleClickOpenAdd2 = () => {
         setOpenAdd2(true);
+        handleSearch("",0,1);
+        handleSearch("",1,1);
     };
     
     const handleCloseAdd2 = (value) => {
@@ -138,17 +144,24 @@ function CalenderPanel(props) {
         setOpenDelete(false);
     };
 
-    const handleSearch = async(keyword, which) => {
+    const handleSearch = async(keyword, which, type) => {
         // const keyword = classname;
         const {
           data : {final, message}
         } = await instance.post('api/search', {
-          keyword, which
+          keyword, which, type
         });
-        console.log(final,message);
-        if (which === 1) setSearchcourse(final);
-        else setSearchcourseid(final);
-        
+        console.log(type)
+        if (type === 0) {
+            console.log(final)
+            if (which === 1) setSearchcourse(final);
+            else setSearchcourseid(final);
+        }
+        else {
+            console.log(final)
+            if (which === 1) setSearchPlace(final);
+            else setSearchPlaceid(final);
+        }
     }
 
     useEffect(() => {
@@ -171,13 +184,13 @@ function CalenderPanel(props) {
                 <FormControl component="fieldset" className={classes.formControl}>
                     <FormHelperText>Course you have subscribed</FormHelperText>
                     <FormGroup>
-                        {courseList.map(course => (<FormControlLabel  control={<Checkbox style ={{
+                        {courseList.filter(e => e.indexOf('(') !== -1).map(course => (<FormControlLabel  control={<Checkbox style ={{
                         color: "#00e676",
                         }} size='small'onChange={handleChange} checked={courses[course]} name={course} />}
                             label={course} className={classes.formControlLabel}
                         />))}
                     </FormGroup>
-                    <AddCourse open={openAdd1} onClose={handleCloseAdd1} add={addcourse} userinfo={userinfo} loadschedule={loadschedule} search_course={search_course} search_courseid={search_courseid}/>
+                    <AddCourse open={openAdd1} onClose={handleCloseAdd1} add={addcourse} userinfo={userinfo} loadschedule={loadschedule} search_course={search_course} search_courseid={search_courseid} />
                     <Button  size='small' className={classes.button} onClick={handleClickOpenAdd1} >
                         <AddIcon style ={{
                             color: "gray",
@@ -198,22 +211,22 @@ function CalenderPanel(props) {
                 <FormControl component="fieldset" className={classes.formControl}>
                     <FormHelperText>Places you frequently visit</FormHelperText>
                     <FormGroup>
-                        {courseList.map(course => (<FormControlLabel  control={<Checkbox style ={{
+                        {courseList.filter(e => e.indexOf('(') === -1).map(course => (<FormControlLabel  control={<Checkbox style ={{
                         color: "#00e676",
                         }} size='small'onChange={handleChange} checked={courses[course]} name={course} />}
                             label={course} className={classes.formControlLabel}
                         />))}
                     </FormGroup>
-                    <AddCourse open={openAdd1} onClose={handleCloseAdd1} add={addcourse} userinfo={userinfo} loadschedule={loadschedule} search_course={search_course} search_courseid={search_courseid}/>
-                    <Button  size='small' className={classes.button} onClick={handleClickOpenAdd1} >
+                    <AddPlace open={openAdd2} onClose={handleCloseAdd2} add={addcourse} userinfo={userinfo} loadschedule={loadschedule} search_place={search_place} search_placeid={search_placeid}/>
+                    <Button  size='small' className={classes.button} onClick={handleClickOpenAdd2} >
                         <AddIcon style ={{
                             color: "gray",
-                            }}/><p style ={{color: "gray",}}>Add Course</p>
+                            }}/><p style ={{color: "gray",}}>Add Place</p>
                     </Button>
                 </FormControl>
             </AccordionDetails>
         </Accordion>
-        {/*<Accordion className={classes.accordion} defaultExpanded='true'>
+        {/* <Accordion className={classes.accordion} defaultExpanded='true'>
             <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel1a-content"
@@ -238,7 +251,7 @@ function CalenderPanel(props) {
                     </Button>
                 </FormControl>
             </AccordionDetails>} 
-        </Accordion>*/}
+        </Accordion> */}
 
         </div>
     );

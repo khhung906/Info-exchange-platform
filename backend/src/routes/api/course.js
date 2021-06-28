@@ -10,26 +10,19 @@ router.post('/addcourse', async function(req, res) {
     try {
         const data = new Course(req.body);
         const data2 = new Account(req.body);
-        // console.log(data, data2);
         const existing = await Course.findOne({course_id : data.course_id});
         const account = await Account.findOne({email : data2.email});
-        // console.log(existing)
-        // console.log(account)
         if (existing) {
             let courses = account.course;
-            // console.log(data.course_name)
-            // console.log("hello", existing.course_name, courses.indexOf(existing.course_name+"("+existing.course_id+")"))
             if (courses.indexOf(existing.course_name+"("+existing.course_id+")") === -1) {
-                // console.log("in");
-                courses.push(existing.course_name+"("+existing.course_id+")");
-                res.send({message : "Add successfully", classinfo : existing.course_name});
+                if (existing.which === 0) courses.push(existing.course_name+"("+existing.course_id+")");
+                else courses.push(existing.course_name);
+                res.send({message : "Add successfully", classinfo : existing.course_name, which : existing.which});
                 await account.update({course : courses});
             }
             else {
                 res.send({message : "Already added"})
             }
-            // account.course.push(data.course_id);
-            // console.log(account);
             
         }
         else{
@@ -47,18 +40,16 @@ router.post('/loadcourse', async function(req, res) {
         const courses = account.course;
         let ans = [];
         let ans_ = [];
-        // console.log(courses)
         for (let i = 0; i < courses.length; i++) {
             let course_name = courses[i].split("(")[0];
             let db_course = await Course.findOne({course_name});
-            // console.log(db_course)
-            if (db_course.which === 0) ans.push(courses[i]);
-            else ans_.push(courses[i]);
+            ans.push(courses[i]);
+            // if (db_course.which === 0) ans.push(courses[i]);
+            // else ans_.push(courses[i]);
         }
-        console.log(ans);
-        console.log(ans_)
-        if (req.body.which === 0) res.send({classinfo : ans})
-        else res.send({classinfo : ans_})
+        res.send({classinfo : ans})
+        // if (req.body.which === 0) res.send({classinfo : ans})
+        // else res.send({classinfo : ans_})
     } catch(e) {
         res.send({message : "Something went wrong"});
     }
@@ -66,18 +57,12 @@ router.post('/loadcourse', async function(req, res) {
 
 router.post('/addschedule', async function(req, res) {
     try{
-        // console.log("add");
         const data = req.body.new_event;
         const couse_name = data.divider.split("(")[0];
-        //console.log(couse_name)
         const course = await Course.findOne({course_name : couse_name});
-        // console.log(course)
         if (course) {
-            // console.log(data.course_name)
             // courses.push(existing.course_name+"("+existing.course_id+")")
             // account.course.push(data.course_id);
-            // console.log(account);
-            // console.log('exist')
             let activity = course.activity;
             activity.push(JSON.stringify(data))
             res.send({message : "Add successfully"});
@@ -100,18 +85,14 @@ router.post('/loadschedule', async function(req, res) {
         let activities = []
         for(let i = 0; i < courses.length; i++){
             const couse_name = courses[i].split("(")[0];
-            //console.log(couse_name)
             const course = await Course.findOne({course_name : couse_name});
-            // console.log(course)
             const activity = course.activity
             for(let j = 0; j < activity.length; j++){
                 activities.push(JSON.parse(activity[j]))
             }
         }
-        // console.log(activities)
         //const account = await Account.findOne({email : data.email})
         //const courses = account.course;
-        //console.log(account);
         res.send({message : "Load schedule success", scheduleinfo: activities})
     } catch(e) {
         res.send({message : "Something went wrong"});
@@ -121,16 +102,29 @@ router.post('/loadschedule', async function(req, res) {
 router.post('/search', async function(req, res) {
     //keyword email 
     try{
-        console.log(req.body.which);
+        // console.log(req.body.which);
         let all = [];
         let result = []
-        if (req.body.which === 1) {
-            all = await Course.find({course_name : {"$regex": req.body.keyword, "$options": "i"}})
-            result = all.map(e => e.course_name)
-        }
+        if (req.body.type === 0) {
+            if (req.body.which === 1) {
+                all = await Course.find({course_name : {"$regex": req.body.keyword, "$options": "i"}, which : 0})
+                console.log(all)
+                result = all.map(e => e.course_name);
+            }
+            else {
+                all = await Course.find({course_id : {"$regex": req.body.keyword, "$options": "i"}, which : 0})
+                result = all.map(e => e.course_id);
+            }
+        } 
         else {
-            all = await Course.find({course_id : {"$regex": req.body.keyword, "$options": "i"}})
-            result = all.map(e => e.course_id)
+            if (req.body.which === 1) {
+                all = await Course.find({course_name : {"$regex": req.body.keyword, "$options": "i"}, which : 1})
+                result = all.map(e => e.course_name);
+            }
+            else {
+                all = await Course.find({course_id : {"$regex": req.body.keyword, "$options": "i"}, which : 1})
+                result = all.map(e => e.course_id);
+            }
         }
         console.log(all);
         let final = [];
@@ -139,7 +133,6 @@ router.post('/search', async function(req, res) {
         }
         res.send({message : "search success", final})
     }catch(e) {
-        // console.log(e);
         res.send({message : "Something went wrong"});
     }
 })
@@ -148,7 +141,6 @@ router.post('/getInfo', async function(req, res) {
     //mail,course_name or course_id, which
     try {
         const data = new Course(req.body);
-        // console.log(req.body)
         // const data_ = new Account(req.body);
         // const user = await Account.findOne({email : data_.email});
         let course = [];
@@ -172,7 +164,7 @@ router.post('/changecourse', async function(req, res) {
     //course_name, activity : {divider, from, to, description, title}
     //new_course_name, newActivity
     try {
-        console.log(req.body)
+        // console.log(req.body)
         const course = await Course.findOne({course_name : req.body.course_name});
         let activity = [...course.activity];
         let idx = activity.findIndex(e => 

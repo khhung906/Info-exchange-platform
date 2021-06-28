@@ -30,15 +30,15 @@ const useStyles = makeStyles((theme) => ({
   // }
 }));
 //select, pickers
-function AddCourse(props) {
+function AddPlace(props) {
   const classes = useStyles();
-  const { open, onClose , add, userinfo, loadschedule, search_course, search_courseid } = props;
+  const { open, onClose , add, userinfo, loadschedule, search_place, search_placeid } = props;
   const [classname, setname] = useState('');
   const [alertopen, setAlert] = useState(false);
   const [classid, setid] = useState('');
   const [iderror, setIderror] = useState(false);
   const [namerror, setNamerror] = useState(false);
-  const [nameLabel, setNameLabel] = useState("Course Name")
+  const [nameLabel, setNameLabel] = useState("Place Name")
   const [idLabel, setIdLabel] = useState("Course ID")
   const handleClose = () => {
     onClose();
@@ -71,7 +71,7 @@ function AddCourse(props) {
   } 
 
   const getinfo = async(which, idOrname) => {
-    console.log(search_course, search_courseid);
+    console.log(search_place, search_placeid);
     let course_name = "", course_id = ""
     if (which === 1) course_name = idOrname
     else course_id = idOrname
@@ -94,14 +94,14 @@ function AddCourse(props) {
   return (
     <>
       <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open} className={classes.root}>
-        <DialogTitle id="simple-dialog-title">Add Course</DialogTitle>
+        <DialogTitle id="simple-dialog-title">Add Place</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Enter Your Course Information
+            Enter Your Place Information
           </DialogContentText>
           <Autocomplete
               id="course_name"
-              options={search_course}
+              options={search_place}
               getOptionLabel={(option) => option.name}
               classes={{
                 option: classes.option,
@@ -120,9 +120,9 @@ function AddCourse(props) {
                 getinfo(1, newInputValue);
               }}
           />
-          <Autocomplete
+          {/* <Autocomplete
               id="course_id"
-              options={search_courseid}
+              options={search_placeid}
               getOptionLabel={(option) => option.name}
               classes={{
                 option: classes.option,
@@ -140,7 +140,7 @@ function AddCourse(props) {
                 setid(newInputValue);
                 getinfo(0, newInputValue);
               }}
-          />
+          /> */}
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
@@ -155,4 +155,4 @@ function AddCourse(props) {
   );
 }
 
-export default AddCourse;
+export default AddPlace;

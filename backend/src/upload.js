@@ -58,8 +58,72 @@ const init_data = [
         which : 0
     },
     {
-        course_id : 'Library',
-        course_name : 'Library',
+        course_id : '總圖',
+        course_name : '總圖',
+        course_dayofweek : [1,2,3,4,5],
+        course_time : [1,2,3,4,5,6,7],
+        activity: [],
+        which : 1
+    },
+    {
+        course_id : '社科圖',
+        course_name : '社科圖',
+        course_dayofweek : [1,2,3,4,5],
+        course_time : [1,2,3,4,5,6,7],
+        activity: [],
+        which : 1
+    },
+    {
+        course_id : '中央籃球場',
+        course_name : '中央籃球場',
+        course_dayofweek : [1,2,3,4,5],
+        course_time : [1,2,3,4,5,6,7],
+        activity: [],
+        which : 1
+    },
+    {
+        course_id : '新體',
+        course_name : '新體',
+        course_dayofweek : [1,2,3,4,5],
+        course_time : [1,2,3,4,5,6,7],
+        activity: [],
+        which : 1
+    },
+    {
+        course_id : '排球場',
+        course_name : '排球場',
+        course_dayofweek : [1,2,3,4,5],
+        course_time : [1,2,3,4,5,6,7],
+        activity: [],
+        which : 1
+    },
+    {
+        course_id : '醫體',
+        course_name : '醫體',
+        course_dayofweek : [1,2,3,4,5],
+        course_time : [1,2,3,4,5,6,7],
+        activity: [],
+        which : 1
+    },
+    {
+        course_id : '法圖',
+        course_name : '法圖',
+        course_dayofweek : [1,2,3,4,5],
+        course_time : [1,2,3,4,5,6,7],
+        activity: [],
+        which : 1
+    },
+    {
+        course_id : '稍飽',
+        course_name : '稍飽',
+        course_dayofweek : [1,2,3,4,5],
+        course_time : [1,2,3,4,5,6,7],
+        activity: [],
+        which : 1
+    },
+    {
+        course_id : '活大',
+        course_name : '活大',
         course_dayofweek : [1,2,3,4,5],
         course_time : [1,2,3,4,5,6,7],
         activity: [],
@@ -498,7 +562,7 @@ const map_data_init = [
 
 const dataInit = async () => {
     const checkData = await Course.find()
-    if (checkData.length !== 8) {
+    if (checkData.length !== 16) {
       await Course.remove({})
       await Course.insertMany(init_data)
     }
