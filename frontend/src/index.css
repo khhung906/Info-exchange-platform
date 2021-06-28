@@ -40,6 +40,10 @@ ul {
   float: right;
 }
 
+.git-link{
+  float: right;
+}
+
 .redirect:hover {
   border-radius: 8px;
   color: rgb(172, 167, 167);
@@ -76,6 +80,7 @@ input, button {
 
 .title-name {
   font-family: "copperplate", fantasy;
+  font-size:larger;
   animation: movein 5s;
   position: relative;
   animation-timing-function: 4s;
@@ -89,7 +94,6 @@ input, button {
 #title-name5 {animation-timing-function: ease-in-out;}
 #title-name6 {animation-timing-function: linear;}
 
-
 @keyframes movein {
     from {right: 300px}
     to {right:0px}
@@ -97,6 +101,8 @@ input, button {
 
 .title-context {
   text-align: center;
+  font-size: medium;
+  color: #757575;
 }
 
 form {
@@ -192,7 +198,7 @@ form .form-inner input[type="submit"]:hover {
 
 .rights {
   text-align: center;
-  font-size: x-small;
+  font-size: small;
 }
 
 .react-calendar {

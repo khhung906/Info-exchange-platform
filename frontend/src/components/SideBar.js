@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
 
 function SideBar({log_in}) {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
 
   const handleClick = () => {
     setOpen(!open);

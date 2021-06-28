@@ -1,7 +1,7 @@
 import "mapbox-gl/dist/mapbox-gl.css";
 import "react-map-gl-geocoder/dist/mapbox-gl-geocoder.css";
 import React, { useState, useRef, useCallback, useEffect } from "react";
-import MapGL, {Marker, NavigationControl, ScaleControl, GeolocateControl,LinearInterpolator, Popup} from "react-map-gl";
+import MapGL, {NavigationControl, ScaleControl, GeolocateControl,LinearInterpolator} from "react-map-gl";
 import Geocoder from "react-map-gl-geocoder";
 import MainPageTopBar from '../MainPageTopBar';
 import HashLoader from 'react-spinners/HashLoader';
@@ -10,6 +10,9 @@ import Pins from './Pins';
 // import LibraryInfo from './LibraryInfo';
 import SideInfo from './SideInfo';
 import instance from '../../axios';
+import mapboxgl from "mapbox-gl"; // This is a dependency of react-map-gl even if you didn't explicitly install it
+// eslint-disable-next-line import/no-webpack-loader-syntax
+mapboxgl.workerClass = require("worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker").default;
 const MAPBOX_TOKEN =
   "pk.eyJ1Ijoic3R2MTIyMiIsImEiOiJja3Bud3duc2YwZDFrMnVsZnR3bzJwdnh1In0.8NeYXbzz2K0qztqEULiY-w";
 

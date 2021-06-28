@@ -21,19 +21,19 @@ const useStyles = makeStyles({
     height: 180,
   },
 });
-const cards = [{name:'Course Calendar', 
-                dis:'HW/EXAMS due dates',
+const cards = [{name:'Student Calendar', 
+                dis:'HW/EXAMS due dates | Club Activities | NTU Events',
                 imgsrc: calander_img,
                 route: '/calendar'
                 },
-               {name:'Library Map', 
-                dis:'Real-time Library Seats',
+               {name:'NTU Map', 
+                dis:'Real-time Library/Cafe Seats | Courts Usage',
                 imgsrc: map_img,
                 route:'/map'
                 },
                {
                 name:'Past Exams', 
-                dis:'Past Midterms/Finals Problem',
+                dis:'Past Exams for all courses (midrterm/final/quiz)',
                 imgsrc: book_img,
                 route:'/pastexams'
                 },

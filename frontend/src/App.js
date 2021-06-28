@@ -7,7 +7,6 @@ import Calender from './components/calender/Calender';
 import Map from './components/map/Map';
 import PastExams from './components/pastexam/PastExams'
 
-//language function undesigned
 const LOCALSTORAGE_USER = "";
 const LOCALSTORAGE_LOGIN = false;
 

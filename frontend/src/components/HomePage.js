@@ -4,6 +4,8 @@ import RegisterForm from './RegisterForm'
 import { NavLink } from "react-router-dom";
 import instance from '../axios';
 import HashLoader from 'react-spinners/HashLoader';
+import GitHubIcon from '@material-ui/icons/GitHub';
+import Typing from 'react-typing-animation';
 
 function HomePage({log_in, setUserinfo}) {
   const [guest, setGuest] = useState({email:'', password:''})
@@ -93,6 +95,7 @@ function HomePage({log_in, setUserinfo}) {
       <div>
         <div className="navBar">
           <NavLink style={{fontFamily: "copperplate", float: 'left'}} to="/home">Info Exchange</NavLink>
+          <a href={'https://github.com/johnsonhung906/Info-exchange-platform'} className="git-link"><GitHubIcon/></a>
           <NavLink className="redirect" to="/aboutus">About Us</NavLink>
         </div>
         <hr className="bar-line"/>
@@ -105,11 +108,12 @@ function HomePage({log_in, setUserinfo}) {
                     <div className="title-name" id="title-name3">find </div>
                     <div className="title-name" id="title-name4">what </div>
                     <div className="title-name" id="title-name5">you </div>
-                    <div className="title-name" id="title-name6">need?</div>
+                    <div className="title-name" id="title-name6">need</div>
                   </h1>
-                  <p className="title-context"></p>
-                  <p className="title-context"></p>
-                  <p className="title-context"></p>
+                  <div style={{color:"gray"}}>
+                      <span>The best well-organized NTU site</span>
+                      {/* typing consider */}
+                  </div>
                   <p className="rights">@2021 NTU All Rights Reserved.</p>
                   </div>
               </li>

@@ -34,19 +34,19 @@ function PastExams(props) {
     const [files, setFlies] = useState([]);
     const [courses, setCourses] = useState([]);
     
-    const getcourse = async(which, keyword) => {
+    const getcourse = async(which, type, keyword) => {
         // const keyword = classname;
         const {
           data : {final}//message
         } = await instance.post('api/search', {
-          which, keyword
+          which, keyword, type
         });
         setCourses(final)
       }
   
     useEffect(()=>{
         //get course info from backend
-        getcourse(1, "")
+        getcourse(1, 0, "")
     }, [])
 
     useEffect(()=>{
