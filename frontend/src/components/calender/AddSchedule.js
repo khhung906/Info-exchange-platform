@@ -29,7 +29,7 @@ function AddSchedule(props) {
   const [title, setTitle] = useState('');
   const [start, setStart] = useState("2021-05-29T10:30");
   const [end, setEnd] = useState("2021-05-29T10:30");
-  const [category, setCategory] = useState('');
+  const [category, setCategory] = useState(courseList[0]);
   const [error, setError] = useState(false);
   const [description, setDis] = useState('');
   const handleClose = () => {
@@ -74,6 +74,7 @@ function AddSchedule(props) {
 
   const ChangeCategory = (event) => {
     setCategory(event.target.value);
+    console.log(event.target.value)
   };
 
   const ChangeStart = (event) =>{
