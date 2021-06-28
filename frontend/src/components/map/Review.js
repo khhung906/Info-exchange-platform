@@ -29,7 +29,7 @@ function Review (props) {
     return (
         <div>
             <Typography variant="body1">
-                Reviews
+            &nbsp;Reviews
             </Typography>
             <br/>
             {info.comments.map(e => 

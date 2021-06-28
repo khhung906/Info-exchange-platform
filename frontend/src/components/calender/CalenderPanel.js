@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft:'5pt', 
     marginTop:'0pt', 
     height: '450pt', 
-    width:'240pt',
+    width:'25%',
     float:'left',
     border: 'none',
     boxSizing: 'border-box'
@@ -210,7 +210,7 @@ function CalenderPanel(props) {
     return (
         <div className={classes.root}>
         <UpcomingTable events={events}/>
-        <Accordion className={classes.accordion} defaultExpanded='true'>
+        <Accordion className={classes.accordion}>
             <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1a-content"
@@ -237,7 +237,7 @@ function CalenderPanel(props) {
                 </FormControl>
             </AccordionDetails>
         </Accordion>
-        <Accordion className={classes.accordion} defaultExpanded='true'>
+        <Accordion className={classes.accordion}>
             <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1a-content"
@@ -264,7 +264,7 @@ function CalenderPanel(props) {
                 </FormControl>
             </AccordionDetails>
         </Accordion>
-        <Accordion className={classes.accordion} defaultExpanded='true'>
+        <Accordion className={classes.accordion} >
             <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1a-content"
@@ -291,7 +291,7 @@ function CalenderPanel(props) {
                 </FormControl>
             </AccordionDetails>
         </Accordion>
-        <Accordion className={classes.accordion} defaultExpanded='true'>
+        <Accordion className={classes.accordion} >
             <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1a-content"

@@ -91,13 +91,13 @@ function SideInfo (props) {
                 <div className={classes.section2}>
                     {(info === null) ? "":
                         <Typography variant="body1">
-                        Total Seats: {info.TotalSeats}
+                        &nbsp;Total Seats: {info.TotalSeats}
                         </Typography>
                     }   
                 </div>
                 <div className={classes.section2} style={{float:"left", marginTop:"20px"}}>
                     <Typography variant="body1" style={{display:'inline-block'}}>
-                    {(info === null) ? "": ("Seats Availablle:")}
+                    &nbsp;{(info === null) ? "": ("Seats Availablle:")}
                     </Typography>
                     <Typography variant="body1" style={{display:'inline-block', fontSize:'20px', paddingLeft: '30px', color: changecolor((info === null) ? "": info.Seats)}}>
                     {(info === null) ? "": info.Seats}
@@ -111,7 +111,7 @@ function SideInfo (props) {
                 <div className={classes.section2} style={{display:'inline-block'}}>
                     {(info === null) ? "":
                         <Typography variant="body1">
-                        Open Hours: {info.OpenHours}
+                        &nbsp;Open Hours: {info.OpenHours}
                         </Typography>
                     }   
                 </div>
@@ -123,7 +123,7 @@ function SideInfo (props) {
                     <LeaveComment open={openAdd2} onClose={handleCloseAdd2} setInfo={setInfo} info={info} userinfo={userinfo}/>
                     {(info === null) ? "": <Button onClick={handleClickOpenAdd2} style={{display:'inline-block'}}>
                         <div style={{top:"50%", float:"left"}}><AddCommentOutlinedIcon color="primary"/></div>
-                        &nbsp;&nbsp;add reviews</Button>}
+                        &nbsp;&nbsp;add review</Button>}
                     
                 </div>
             </div>

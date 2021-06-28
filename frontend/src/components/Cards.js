@@ -33,7 +33,7 @@ const cards = [{name:'Student Calendar',
                 },
                {
                 name:'Past Exams', 
-                dis:'Past Exams for all courses (midrterm/final/quiz)',
+                dis:'Past Exams for all courses (midterm/final/quiz)',
                 imgsrc: book_img,
                 route:'/pastexams'
                 },
