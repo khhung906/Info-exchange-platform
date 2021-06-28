@@ -5,7 +5,6 @@ import { NavLink } from "react-router-dom";
 import instance from '../axios';
 import HashLoader from 'react-spinners/HashLoader';
 import GitHubIcon from '@material-ui/icons/GitHub';
-import Typing from 'react-typing-animation';
 
 function HomePage({log_in, setUserinfo}) {
   const [guest, setGuest] = useState({email:'', password:''})
