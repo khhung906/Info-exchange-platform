@@ -10,24 +10,21 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import instance from '../../axios';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   input: {
     width: "100%",
     height: "1vw", // Changed from 2vw
-    fontSize: "1.1vw",
+    fontSize: "18px",
   },
   option: {
-    fontSize: "1.1vw",
+    fontSize: "18px",
     height: "3vw",
     width: "100%",
-    overflowX : "hidden",
-    overflowY : "auto"
-    // backgroundColor : "red"
+    overflowX:"hidden",
+    overflowY:"auto"
   },
-  // root: {
-  //   width:"1000px"
-  // }
 }));
+
 //select, pickers
 function AddGame(props) {
   const classes = useStyles();
