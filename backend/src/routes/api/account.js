@@ -93,4 +93,12 @@ router.post('/getUserData', async function(req, res) {
   }
 })
 
+router.post('/updateIcon', async function(req, res) {
+  try {
+    await Account.update({email : req.body.email}, {icon : req.body.icon});
+  } catch(e) {
+    res.send({message : "Something went wrong"});
+  }
+})
+
 export default router;
