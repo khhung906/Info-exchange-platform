@@ -79,15 +79,18 @@ router.post('/deleteCourse', async function(req, res) {
 router.post('/getUserData', async function(req, res) {
   //email
   try {
+
     const user = await Account.findOne({email : req.body.email})
-    const allData = [...user.course];
-    const pattern = new RegExp("[\u4E00-\u9FA5]+");
-    const pattern2 = new RegExp("[A-Za-z]+");
-    const course = allData.filter(e => e.indexOf('(') !== -1 && e.indexOf('-') === -1);
-    const club = allData.filter(e => pattern.test(e) && pattern2.test(e) && e.indexOf('(') === -1)
-    const place = allData.filter(e => e.indexOf('(') === -1 && e.indexOf('-') === -1 && !pattern2.test(e))
-    const game = allData.filter(e => e.indexOf('(') === -1 && e.indexOf('-') !== -1);
-    res.send({message : "getSuccessfully", course, club, place, game});
+    console.log(user)
+    const allData = user.course;
+    const icon = user.icon;
+    // const pattern = new RegExp("[\u4E00-\u9FA5]+");
+    // const pattern2 = new RegExp("[A-Za-z]+");
+    // const course = allData.filter(e => e.indexOf('(') !== -1 && e.indexOf('-') === -1);
+    // const club = allData.filter(e => pattern.test(e) && pattern2.test(e) && e.indexOf('(') === -1)
+    // const place = allData.filter(e => e.indexOf('(') === -1 && e.indexOf('-') === -1 && !pattern2.test(e))
+    // const game = allData.filter(e => e.indexOf('(') === -1 && e.indexOf('-') !== -1);
+    res.send({message : "getSuccessfully", data : allData, icon});
   } catch(e) {
     res.send({message : "Something went wrong"});
   }
@@ -95,6 +98,7 @@ router.post('/getUserData', async function(req, res) {
 
 router.post('/updateIcon', async function(req, res) {
   try {
+    console.log(req.body)
     await Account.update({email : req.body.email}, {icon : req.body.icon});
   } catch(e) {
     res.send({message : "Something went wrong"});

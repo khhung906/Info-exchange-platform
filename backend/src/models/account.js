@@ -7,7 +7,7 @@ const accountSchema = new Schema({
     password : String,
     credit : Number,
     money : Number,
-    token : String,
+    icon : String,
     course : [String],
     otheractivity : [String]
     //courses : Array

@@ -16,7 +16,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import ListItemText from '@material-ui/core/ListItemText';
-
+import instance from '../../axios';
 const useStyles = makeStyles((theme) => ({
   large: {
     width: theme.spacing(10),
@@ -39,10 +39,11 @@ function Profile(props) {
   const [open, setOpen] = useState(false);
   const [openSub, setSub] = useState(false);
   const [src, setSrc] = useState(toucan);
-  const [subscriptions, setSubscription] = useState(['NTU WVS', 'DSA'])
+  const [subscriptions, setSubscription] = useState([])
   
   useEffect(()=>{
     //load subscriptions
+    loadUserData();
   }, [])
 
   const handleClickOpen = () => {
@@ -76,9 +77,33 @@ function Profile(props) {
   const change_icon = (animal) =>{
     set_icon(animal)
     //api connect
+    saveicon(animal);
     handleClose();
   }
 
+  const saveicon = async(animal) => {
+    const email = userinfo;
+    const icon = animal;
+    console.log(src)
+    const {
+      data : {message} //newinfo
+    } = await instance.post('api/updateIcon', {
+      email, icon
+    }) ;
+  }
+
+  const loadUserData = async() => {
+    const email = userinfo;
+    const {
+      data : {data, message, icon}
+    } = await instance.post('api/getUserData', {
+      email
+    })
+    console.log(message, data, icon)
+    set_icon(icon);
+    setSubscription(data);
+
+  }
   const handleSubOpen = () => {
     setSub(true)
   }
