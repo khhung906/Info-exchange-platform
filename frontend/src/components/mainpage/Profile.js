@@ -97,7 +97,7 @@ function Profile(props) {
             vertical: 'bottom',
             horizontal: 'right',
           }}
-          badgeContent={<SmallAvatar alt="Remy Sharp" onClick={handleClickOpen}>+</SmallAvatar>}
+          badgeContent={<SmallAvatar alt="Remy Sharp" onClick={handleClickOpen} style={{cursor:'pointer'}}>+</SmallAvatar>}
         >
           <Avatar alt="Travis Howard" src={src} className={classes.large} />
         </Badge>
@@ -106,7 +106,7 @@ function Profile(props) {
         </div>
         <br/><br/>
         <div onClick={handleSubOpen}>
-          <Typography color='primary'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;See my subsciptions</Typography>
+          <Typography color='primary' style={{cursor:'pointer'}}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;See my subsciptions</Typography>
         </div>
       </div>
       
