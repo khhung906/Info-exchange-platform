@@ -2,7 +2,7 @@ import { Router } from 'express';
 import Account from '../../models/account.js';
 import bodyParser from 'body-parser';
 import account from '../../models/account.js';
-
+import bcrypt from 'bcrypt';
 const router = Router();
 
 router.post('/CreateUser', async function (req, res) {
@@ -17,9 +17,16 @@ router.post('/CreateUser', async function (req, res) {
       data.credit = 100;
       data.money = 0;
       data.course = [];
+      const saltRounds = 10
+      bcrypt.genSalt(saltRounds, function(err, salt) {
+        bcrypt.hash(data.password, salt, function(err, hash) {
+          data.password = hash;
+          data.save();
+        })
+  })
       console.log("register successfully");
       res.send({message : "register successfully"});
-      await data.save();
+      
     }
   } catch (e) {
     console.log("Something went wrong...");
@@ -29,17 +36,20 @@ router.post('/CreateUser', async function (req, res) {
 
 router.get('/GetUserInfo', async function(req, res) {
   try {
+    console.log(req.query)
     const data = new Account(req.query);
     const existing = await Account.findOne({email : data.email});
     if (existing) {
-      if (existing.password === data.password) {
-        console.log("login successfully");
-        res.send({message : "login successfully", Info : existing});
-      }
-      else {
-        console.log("Wrong password");
-        res.send({message : "Wrong password"});
-      }
+      bcrypt.compare(req.query.password, existing.password, function(err, res_) {
+        if (res_) {
+          console.log("login successfully");
+          res.send({message : "login successfully", Info : existing});
+        }
+        else {
+          console.log("Wrong password");
+          res.send({message : "Wrong password"});
+        }
+      })
     }
     else {
       console.log("Account doesn't exist");
