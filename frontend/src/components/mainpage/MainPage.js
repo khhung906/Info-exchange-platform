@@ -12,11 +12,11 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
-import flamingo from './img/profileAvatar/flamingo.png';
-import fish from './img/profileAvatar/fish.png';
-import toucan from './img/profileAvatar/toucan.png';
-import shrimp from './img/profileAvatar/shrimp.png';
-import hippo from './img/profileAvatar/hippo.png';
+import flamingo from '../img/profileAvatar/flamingo.png';
+import fish from '../img/profileAvatar/fish.png';
+import toucan from '../img/profileAvatar/toucan.png';
+import shrimp from '../img/profileAvatar/shrimp.png';
+import hippo from '../img/profileAvatar/hippo.png';
 
 const useStyles = makeStyles((theme) => ({
   feature_selection: {

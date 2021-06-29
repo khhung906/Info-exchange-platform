@@ -8,9 +8,9 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
-import calander_img from './img/Calendar.jpg';
-import map_img from './img/Map.jpg';
-import book_img from './img/book.jpg'
+import calander_img from '../img/Calendar.jpg';
+import map_img from '../img/Map.jpg';
+import book_img from '../img/book.jpg'
 
 const useStyles = makeStyles({
   root: {

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import HashLoader from 'react-spinners/HashLoader';
-import MainPageTopBar from '../MainPageTopBar';
+import MainPageTopBar from '../mainpage/MainPageTopBar';
 import FileTable from './FileTable';
 import Search from "./Search";
 import Upload from './Upload';

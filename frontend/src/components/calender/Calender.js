@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import MainPageTopBar from '../MainPageTopBar';
+import MainPageTopBar from '../mainpage/MainPageTopBar';
 import AddSchedule from './AddSchedule';
 import CalenderPanel from './CalenderPanel';
 import { Calendar, momentLocalizer } from 'react-big-calendar';

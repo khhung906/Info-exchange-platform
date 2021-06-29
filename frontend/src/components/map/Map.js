@@ -3,7 +3,7 @@ import "react-map-gl-geocoder/dist/mapbox-gl-geocoder.css";
 import React, { useState, useRef, useCallback, useEffect } from "react";
 import MapGL, {NavigationControl, ScaleControl, GeolocateControl,LinearInterpolator} from "react-map-gl";
 import Geocoder from "react-map-gl-geocoder";
-import MainPageTopBar from '../MainPageTopBar';
+import MainPageTopBar from '../mainpage/MainPageTopBar';
 import HashLoader from 'react-spinners/HashLoader';
 import Pins from './Pins';
 // import Data from './Data.json';

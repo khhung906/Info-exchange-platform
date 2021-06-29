@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react'
-import LoginForm from "./LoginForm"
-import RegisterForm from './RegisterForm'
+import LoginForm from "../login/LoginForm"
+import RegisterForm from '../login/RegisterForm'
 import { NavLink } from "react-router-dom";
-import instance from '../axios';
+import instance from '../../axios';
 import HashLoader from 'react-spinners/HashLoader';
 import GitHubIcon from '@material-ui/icons/GitHub';
 
