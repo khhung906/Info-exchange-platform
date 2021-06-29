@@ -25,12 +25,6 @@ function Calender(props) {
     // const [placeList, setPlaceList] = useState([]);
     const [courses, setCourse] = useState({});
     // const [places, setPlace] = useState({});
-    const [otherList, setoList] = useState(['Speaking', 'WVS Club', 'Basketball']);
-    const [others, setOthers] = useState({
-      'Speaking': false,
-      'WVS Club': false,
-      'Basketball': false,
-    });
     const [events, setEvents] = useState([]);
     const [showEvents, setShow] = useState(events);
 
@@ -107,6 +101,21 @@ function Calender(props) {
         loadData()
     }, [])
 
+    const ShowList = (c) =>{
+      let show = [];
+      // console.log(events)
+      for(let i = 0; i < events.length; i++){
+          if(c[events[i].divider]){
+              show.push(events[i]);
+          }
+      }
+      setShow(show);
+    }
+
+    useEffect(() => {
+      ShowList(courses)
+    }, [courses, events])
+
     if (loading) {
         return (
           <div style={{position: "fixed", top: "50%", left: "50%", transform: "translate(-50%, -50%)"}}>
@@ -129,8 +138,7 @@ function Calender(props) {
           </Button>
         </div>
         <CalenderPanel courseList={courseList}  setList={setList} courses={courses} setCourse={setCourse} 
-                      otherList={otherList} setoList={setoList} others={others} setOthers={setOthers}
-                      showEvents={showEvents} setShow={setShow} events={events} userinfo={userinfo} 
+                      showEvents={showEvents} setShow={setShow} events={events} userinfo={userinfo} ShowList={ShowList}
                       loadschedule = {loadschedule}/>
         <div style={{marginLeft:'20pt', marginTop:'0pt', height: '80%', width:'70%' ,float:'left'}}>
           <Calendar

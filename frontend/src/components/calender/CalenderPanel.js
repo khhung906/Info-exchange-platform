@@ -59,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
 function CalenderPanel(props) {
     const classes = useStyles();
     const { courseList, setList, courses, setCourse, 
-         others, setShow, events, userinfo, loadschedule} = props;//otherList, setoList,setOthers, showEvents,
+        events, userinfo, loadschedule, ShowList} = props;//otherList, setoList,setOthers, showEvents,
     const [search_course, setSearchcourse] = useState([]);
     const [search_courseid, setSearchcourseid] = useState([]);
     
@@ -83,7 +83,6 @@ function CalenderPanel(props) {
         setCourse(clist);
     }
     
-
     // const addothers = (other) =>{
     //     let list = [...otherList];
     //     list.push(other);
@@ -93,34 +92,15 @@ function CalenderPanel(props) {
     //     setOthers(clist);
     // } 
 
-    const ShowList = (c, o) =>{
-        let show = [];
-        // console.log(events)
-        for(let i = 0; i < events.length; i++){
-            if(c[events[i].divider]){
-                show.push(events[i]);
-            }
-            else if(o[events[i].divider]){
-                show.push(events[i]);
-            }
-        }
-        setShow(show);
-    }
-
     const handleChange = (event) => {
         let c = { ...courses};
-        let o = { ...others};
         // c[event.target.name] = event.target.checked;
         if(Object.keys(c).includes(event.target.name)){
             if(c[event.target.name]) c[event.target.name] = false;
             else c[event.target.name] = true;
         }
-        if(Object.keys(o).includes(event.target.name)){
-            if(o[event.target.name]) o[event.target.name] = false;
-            else o[event.target.name] = true;
-        }
-        setCourse(c, o);
-        ShowList(c, o);
+        setCourse(c);
+        ShowList(c);
     };
     
     const [openAdd1, setOpenAdd1] = useState(false);
@@ -201,11 +181,6 @@ function CalenderPanel(props) {
             else setSearchClubid(final);
         }
     }
-
-    useEffect(() => {
-        ShowList(courses, others)
-    }, [courses, others])
-
 
     return (
         <div className={classes.root}>

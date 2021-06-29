@@ -27,22 +27,22 @@ function AddSchedule(props) {
   const classes = useStyles();
   const { open, onClose ,courseList, events, setEvents} = props;
   const [title, setTitle] = useState('');
-  const [start, setStart] = useState("2021-05-29T10:30");
-  const [end, setEnd] = useState("2021-05-29T10:30");
+  const [start, setStart] = useState("2021-06-29T10:30");
+  const [end, setEnd] = useState("2021-06-29T10:30");
   const [category, setCategory] = useState(courseList[0]);
   const [error, setError] = useState(false);
   const [description, setDis] = useState('');
   const handleClose = () => {
     setError(false)
-    setEnd("2021-05-29T10:30");
-    setStart("2021-05-29T10:30")
+    setEnd("2021-06-29T10:30");
+    setStart("2021-06-29T10:30")
     onClose();
   };
 
   const handleAdd = async() => {
     //add new schedule to calender
     //..
-    if(title && category){
+    if(title && category && end >= start){
       let tmp_event = [...events]
       const new_event = {
         id: title+category,
@@ -122,7 +122,7 @@ function AddSchedule(props) {
             id="datetime-local"
             label="From"
             type="datetime-local"
-            defaultValue="2021-05-29T10:30"
+            defaultValue="2021-06-29T10:30"
             className={classes.textField}
             InputLabelProps={{
             shrink: true,
@@ -134,7 +134,7 @@ function AddSchedule(props) {
             id="datetime-local"
             label="To"
             type="datetime-local"
-            defaultValue="2021-05-29T10:30"
+            defaultValue="2021-06-29T10:30"
             className={classes.textField}
             InputLabelProps={{
             shrink: true,
