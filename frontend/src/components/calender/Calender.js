@@ -118,7 +118,7 @@ function Calender(props) {
     else {
       return (
       <div style={{backgroundColor:'#f7f3f3', height:'100vh'}}>
-        <MainPageTopBar log_in = {log_in}/>
+        <MainPageTopBar log_in={log_in} userinfo={userinfo}/>
         <AddSchedule open={openAdd} onClose={handleCloseAdd} courseList={courseList}  events={events} setEvents={setEvents}/>
         <EventDetail open={openDetail} onClose={handleCloseDetail} courseList={courseList}  detail={detail} events={events} setEvents={setEvents} showEvents={showEvents} setShow={setShow}/>
         <div style={{marginLeft:'257pt', marginTop:'10pt' ,float:'top'}}>

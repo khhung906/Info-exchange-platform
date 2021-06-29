@@ -29,7 +29,7 @@ import instance from '../../axios';
 
 
 function PastExams(props) {
-    const { log_in } = props; 
+    const { log_in, userinfo } = props; 
     const [loading, setLoading] = useState(true);
     const [files, setFlies] = useState([]);
     const [courses, setCourses] = useState([]);
@@ -67,7 +67,7 @@ function PastExams(props) {
     else {
         return (
             <div style={{backgroundColor:'#f7f3f3'}}>
-                <MainPageTopBar log_in = {log_in}/>
+                <MainPageTopBar log_in={log_in} userinfo={userinfo}/>
                 <div style={{marginLeft: "80px", marginTop: "70px", float:"left"}}>
                     <Search setFlies={setFlies} courses={courses}/>
                 </div>

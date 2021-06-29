@@ -89,7 +89,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function MainPageTopBar({log_in}) {
+function MainPageTopBar({log_in, userinfo}) {
     const classes = useStyles();
 
     const [state, setState]=useState({left:false})
@@ -109,7 +109,7 @@ function MainPageTopBar({log_in}) {
         // onClick={toggleDrawer(anchor, false)}
         // onKeyDown={toggleDrawer(anchor, false)}
       >
-        <SideBar log_in={log_in}/>
+        <SideBar log_in={log_in} userinfo={userinfo}/>
       </div>
     )
 

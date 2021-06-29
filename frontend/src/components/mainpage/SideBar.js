@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import List from '@material-ui/core/List';
@@ -18,7 +18,8 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import AppsTwoToneIcon from '@material-ui/icons/AppsTwoTone';
 import ImportContactsTwoToneIcon from '@material-ui/icons/ImportContactsTwoTone';
 import { Link } from 'react-router-dom';
-
+import Profile from './Profile';
+import Divider from '@material-ui/core/Divider';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,9 +32,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function SideBar({log_in}) {
+function SideBar({log_in, userinfo}) {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = useState(true);
 
   const handleClick = () => {
     setOpen(!open);
@@ -56,6 +57,8 @@ function SideBar({log_in}) {
       }
       className={classes.root}
     >
+      <Profile userinfo={userinfo}/><br/>
+      <Divider/>
       <ListItem button component={Link} to="/">
         <ListItemIcon>
           <AppsTwoToneIcon/>
@@ -75,13 +78,13 @@ function SideBar({log_in}) {
             <ListItemIcon>
               <CalendarTodayTwoToneIcon/>
             </ListItemIcon>
-            <ListItemText primary="Course Calendar" />
+            <ListItemText primary="Student Calendar" />
           </ListItem>
           <ListItem button className={classes.nested} component={Link} to="/map">
             <ListItemIcon>
               <MapTwoToneIcon/>
             </ListItemIcon>
-            <ListItemText primary="Library Map" />
+            <ListItemText primary="NTU Map" />
           </ListItem>
           <ListItem button className={classes.nested} component={Link} to="/pastexams">
             <ListItemIcon>

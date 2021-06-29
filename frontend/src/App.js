@@ -34,11 +34,11 @@ function App() {
         <NavLink className="redirect" to="/help">Help</NavLink>
       </div> */}
       <Switch>
-          <Route exact path="/" component={login? ()=><MainPage userinfo={userinfo} log_in = {log_in}/>: ()=><HomePage log_in = {log_in} setUserinfo={setUserinfo}/>} />
+          <Route exact path="/" component={login? ()=><MainPage userinfo={userinfo} log_in={log_in}/>: ()=><HomePage log_in = {log_in} setUserinfo={setUserinfo}/>} />
           <Route exact path="/aboutus" component={() => <AboutUs userinfo={userinfo}/>} />
-          <Route exact path="/calendar" component={() => <Calender userinfo={userinfo} log_in = {log_in}/>} />
-          <Route exact path="/map" component={() => <Map userinfo={userinfo} log_in = {log_in}/>} />
-          <Route exact path="/pastexams" component={() => <PastExams userinfo={userinfo} log_in = {log_in}/>} />
+          <Route exact path="/calendar" component={() => <Calender userinfo={userinfo} log_in={log_in}/>} />
+          <Route exact path="/map" component={() => <Map userinfo={userinfo} log_in={log_in}/>} />
+          <Route exact path="/pastexams" component={() => <PastExams userinfo={userinfo} log_in={log_in}/>} />
           <Redirect from="/home" to="/" />
       </Switch>
     </div>
