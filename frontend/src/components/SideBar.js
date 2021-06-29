@@ -56,12 +56,6 @@ function SideBar({log_in}) {
       }
       className={classes.root}
     >
-      <ListItem button>
-        <ListItemIcon>
-          <AccountCircleIcon />
-        </ListItemIcon>
-        <ListItemText primary="Profile" component={Link} to="/profile"/>
-      </ListItem>
       <ListItem button component={Link} to="/">
         <ListItemIcon>
           <AppsTwoToneIcon/>
