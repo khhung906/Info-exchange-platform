@@ -56,24 +56,17 @@ function SideBar({log_in}) {
       }
       className={classes.root}
     >
-
       <ListItem button>
         <ListItemIcon>
           <AccountCircleIcon />
         </ListItemIcon>
         <ListItemText primary="Profile" component={Link} to="/profile"/>
       </ListItem>
-      <ListItem button>
+      <ListItem button component={Link} to="/">
         <ListItemIcon>
-          <SettingsIcon />
+          <AppsTwoToneIcon/>
         </ListItemIcon>
-        <ListItemText primary="Settings" />
-      </ListItem>
-      <ListItem button>
-        <ListItemIcon>
-          <DraftsIcon />
-        </ListItemIcon>
-        <ListItemText primary="Drafts" />
+        <ListItemText primary="Home" />
       </ListItem>
       <ListItem button onClick={handleClick}>
         <ListItemIcon>
@@ -84,12 +77,6 @@ function SideBar({log_in}) {
       </ListItem>
       <Collapse in={open} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
-          <ListItem button className={classes.nested} component={Link} to="/">
-            <ListItemIcon>
-              <AppsTwoToneIcon/>
-            </ListItemIcon>
-            <ListItemText primary="Home" />
-          </ListItem>
           <ListItem button className={classes.nested} component={Link} to="/calendar">
             <ListItemIcon>
               <CalendarTodayTwoToneIcon/>

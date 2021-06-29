@@ -135,15 +135,16 @@ function MainPageTopBar({log_in}) {
               <Typography variant="h6" className={classes.title}>
                 <NavLink className={classes.title} to="/">Info Exchange</NavLink>
               </Typography>
-              <IconButton color="inherit">
-                <a href={'https://github.com/johnsonhung906/Info-exchange-platform'} className="git-link" style={{color:'white'}}><GitHubIcon/></a>
-              </IconButton>
-              <IconButton className={classes.notificationButton} color="inherit">
+              {/* <IconButton className={classes.notificationButton} color="inherit">
                 <Badge badgeContent={4} color="error">
                   <NotificationsIcon />
                 </Badge>
-              </IconButton>
+              </IconButton> */}
               <NavLink className="redirect" to="/aboutus" style={{color:'white', textDecoration:'none', fontFamily:"copperplate"}}>About Us</NavLink>
+              &nbsp;&nbsp;&nbsp;
+              <IconButton color="inherit">
+                <a href={'https://github.com/johnsonhung906/Info-exchange-platform'} className="git-link" style={{color:'white'}}><GitHubIcon/></a>
+              </IconButton>
             </Toolbar>
           </AppBar>
         </div>
