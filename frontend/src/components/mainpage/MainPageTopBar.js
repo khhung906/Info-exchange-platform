@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { fade,makeStyles } from '@material-ui/core/styles';
 import { NavLink } from "react-router-dom";
 import AppBar from '@material-ui/core/AppBar';
@@ -16,7 +16,12 @@ import SideBar from '../mainpage/SideBar'
 import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
 import GitHubIcon from '@material-ui/icons/GitHub';
-
+import instance from '../../axios';
+import flamingo from '../img/profileAvatar/flamingo.png';
+import fish from '../img/profileAvatar/fish.png';
+import toucan from '../img/profileAvatar/toucan.png';
+import shrimp from '../img/profileAvatar/shrimp.png';
+import hippo from '../img/profileAvatar/hippo.png';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -89,10 +94,44 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function MainPageTopBar({log_in, userinfo}) {
+function MainPageTopBar(props) {
+    const {log_in, userinfo} = props
     const classes = useStyles();
-
     const [state, setState]=useState({left:false})
+    const [src, setSrc] = useState();
+
+    const set_icon = (animal) =>{
+      switch(animal){
+        case 'flamingo':
+          setSrc(flamingo)
+          break;
+        case 'fish':
+          setSrc(fish)
+          break;
+        case 'toucan':
+          setSrc(toucan)
+          break;
+        case 'shrimp':
+          setSrc(shrimp)
+          break;
+        case 'hippo':
+          setSrc(hippo)
+          break;
+      }
+    }
+
+    useEffect(()=>{
+        const loadUserData = async() => {
+          const email = userinfo;
+          const {
+            data : {data, message, icon}
+          } = await instance.post('api/getUserData', {
+            email
+          })
+          set_icon(icon);
+        }
+        loadUserData()
+    }, [])
     const toggleDrawer = (anchor, open) => (event) => {
       if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')){
         return;
@@ -109,7 +148,7 @@ function MainPageTopBar({log_in, userinfo}) {
         // onClick={toggleDrawer(anchor, false)}
         // onKeyDown={toggleDrawer(anchor, false)}
       >
-        <SideBar log_in={log_in} userinfo={userinfo}/>
+        <SideBar log_in={log_in} userinfo={userinfo} src={src} set_icon={set_icon}/>
       </div>
     )
 

@@ -32,7 +32,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function SideBar({log_in, userinfo}) {
+function SideBar(props) {
+  const {log_in, userinfo, subscriptions, src, set_icon} = props
   const classes = useStyles();
   const [open, setOpen] = useState(true);
 
@@ -57,7 +58,7 @@ function SideBar({log_in, userinfo}) {
       }
       className={classes.root}
     >
-      <Profile userinfo={userinfo}/><br/>
+      <Profile userinfo={userinfo} src={src} set_icon={set_icon}/><br/>
       <Divider/>
       <ListItem button component={Link} to="/">
         <ListItemIcon>

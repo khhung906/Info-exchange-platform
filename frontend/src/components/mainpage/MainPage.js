@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
   feature_selection: {
     display: 'flex',
     backgroundColor:"#f7f3f3",
-    minHeight:'80vh',
+    minHeight:'100vh',
     flexWrap: 'wrap', '& >*': {margin: theme.spacing(5), width: theme.spacing(38), height: theme.spacing(42)},
   },
   large: {
