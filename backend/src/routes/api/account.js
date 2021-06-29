@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import Account from '../../models/account.js';
 import bodyParser from 'body-parser';
+import account from '../../models/account.js';
 
 const router = Router();
 
@@ -60,6 +61,23 @@ router.post('/deleteCourse', async function(req, res) {
       courses.splice(idx,1);
       await Account.updateOne({email : account.email}, {course : courses});
       
+  } catch(e) {
+    res.send({message : "Something went wrong"});
+  }
+})
+
+router.post('/getUserData', async function(req, res) {
+  //email
+  try {
+    const user = await Account.findOne({email : req.body.email})
+    const allData = [...user.course];
+    const pattern = new RegExp("[\u4E00-\u9FA5]+");
+    const pattern2 = new RegExp("[A-Za-z]+");
+    const course = allData.filter(e => e.indexOf('(') !== -1 && e.indexOf('-') === -1);
+    const club = allData.filter(e => pattern.test(e) && pattern2.test(e) && e.indexOf('(') === -1)
+    const place = allData.filter(e => e.indexOf('(') === -1 && e.indexOf('-') === -1 && !pattern2.test(e))
+    const game = allData.filter(e => e.indexOf('(') === -1 && e.indexOf('-') !== -1);
+    res.send({message : "getSuccessfully", course, club, place, game});
   } catch(e) {
     res.send({message : "Something went wrong"});
   }
