@@ -406,5 +406,10 @@ form .form-inner input[type="submit"]:hover {
   margin-right: 5%;
 }
 
+.changeAvatar {
+  cursor: pointer;
+}
 
-
+.changeAvatar:hover {
+  color:rgb(107, 102, 102)
+}
