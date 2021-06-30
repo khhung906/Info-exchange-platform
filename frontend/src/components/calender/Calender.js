@@ -19,12 +19,8 @@ const localizer = momentLocalizer(moment);
 function Calender(props) {
 
     const {userinfo,log_in} = props; 
-    // console.log(userinfo);
     const [courseList, setList] = useState([]);
-    //['DSA(CS1108)', 'SP(CS1022)', 'Web(EE2252)']
-    // const [placeList, setPlaceList] = useState([]);
     const [courses, setCourse] = useState({});
-    // const [places, setPlace] = useState({});
     const [events, setEvents] = useState([]);
     const [showEvents, setShow] = useState(events);
 
@@ -114,6 +110,29 @@ function Calender(props) {
     useEffect(() => {
       ShowList(courses)
     }, [courses, events])
+    console.log(showEvents)
+
+    const pattern = new RegExp("[\u4E00-\u9FA5]+");
+    const pattern2 = new RegExp("[A-Za-z]+");
+
+    const eventProp = (event) => {
+      console.log(event)
+      //select category
+      const e = event.divider
+      console.log(e)
+      let newStyle = {
+        color: 'black',
+        borderRadius: "0px",
+        border: "none"
+      };
+      if(e.indexOf('(') !== -1 && e.indexOf('-') === -1){newStyle.backgroundColor = 'lightgreen'}
+      else if(e.indexOf('(') === -1 && e.indexOf('-') === -1 && !pattern2.test(e)){newStyle.backgroundColor = 'lightblue'}
+      else if(e.indexOf('(') === -1 && e.indexOf('-') !== -1){newStyle.backgroundColor = 'plum'}
+      else {newStyle.backgroundColor = 'lightgrey'}
+      return {
+        style: newStyle
+      }
+    }
 
     if (loading) {
         return (
@@ -149,6 +168,9 @@ function Calender(props) {
             defaultDate={moment().toDate()}
             localizer={localizer}
             style={{color:'black'}}
+            eventPropGetter={
+              eventProp
+            }
           />
         </div>
       </div>

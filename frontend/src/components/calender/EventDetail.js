@@ -28,7 +28,7 @@ function EventDetail(props) {
 
   useEffect(() => {
     setStart(moment(detail.start).format("yyyy-MM-DDThh:mm:ss"))
-    setStart(moment(detail.end).format("yyyy-MM-DDThh:mm:ss"))
+    setEnd(moment(detail.end).format("yyyy-MM-DDThh:mm:ss"))
     setTitle(detail.title)
     setCategory(detail.divider)
     setDis(detail.description)
@@ -128,7 +128,6 @@ function EventDetail(props) {
   // };
 
   const ChangeStart = (event) =>{
-    console.log(event.target.value)
     setStart(event.target.value);
   }
 

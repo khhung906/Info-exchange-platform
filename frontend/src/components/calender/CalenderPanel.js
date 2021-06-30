@@ -198,7 +198,7 @@ function CalenderPanel(props) {
                     <FormHelperText>Course you have subscribed</FormHelperText>
                     <FormGroup>
                         {courseList.filter(e => e.indexOf('(') !== -1 && e.indexOf('-') === -1).map((course, key) => (<FormControlLabel key={key}  control={<Checkbox style ={{
-                        color: "#00e676",
+                        color: 'lightgreen',
                         }} size='small'onChange={handleChange} defaultChecked={true} checked={courses[course]} name={course} />}
                         label={course} className={classes.formControlLabel}
                         />))}
@@ -225,7 +225,7 @@ function CalenderPanel(props) {
                     <FormHelperText>Places you frequently visit</FormHelperText>
                     <FormGroup>
                         {courseList.filter(e => e.indexOf('(') === -1 && e.indexOf('-') === -1 && !pattern2.test(e)).map((course, key) => (<FormControlLabel key={key}  control={<Checkbox style ={{
-                        color: "#00e676",
+                        color: 'lightblue',
                         }} size='small'onChange={handleChange} defaultChecked={true} checked={courses[course]} name={course} />}
                             label={course} className={classes.formControlLabel}
                         />))}
@@ -252,7 +252,7 @@ function CalenderPanel(props) {
                     <FormHelperText>Games you attend</FormHelperText>
                     <FormGroup>
                         {courseList.filter(e => e.indexOf('(') === -1 && e.indexOf('-') !== -1).map((course, key) => (<FormControlLabel key={key}  control={<Checkbox style ={{
-                        color: "#00e676",
+                        color: 'plum',
                         }} size='small'onChange={handleChange} defaultChecked={true} checked={courses[course]} name={course} />}
                             label={course} className={classes.formControlLabel}
                         />))}
@@ -279,7 +279,7 @@ function CalenderPanel(props) {
                     <FormHelperText>Clubs you join</FormHelperText>
                     <FormGroup>
                         {courseList.filter(e => pattern.test(e) && pattern2.test(e) && e.indexOf('(') === -1).map((course, key) => (<FormControlLabel key={key} control={<Checkbox style ={{
-                        color: "#00e676",
+                        color: 'lightgrey',
                         }} size='small'onChange={handleChange} defaultChecked={true} checked={courses[course]} name={course} />}
                             label={course} className={classes.formControlLabel}
                         />))}
