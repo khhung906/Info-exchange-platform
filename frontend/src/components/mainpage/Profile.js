@@ -160,7 +160,6 @@ function Profile(props) {
             <Avatar alt="Travis Howard" src={hippo} className={classes.large} style={{background:'red'}}/>
           </div>
         </DialogContent>
-        
       </Dialog>
       
       <Dialog
