@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
 
 function SideInfo (props) {
     //alert('side')
-    const {info, setInfo, userinfo} = props;
+    const {info, setInfo, userinfo, Data, setData} = props;
     const changecolor = (change) => {
         if (change === 'empty' || change === '30%') {
             return 'green';
@@ -105,7 +105,7 @@ function SideInfo (props) {
                     </Typography>
                 </div>
                 <div className={classes.section3} style={{display:'inline-block', marginTop:"13px"}}>
-                    <AddInfo open={openAdd1} onClose={handleCloseAdd1} setInfo={setInfo} info={info}/>
+                    <AddInfo open={openAdd1} onClose={handleCloseAdd1} setInfo={setInfo} info={info} Data={Data} setData={setData}/>
                     {(info === null) ? "": <Button onClick={handleClickOpenAdd1} ><div style={{float:"left" ,width:"30px"}}><CreateIcon color="primary"/></div>
                         &nbsp;&nbsp;change</Button>}
                 </div>

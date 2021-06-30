@@ -23,7 +23,7 @@ import instance from '../../axios';
 
 function AddInfo(props) {
   // const classes = useStyles();
-  const { open, onClose , setInfo, info} = props;
+  const { open, onClose , setInfo, info, Data, setData} = props;
   const [seats, setSeats] = useState("full");
   const handleClose = () => {
     onClose();
@@ -45,7 +45,10 @@ function AddInfo(props) {
     let updateInfo = info;
     updateInfo.Seats = seats;
     updateInfo.time = time;
-    console.log(updateInfo)
+    let new_data = [...Data]
+    const found = new_data.find(element => element.name === updateInfo.name)
+    new_data[found] = updateInfo
+    setData(new_data)
     setInfo(updateInfo);
     setSeats("full")
     handleClose();

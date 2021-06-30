@@ -45,7 +45,6 @@ function Map(props) {
     //Popup info
     const [popupInfo, setPopupInfo] = useState(null)
     
-
     const [loading, setLoading] = useState(true)
     useEffect(()=>{
         const loadData = async () => {
@@ -80,8 +79,8 @@ function Map(props) {
         return (
             <div>
                 <MainPageTopBar log_in={log_in} userinfo={userinfo}/>
-                <div style={{ height: "92vh" }}>
-                <SideInfo info={popupInfo} setInfo={setPopupInfo} userinfo={userinfo}/>
+                <div style={{ height: "95vh" }}>
+                <SideInfo info={popupInfo} setInfo={setPopupInfo} userinfo={userinfo} Data={Data} setData={setData}/>
                 <MapGL
                     ref={mapRef}
                     {...viewport}
