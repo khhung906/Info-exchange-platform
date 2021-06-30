@@ -7,7 +7,7 @@ const mapSchema = new Schema({
    Name : String,
    id : String,
    image : String,
-   Seats : Number,
+   Seats : String,
    TotalSeats : Number,
    OpenHours : String,
    Description : String,
