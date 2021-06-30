@@ -49,7 +49,7 @@ function AddCourse(props) {
     } = await instance.post('api/addcourse', {
       course_id, email
     });
-    console.log(which);
+    //console.log(which);
     if (message === "Add successfully"){
       if (which === 0) add(classinfo+"("+classid+")");
       else add(classinfo);
@@ -124,7 +124,7 @@ function AddCourse(props) {
                 option: classes.option,
                 input: classes.input
               }}
-              style={{ width: 400}}
+              style={{ width: 400 }}
               renderOption={(option) => (
                 <React.Fragment>
                   {option.name}

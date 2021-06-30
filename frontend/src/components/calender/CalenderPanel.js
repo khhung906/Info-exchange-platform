@@ -79,7 +79,7 @@ function CalenderPanel(props) {
         setList(list);
         // console.log(course);
         let clist = {...courses};
-        clist[course] = false;
+        clist[course] = true;
         setCourse(clist);
     }
     

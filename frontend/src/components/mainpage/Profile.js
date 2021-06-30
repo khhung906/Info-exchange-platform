@@ -11,7 +11,6 @@ import fish from '../img/profileAvatar/fish.png';
 import toucan from '../img/profileAvatar/toucan.png';
 import shrimp from '../img/profileAvatar/shrimp.png';
 import hippo from '../img/profileAvatar/hippo.png';
-import PersonIcon from '@material-ui/icons/Person';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
