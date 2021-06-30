@@ -34,16 +34,14 @@ function SideInfo (props) {
     //alert('side')
     const {info, setInfo, userinfo} = props;
     const changecolor = (change) => {
-        
-        console.log(change)
-        if (change < 20) {
-            return 'red';
+        if (change === 'empty' || change === '30%') {
+            return 'green';
         }
-        else if (change >= 20 && change < 50) {
+        else if (change === '50%') {
             return 'orange';
         }
         else {
-            return 'green';
+            return 'red';
         }
     }
 
@@ -97,7 +95,7 @@ function SideInfo (props) {
                 </div>
                 <div className={classes.section2} style={{float:"left", marginTop:"20px"}}>
                     <Typography variant="body1" style={{display:'inline-block'}}>
-                    &nbsp;{(info === null) ? "": ("Seats Availablle:")}
+                    &nbsp;{(info === null) ? "": ("Current Usage:")}
                     </Typography>
                     <Typography variant="body1" style={{display:'inline-block', fontSize:'20px', paddingLeft: '30px', color: changecolor((info === null) ? "": info.Seats)}}>
                     {(info === null) ? "": info.Seats}

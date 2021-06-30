@@ -24,7 +24,7 @@ import instance from '../../axios';
 function AddInfo(props) {
   // const classes = useStyles();
   const { open, onClose , setInfo, info} = props;
-  const [seats, setSeats] = useState(0);
+  const [seats, setSeats] = useState("full");
   const handleClose = () => {
     onClose();
   };
@@ -47,30 +47,50 @@ function AddInfo(props) {
     updateInfo.time = time;
     console.log(updateInfo)
     setInfo(updateInfo);
+    setSeats("full")
     handleClose();
   }
 
   const changeValue = (e) => {
-    setSeats(parseInt(e.target.value), 10);
+    setSeats(e.target.value);
   }
 
-  useEffect(() => {
-    setSeats(info.Seats);
-    console.log(seats)
-  }, [])
+  // useEffect(() => {
+  //   setSeats(info.Seats);
+  //   console.log(seats)
+  // }, [])
 
   return (
     <>
       <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open} className="enter-mapinfo-dialog" >
-        <DialogTitle id="simple-dialog-title">Add Info</DialogTitle>
+        <DialogTitle id="simple-dialog-title">Current Usage(approximately)</DialogTitle>
         <DialogContent>
           <TextField
             autoFocus
             margin="dense"
-            label="Seats Remaining"
+            select
             fullWidth
             onChange={changeValue}
-          />
+            SelectProps={{
+              native: true,
+            }}
+          >
+            <option key={"full"} value={"full"} >
+              full
+            </option>
+            <option key={"80%full"} value={"80%"} >
+              80%
+            </option>
+            <option key={"50%full"} value={"50%"} >
+              50%
+            </option>
+            <option key={"30%full"} value={"30%"} >
+              30%
+            </option>
+            <option key={"empty"} value={"empty"} >
+              empty
+            </option>
+          </TextField>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color='primary'>
@@ -86,3 +106,23 @@ function AddInfo(props) {
 }
 
 export default AddInfo;
+
+{/* <TextField
+          error = {error}
+          id="standard-select-currency"
+          select
+          label="Category"
+          SelectProps={{
+            native: true,
+          }}
+          value={category}
+          onChange={ChangeCategory}
+          helperText="Please select a category"
+          style={{marginTop:'8px'}}
+        >
+        
+          {courseList.map((course) => (
+            <option key={course} value={course} style ={{height:"50px", overflowX : "hidden", overflowY : "auto"}}>
+              {course}
+            </option>
+          ))} */}

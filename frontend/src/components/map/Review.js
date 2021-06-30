@@ -46,7 +46,7 @@ function Review (props) {
                             style={{paddingTop:'0px'}}
                         />
                         <div style={{display:'block', paddingTop:'1px', paddingLeft:'25px',paddingBottom:'0px'}}>
-                            <p style={{fontSize:'18px', }}>{e.comment}</p>
+                            <p style={{fontSize:'18px'}}>{e.comment}</p>
                         </div>
                     </div>        
                     <Divider variant="middle" className={classes.divider}/>

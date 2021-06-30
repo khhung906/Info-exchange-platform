@@ -53,172 +53,172 @@ function Pins(props) {
   const {data, onClick} = props;
   console.log()
   const ChangeIcon = (place, seats, name) => {
-    console.log(name)
+    //console.log(seats)
 
     if (place === "library") {
-      if (seats < 20) {
-        return LibraryIconR;
+      if (seats === 'empty' || seats === '30%') {
+        return LibraryIconG;
       }
-      else if (seats >= 20 && seats < 50) {
+      else if (seats === '50%') {
           return LibraryIconO;
       }
       else {
-          return LibraryIconG;
+          return LibraryIconR;
       }
     }
     else if (place === 'Cafe'){
-      if (seats < 5) {
-        return CafeIconR;
+      if (seats === 'empty' || seats === '30%') {
+        return CafeIconG;
       }
-      else if (seats >= 5 && seats < 10) {
+      else if (seats === '50%') {
           return CafeIconO;
       }
       else {
-          return CafeIconG;
+          return CafeIconR;
       }
     }
     else if (place === 'PE Court') {
       if (name === 'Basketball Court') {
-        if (seats < 1) {
-          return BasketballR;
+        if (seats === 'empty' || seats === '30%') {
+          return BasketballG;
         }
-        else if (seats >= 1 && seats < 3) {
+        else if (seats === '50%') {
             return BasketballO;
         }
         else {
-            return BasketballG;
+            return BasketballR;
         }
       }
       else if (name === 'Baseball Field' || name === 'Baseball Practice Field') {
-        if (seats < 1) {
-          return BaseballR;
+        if (seats === 'empty' || seats === '30%') {
+          return BaseballG;
         }
-        else if (seats >= 1 && seats < 3) {
+        else if (seats === '50%') {
             return BaseballO;
         }
         else {
-            return BaseballG;
+            return BaseballR;
         }
       }
       else if (name === 'Gym') {
-        if (seats < 1) {
-          return FitnessR;
+        if (seats === 'empty' || seats === '30%') {
+          return FitnessG;
         }
-        else if (seats >= 1 && seats < 3) {
+        else if (seats === '50%') {
             return FitnessO;
         }
         else {
-            return FitnessG;
+            return FitnessR;
         }
       }
       else if (name === 'Golf Practice Field') {
-        if (seats < 1) {
-          return GolfR;
+        if (seats === 'empty' || seats === '30%') {
+          return GolfG;
         }
-        else if (seats >= 1 && seats < 3) {
+        else if (seats === '50%') {
             return GolfO;
         }
         else {
-            return GolfG;
+            return GolfR;
         }
       }
       else if (name === 'Sports Field' || name === 'Futsal Court') {
-        if (seats < 1) {
-          return PitchR;
+        if (seats === 'empty' || seats === '30%') {
+          return PitchG;
         }
-        else if (seats >= 1 && seats < 3) {
+        else if (seats === '50%') {
             return PitchO;
         }
         else {
-            return PitchG;
+            return PitchR;
         }
       }
       else if (name === 'Swimming Pool') {
-        if (seats < 1) {
-          return SwimmingR;
+        if (seats === 'empty' || seats === '30%') {
+          return SwimmingG;
         }
-        else if (seats >= 1 && seats < 3) {
+        else if (seats === '50%') {
             return SwimmingO;
         }
         else {
-            return SwimmingG;
+            return SwimmingR;
         }
       }
       else if (name === 'Table Tennis Room') {
-        if (seats < 1) {
-          return TableTennisR;
+        if (seats === 'empty' || seats === '30%') {
+          return TableTennisG;
         }
-        else if (seats >= 1 && seats < 3) {
+        else if (seats === '50%') {
             return TableTennisO;
         }
         else {
-            return TableTennisG;
+            return TableTennisR;
         }
       }
       else if (name === 'Tennis Court' || name === 'Clay Tennis Court') {
-        if (seats < 1) {
-          return TennisR;
+        if (seats === 'empty' || seats === '30%') {
+          return TennisG;
         }
-        else if (seats >= 1 && seats < 3) {
+        else if (seats === '50%') {
             return TennisO;
         }
         else {
-            return TennisG;
+            return TennisR;
         }
       }
       else if (name === 'Volleyball Court') {
-        if (seats < 1) {
-          return VolleyballR;
+        if (seats === 'empty' || seats === '30%') {
+          return VolleyballG;
         }
-        else if (seats >= 1 && seats < 3) {
+        else if (seats === '50%') {
             return VolleyballO;
         }
         else {
-            return VolleyballG;
+            return VolleyballR;
         }
       }
       else if (name === 'Dance Room') {
-        if (seats < 1) {
-          return DanceR;
+        if (seats === 'empty' || seats === '30%') {
+          return DanceG;
         }
-        else if (seats >= 1 && seats < 3) {
+        else if (seats === '50%') {
             return DanceO;
         }
         else {
-            return DanceG;
+            return DanceR;
         }
       }
       else if (name === 'Prosody Room') {
-        if (seats < 1) {
-          return ProsodyR;
+        if (seats === 'empty' || seats === '30%') {
+          return ProsodyG;
         }
-        else if (seats >= 1 && seats < 3) {
+        else if (seats === '50%') {
             return ProsodyO;
         }
         else {
-            return ProsodyG;
+            return ProsodyR;
         }
       }
       else if (name === 'Combat Room') {
-        if (seats < 1) {
-          return CombatR;
+        if (seats === 'empty' || seats === '30%') {
+          return CombatG;
         }
-        else if (seats >= 1 && seats < 3) {
+        else if (seats === '50%') {
             return CombatO;
         }
         else {
-            return CombatG;
+            return CombatR;
         }
       }
       else if (name === 'Judo Court') {
-        if (seats < 1) {
-          return JudoR;
+        if (seats === 'empty' || seats === '30%') {
+          return JudoG;
         }
-        else if (seats >= 1 && seats < 3) {
+        else if (seats === '50%') {
             return JudoO;
         }
         else {
-            return JudoG;
+            return JudoR;
         }
         
       }
