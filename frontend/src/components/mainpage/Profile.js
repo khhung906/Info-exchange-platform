@@ -89,10 +89,30 @@ function Profile(props) {
     setSub(false);
   };
 
-  const deleteSub = (sub) =>{
-    console.log(sub)
+  const deleteSub = async(sub) =>{
+    console.log(userinfo, sub)
+    let idx, name;
+    // if (sub.indexOf('(') !== -1 && sub.indexOf('-') === -1){
+    //   idx = sub.indexOf('(');
+    //   name = sub.slice(0, idx);
+    // }
+    // else {
+    name = sub;
+    // }
+    const email = userinfo;
+    const {
+      data : {message} //newinfo
+    } = await instance.post('api/deleteCourseArray', {
+      email, name
+    }) ;
+    console.log(message)
+    let newsub = [...subscriptions];
+    let idx_ = newsub.indexOf(name);
+    newsub.splice(idx_,1);
+    // console.log(newsub)
+    setSubscription(newsub);
   }
-    
+
   return (
       <div style={{paddingTop:'0px'}}>
       <div style={{display:'inline-block', paddingLeft:'30px', paddingTop:'0px'}}>

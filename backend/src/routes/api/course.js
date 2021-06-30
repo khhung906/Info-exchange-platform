@@ -227,4 +227,23 @@ router.post('/deleteActivity', async function(req, res) {
     }
 })
 
+router.post('/deleteCourseArray', async function(req, res) {
+    //course_name, email
+    try {
+        // console.log(1111)
+        console.log(req.body);
+        const user = await Account.findOne({email : req.body.email});
+        let courses = user.course;
+        console.log(courses)
+        let idx = courses.indexOf(req.body.name);
+        console.log(idx)
+        courses.splice(idx, 1);
+        await Account.update({email : req.body.email}, {course : courses});
+        res.send({message : "delete Successfully"})
+
+    } catch(e) {
+        res.send({message : "Something went wrong"})
+    }
+})
+
 export default router;
