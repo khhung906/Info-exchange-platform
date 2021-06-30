@@ -10,6 +10,7 @@ import DescriptionTwoToneIcon from '@material-ui/icons/DescriptionTwoTone';
 import AccessAlarmTwoToneIcon from '@material-ui/icons/AccessAlarmTwoTone';
 import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
+import moment from 'moment'
 import instance from '../../axios';
 
 //select, pickers
@@ -21,71 +22,78 @@ function EventDetail(props) {
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
   const [description, setDis] = useState("");
+  const [error, setError] = useState(false);
+  //console.log(moment(detail.start).format("yyyy-MM-DDThh:mm:ss"))
+  //console.log(new Date(detail.start).toISOString())
 
   useEffect(() => {
-    setStart(detail.start)
-    setEnd(detail.end)
+    setStart(moment(detail.start).format("yyyy-MM-DDThh:mm:ss"))
+    setStart(moment(detail.end).format("yyyy-MM-DDThh:mm:ss"))
     setTitle(detail.title)
     setCategory(detail.divider)
     setDis(detail.description)
     // console.log(detail)
 },[detail])
+
   const handleEdit = () => {
     setEdit(true)
   }
 
   const handleClose = () => {
     setEdit(false);
+    setError(false)
     onClose();
   };
 
-  const handleSave = async() =>{
-    //call backend and making changes
-    // console.log(title)
-    // console.log(start)
-    // console.log(title)
-    let current_events = [...events]
-    // console.log(events)
-    const idx = detail.divider.indexOf('(');
-    const course_name = detail.divider.slice(0, idx);
-    const activity = {
-      start : detail.start, 
-      end : detail.end, 
-      title : detail.title, 
-      category : detail.category, 
-      description : detail.description
-    };
-    const newActivity = {
-      id : title+category,
-      start : new Date(start).toString(),
-      end : new Date(end).toString(), 
-      divider: category,
-      title : title,
-      description : description
-    };
-      
-    const {
-      data : {message} //, info
-    } = await instance.post('api/changecourse', {
-      course_name, activity, newActivity
-    });
-    // const final_info = info.map(e => JSON.parse(e));
-    // console.log(final_info)
-    console.log(message)
-    let idx_ =current_events.findIndex(e => 
-      e.start === activity.start && 
-      e.end === activity.end && 
-      e.title === activity.title && 
-      e.description === activity.description && 
-      e.category === activity.category
-    );
-    current_events.splice(idx_, 1);
-    console.log(idx_)
-    current_events.push(newActivity);
-    console.log(current_events)
-    setEvents(current_events);
-    setShow(current_events);
-    handleClose();
+  const handleSave  = async() =>{
+    console.log(start)
+    console.log(end)
+    if(title !== ''&& end >= start){
+      let current_events = [...events]
+      const idx = detail.divider.indexOf('(');
+      const course_name = detail.divider.slice(0, idx);
+      const activity = {
+        start : detail.start, 
+        end : detail.end, 
+        title : detail.title, 
+        category : detail.category, 
+        description : detail.description
+      };
+      const newActivity = {
+        id : title+category,
+        start : new Date(start).toString(),
+        end : new Date(end).toString(), 
+        divider: category,
+        title : title,
+        description : description
+      };
+        
+      const {
+        data : {message} //, info
+      } = await instance.post('api/changecourse', {
+        course_name, activity, newActivity
+      });
+      // const final_info = info.map(e => JSON.parse(e));
+      // console.log(final_info)
+      console.log(message)
+      let idx_ =current_events.findIndex(e => 
+        e.start === activity.start && 
+        e.end === activity.end && 
+        e.title === activity.title && 
+        e.description === activity.description && 
+        e.category === activity.category
+      );
+      current_events.splice(idx_, 1);
+      console.log(idx_)
+      current_events.push(newActivity);
+      console.log(current_events)
+      setEvents(current_events);
+      setShow(current_events);
+      handleClose();
+    }
+    else{
+      setError(true)
+    }
   }
 //problem : 1. useState Latency 2.calender render
   const handleDelete = async() =>{
@@ -146,32 +154,35 @@ function EventDetail(props) {
             {detail.divider}
           </DialogTitle>
           <DialogContent>
-            <TextField 
-                  id="add-title"
-                  label="Add title"
-                  defaultValue={detail.title}
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
-                  onChange={ChangeTitle}
+              <TextField 
+                error = {error}
+                id="add-title"
+                label="Add title"
+                defaultValue={detail.title}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                onChange={ChangeTitle}
               />
               <br></br>
               <br></br>
               <TextField
+                error = {error}
                 id="datetime-local"
                 label="From"
                 type="datetime-local"
-                defaultValue={new Date(detail.start).toISOString().slice(0, 16)}
+                defaultValue={moment(detail.start).format("yyyy-MM-DDThh:mm:ss")}
                 InputLabelProps={{
                 shrink: true,
                 }}
                 onChange={ChangeStart}
             />
             <TextField
+              error = {error}
               id="datetime-local"
               label="To"
               type="datetime-local"
-              defaultValue={new Date(detail.end).toISOString().slice(0, 16)}
+              defaultValue={moment(detail.end).format("yyyy-MM-DDThh:mm:ss")}
               InputLabelProps={{
               shrink: true,
               }}
