@@ -102,10 +102,13 @@ function SideInfo (props) {
                     <Typography variant="body1" style={{display:'inline-block', fontSize:'20px', paddingLeft: '30px', color: changecolor((info === null) ? "": info.Seats)}}>
                     {(info === null) ? "": info.Seats}
                     </Typography>
+                    <Typography variant="body1" style={{fontSize:'12px', color:'grey', paddingLeft: '5px'}}>
+                    last update:{(info === null) ? "": new Date().toLocaleString()}
+                    </Typography>
                 </div>
                 <div className={classes.section3} style={{display:'inline-block', marginTop:"13px"}}>
                     <AddInfo open={openAdd1} onClose={handleCloseAdd1} setInfo={setInfo} info={info}/>
-                    {(info === null) ? "": <Button onClick={handleClickOpenAdd1} ><div style={{float:"left"}}><CreateIcon color="primary"/></div>
+                    {(info === null) ? "": <Button onClick={handleClickOpenAdd1} ><div style={{float:"left" ,width:"30px"}}><CreateIcon color="primary"/></div>
                         &nbsp;&nbsp;change</Button>}
                 </div>
                 <div className={classes.section2} style={{display:'inline-block'}}>
