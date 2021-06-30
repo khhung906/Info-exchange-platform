@@ -15,7 +15,7 @@ import instance from '../../axios';
 
 //select, pickers
 function EventDetail(props) {
-  const {open, onClose, detail, events, setEvents, setShow} = props;// showEvents
+  const {open, onClose, detail, events, setEvents, setShow, onmoreEvents, setMore} = props;// showEvents
   const [onEdit, setEdit] = useState(false);
   const [start, setStart] = useState("");
   const [end, setEnd] = useState("");
@@ -118,14 +118,21 @@ function EventDetail(props) {
     });
     console.log(message)
     // console.log(info);
-    let current_events = [...events]
-    // console.log(current_events)
-    let idx_ =current_events.findIndex(e => e.start === activity.start && e.end === activity.end && e.title === activity.title);
-    current_events.splice(idx_, 1);
-    // console.log(current_events)
-    setEvents(current_events);
-    setShow(current_events);
-    handleClose();
+    if(message === "Update successfully"){
+      let current_events = [...events]
+      // console.log(current_events)
+      let idx_ = current_events.findIndex(e => e.start === activity.start && e.end === activity.end && e.title === activity.title);
+      current_events.splice(idx_, 1);
+      // console.log(current_events)
+      let idx_on = onmoreEvents.findIndex(e => e.start === activity.start && e.end === activity.end && e.title === activity.title);
+      console.log(idx_on)
+      if(idx_on >= 0){
+        console.log('cool')
+      }
+      setEvents(current_events);
+      setShow(current_events);
+      handleClose();
+    }
   }
 
   // const ChangeCategory = (event) => {

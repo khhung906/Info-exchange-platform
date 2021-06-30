@@ -25,15 +25,14 @@ const localizer = momentLocalizer(moment);
 // improve resize of screen
 
 function Calender(props) {
-
     const {userinfo,log_in} = props; 
     const [courseList, setList] = useState([]);
     const [courses, setCourse] = useState({});
     const [events, setEvents] = useState([]);
     const [showEvents, setShow] = useState(events);
-    const [onmoreEvents, setMore] = useState([]);
     const [openSub, setSub] = useState(false);
     const [onmoreDate, setDate] = useState('')
+    const [onmoreEvents, setMore] = useState([]);
 
     const [openAdd, setOpenAdd] = useState(false);
     const handleClickOpenAdd = () => {
@@ -159,7 +158,8 @@ function Calender(props) {
       <div style={{backgroundColor:'#f7f3f3', height:'100vh'}}>
         <MainPageTopBar log_in={log_in} userinfo={userinfo}/>
         <AddSchedule open={openAdd} onClose={handleCloseAdd} courseList={courseList}  events={events} setEvents={setEvents}/>
-        <EventDetail open={openDetail} onClose={handleCloseDetail} courseList={courseList}  detail={detail} events={events} setEvents={setEvents} showEvents={showEvents} setShow={setShow}/>
+        <EventDetail open={openDetail} onClose={handleCloseDetail} courseList={courseList}  detail={detail} events={events} 
+                    setEvents={setEvents} showEvents={showEvents} setShow={setShow} onmoreEvents={onmoreEvents} setMore={setMore}/>
         <div style={{marginLeft:'257pt', marginTop:'10pt' ,float:'top'}}>
           <Button onClick={handleClickOpenAdd} >
             <AddCircleOutlineIcon style ={{
