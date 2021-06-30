@@ -56,11 +56,10 @@ function Calender(props) {
       } = await instance.post('api/loadcourse' ,{
         email, which : 0
       });
-      console.log(classinfo)
       setList(classinfo)
       let tmp_c = {}
       for(let c = 0; c < classinfo.length; c++){
-        tmp_c[classinfo[c]] = false;
+        tmp_c[classinfo[c]] = true;
       }
       console.log(tmp_c)
       setCourse(tmp_c);

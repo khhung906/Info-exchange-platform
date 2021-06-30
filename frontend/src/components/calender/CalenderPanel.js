@@ -197,10 +197,10 @@ function CalenderPanel(props) {
                 <FormControl component="fieldset" className={classes.formControl}>
                     <FormHelperText>Course you have subscribed</FormHelperText>
                     <FormGroup>
-                        {courseList.filter(e => e.indexOf('(') !== -1 && e.indexOf('-') === -1).map(course => (<FormControlLabel  control={<Checkbox style ={{
+                        {courseList.filter(e => e.indexOf('(') !== -1 && e.indexOf('-') === -1).map((course, key) => (<FormControlLabel key={key}  control={<Checkbox style ={{
                         color: "#00e676",
-                        }} size='small'onChange={handleChange} checked={courses[course]} name={course} />}
-                            label={course} className={classes.formControlLabel}
+                        }} size='small'onChange={handleChange} defaultChecked={true} checked={courses[course]} name={course} />}
+                        label={course} className={classes.formControlLabel}
                         />))}
                     </FormGroup>
                     <AddCourse open={openAdd1} onClose={handleCloseAdd1} add={addcourse} userinfo={userinfo} loadschedule={loadschedule} search_course={search_course} search_courseid={search_courseid} />
@@ -224,9 +224,9 @@ function CalenderPanel(props) {
                 <FormControl component="fieldset" className={classes.formControl}>
                     <FormHelperText>Places you frequently visit</FormHelperText>
                     <FormGroup>
-                        {courseList.filter(e => e.indexOf('(') === -1 && e.indexOf('-') === -1 && !pattern2.test(e)).map(course => (<FormControlLabel  control={<Checkbox style ={{
+                        {courseList.filter(e => e.indexOf('(') === -1 && e.indexOf('-') === -1 && !pattern2.test(e)).map((course, key) => (<FormControlLabel key={key}  control={<Checkbox style ={{
                         color: "#00e676",
-                        }} size='small'onChange={handleChange} checked={courses[course]} name={course} />}
+                        }} size='small'onChange={handleChange} defaultChecked={true} checked={courses[course]} name={course} />}
                             label={course} className={classes.formControlLabel}
                         />))}
                     </FormGroup>
@@ -251,9 +251,9 @@ function CalenderPanel(props) {
                 <FormControl component="fieldset" className={classes.formControl}>
                     <FormHelperText>Games you attend</FormHelperText>
                     <FormGroup>
-                        {courseList.filter(e => e.indexOf('(') === -1 && e.indexOf('-') !== -1).map(course => (<FormControlLabel  control={<Checkbox style ={{
+                        {courseList.filter(e => e.indexOf('(') === -1 && e.indexOf('-') !== -1).map((course, key) => (<FormControlLabel key={key}  control={<Checkbox style ={{
                         color: "#00e676",
-                        }} size='small'onChange={handleChange} checked={courses[course]} name={course} />}
+                        }} size='small'onChange={handleChange} defaultChecked={true} checked={courses[course]} name={course} />}
                             label={course} className={classes.formControlLabel}
                         />))}
                     </FormGroup>
@@ -278,9 +278,9 @@ function CalenderPanel(props) {
                 <FormControl component="fieldset" className={classes.formControl}>
                     <FormHelperText>Clubs you join</FormHelperText>
                     <FormGroup>
-                        {courseList.filter(e => pattern.test(e) && pattern2.test(e) && e.indexOf('(') === -1).map(course => (<FormControlLabel  control={<Checkbox style ={{
+                        {courseList.filter(e => pattern.test(e) && pattern2.test(e) && e.indexOf('(') === -1).map((course, key) => (<FormControlLabel key={key} control={<Checkbox style ={{
                         color: "#00e676",
-                        }} size='small'onChange={handleChange} checked={courses[course]} name={course} />}
+                        }} size='small'onChange={handleChange} defaultChecked={true} checked={courses[course]} name={course} />}
                             label={course} className={classes.formControlLabel}
                         />))}
                     </FormGroup>
