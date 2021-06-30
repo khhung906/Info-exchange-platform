@@ -16,6 +16,8 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import ListItemText from '@material-ui/core/ListItemText';
 import ClassIcon from '@material-ui/icons/Class';
+import DeleteOutlineTwoToneIcon from '@material-ui/icons/DeleteOutlineTwoTone';
+import Button from '@material-ui/core/Button';
 import instance from '../../axios';
 
 const useStyles = makeStyles((theme) => ({
@@ -86,6 +88,10 @@ function Profile(props) {
   const handleSubClose = () => {
     setSub(false);
   };
+
+  const deleteSub = (sub) =>{
+    console.log(sub)
+  }
     
   return (
       <div style={{paddingTop:'0px'}}>
@@ -154,6 +160,9 @@ function Profile(props) {
               </Avatar>
             </ListItemAvatar>
             <ListItemText primary={sub} />
+            <Button onClick={() => (deleteSub(sub))}>
+              <DeleteOutlineTwoToneIcon/>
+            </Button>
           </ListItem>
           ))}
           </List>

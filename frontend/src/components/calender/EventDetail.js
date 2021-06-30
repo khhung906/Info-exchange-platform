@@ -133,7 +133,9 @@ function EventDetail(props) {
       let idx_on = onmoreEvents.findIndex(e => e.start === activity.start && e.end === activity.end && e.title === activity.title);
       console.log(idx_on)
       if(idx_on >= 0){
-        console.log('cool')
+        let more =[...onmoreEvents]
+        more.splice(idx_on, 1)
+        setMore(more)
       }
       setEvents(current_events);
       setShow(current_events);
