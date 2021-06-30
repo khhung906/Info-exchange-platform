@@ -23,12 +23,12 @@ router.post('/loadAllData',async function(req, res) {
 })
 
 router.post('/updateInfo', async function(req, res) {
-    //name, seats
+    //name, seats, time
     try {
         console.log(req.body)
         let site = await Map.findOne({Name : req.body.Name});
         console.log(site);
-        await Map.update({Name : req.body.Name}, {Seats : req.body.seats});
+        await Map.update({Name : req.body.Name}, {Seats : req.body.seats, time : req.body.time});
         console.log(site);
         res.send({message : "update Successfully", newinfo : site});
         

@@ -13,7 +13,8 @@ const mapSchema = new Schema({
    Description : String,
    latitude : Number,
    longitude : Number,
-   comments : [String]
+   comments : [String],
+   time : String
 })
 
 export default mongoose.model('Map', mapSchema);

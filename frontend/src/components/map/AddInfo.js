@@ -34,14 +34,17 @@ function AddInfo(props) {
     // const seats = e.target.value;
     console.log(seats)
     const Name = info.Name;
+    const time = new Date().toLocaleString();
+    console.log(time);
     const {
       data : {message} //newinfo
     } = await instance.post('api/updateInfo', {
-      Name, seats
+      Name, seats, time
     }) ;
     console.log(message)
     let updateInfo = info;
     updateInfo.Seats = seats;
+    updateInfo.time = time;
     console.log(updateInfo)
     setInfo(updateInfo);
     handleClose();

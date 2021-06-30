@@ -64,6 +64,7 @@ router.post('/addschedule', async function(req, res) {
             // courses.push(existing.course_name+"("+existing.course_id+")")
             // account.course.push(data.course_id);
             let activity = course.activity;
+            //data= {course_name : ..., time : time}
             activity.push(JSON.stringify(data))
             res.send({message : "Add successfully"});
             await course.update({activity : activity});

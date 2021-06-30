@@ -63,7 +63,7 @@ function SideInfo (props) {
     };
 
     const classes = useStyles();
-
+//new Date().toLocaleString()
     return (
 
         <div>
@@ -103,7 +103,7 @@ function SideInfo (props) {
                     {(info === null) ? "": info.Seats}
                     </Typography>
                     <Typography variant="body1" style={{fontSize:'12px', color:'grey', paddingLeft: '5px'}}>
-                    last update:{(info === null) ? "": new Date().toLocaleString()}
+                    last update:{(info === null) ? "": info.time}
                     </Typography>
                 </div>
                 <div className={classes.section3} style={{display:'inline-block', marginTop:"13px"}}>
