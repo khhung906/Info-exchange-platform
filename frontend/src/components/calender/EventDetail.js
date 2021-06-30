@@ -50,8 +50,14 @@ function EventDetail(props) {
     console.log(end)
     if(title !== ''&& end >= start){
       let current_events = [...events]
-      const idx = detail.divider.indexOf('(');
-      const course_name = detail.divider.slice(0, idx);
+      let idx, course_name;
+      if (detail.divider.indexOf('(') !== -1 && detail.divider.indexOf('-') === -1){
+        idx = detail.divider.indexOf('(');
+        course_name = detail.divider.slice(0, idx);
+      }
+      else {
+        course_name = detail.divider;
+      }
       const activity = {
         start : detail.start, 
         end : detail.end, 

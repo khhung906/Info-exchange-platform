@@ -185,7 +185,7 @@ router.post('/changecourse', async function(req, res) {
     //course_name, activity : {divider, from, to, description, title}
     //new_course_name, newActivity
     try {
-        // console.log(req.body)
+        console.log(req.body)
         const course = await Course.findOne({course_name : req.body.course_name});
         let activity = [...course.activity];
         let idx = activity.findIndex(e => 
