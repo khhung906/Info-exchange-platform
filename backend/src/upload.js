@@ -189,7 +189,8 @@ const map_data_init = [
         "Description": "University Library, more detailed chemistry books.",
         "latitude":25.018681,
         "longitude":121.537957,
-        "comments":[]
+        "comments":[],
+        "time" : "6/30/2021, 2:07:44 PM"
     },
     {"Name":"NTU Main Library",
         "id":"library",
@@ -200,7 +201,8 @@ const map_data_init = [
         "Description": "University Library, 1-4 floors for both books and study area, B1 is a whole self-study area. ",
         "latitude":25.017369,
         "longitude":121.540974,
-        "comments":[]
+        "comments":[],
+        "time" : "6/30/2021, 2:07:44 PM"
     },
     {"Name":"NTU department of Physics Library",
         "id":"library",
@@ -211,7 +213,8 @@ const map_data_init = [
         "Description": "University Library, more detailed physics books.",
         "latitude":25.021763,
         "longitude":121.536652,
-        "comments":[]
+        "comments":[],
+        "time" : "6/30/2021, 2:07:44 PM"
     },
     {"Name":"Koo Chen-Fu Memorial Library",
         "id":"library",
@@ -222,7 +225,8 @@ const map_data_init = [
         "Description": "University Library, well-designed library, cozy, 1-2 floors for both reading and studying area.",
         "latitude":25.020428,
         "longitude":121.542291,
-        "comments":[]
+        "comments":[],
+        "time" : "6/30/2021, 2:07:44 PM"
     },
     {"Name":"NTU department of Law Library",
         "id":"library",
@@ -233,7 +237,8 @@ const map_data_init = [
         "Description": "University Library, more detailed law books.",
         "latitude":25.020075,
         "longitude":121.544843,
-        "comments":[]
+        "comments":[],
+        "time" : "6/30/2021, 2:07:44 PM"
     },
     {"Name":"丹提咖啡",
         "id":"Cafe",
@@ -244,7 +249,8 @@ const map_data_init = [
         "Description": "University Cafe, locate in Office of International Affairs, beside Departement of Management.",
         "latitude":25.014414,
         "longitude":121.538007,
-        "comments":[]
+        "comments":[],
+        "time" : "6/30/2021, 2:07:44 PM"
     },
     {"Name":"Louisa Coffee",
         "id":"Cafe",
@@ -255,7 +261,8 @@ const map_data_init = [
         "Description": "University Cafe, locate in Office of International Affairs, beside Departement of Management.",
         "latitude":25.014457,
         "longitude": 121.538068,
-        "comments":[]
+        "comments":[],
+        "time" : "6/30/2021, 2:07:44 PM"
     },
     {"Name":"找到咖啡",
         "id":"Cafe",
@@ -266,7 +273,8 @@ const map_data_init = [
         "Description": "University Cafe, locate in the corner of Xinsheng South Road and Fam Palm Avene, beside tennis court, light meal is also available.",
         "latitude":25.018523,
         "longitude":121.534038,
-        "comments":[]
+        "comments":[],
+        "time" : "6/30/2021, 2:07:44 PM"
     },
     {"Name":"找到日光咖啡",
         "id":"Cafe",
@@ -277,7 +285,8 @@ const map_data_init = [
         "Description": "University Cafe, locate in the building of Gallery of NTU History, facing Royal Palm Blvd.",
         "latitude":25.017561,
         "longitude": 121.535333,
-        "comments":[]
+        "comments":[],
+        "time" : "6/30/2021, 2:07:44 PM"
     },
     {"Name": "Basketball Court",
         "id": "PE Court",
@@ -288,7 +297,8 @@ const map_data_init = [
         "Description":"Outdoor Court",
         "latitude":25.020054,
         "longitude":121.536328,
-        "comments":[]
+        "comments":[],
+        "time" : "6/30/2021, 2:07:44 PM"
     },
     {"Name": "Judo Court",
         "image":'https://ntusportscenter.ntu.edu.tw/Uploads/site/6/cb6c0498-6f3a-4140-95cb-3df8830942ec.jpg',
@@ -299,7 +309,8 @@ const map_data_init = [
         "id": "PE Court",
         "latitude":25.021639,
         "longitude":121.535125,
-        "comments":[]
+        "comments":[],
+        "time" : "6/30/2021, 2:07:44 PM"
 
     },
     {"Name": "Golf Practice Field",
@@ -311,7 +322,8 @@ const map_data_init = [
         "id": "PE Court",
         "latitude":25.020154,
         "longitude":121.536815,
-        "comments":[]
+        "comments":[],
+        "time" : "6/30/2021, 2:07:44 PM"
 
     },
     {"Name": "Tennis Court",
@@ -323,7 +335,8 @@ const map_data_init = [
         "id": "PE Court",
         "latitude":25.01865,
         "longitude":121.53423,
-        "comments":[]
+        "comments":[],
+        "time" : "6/30/2021, 2:07:44 PM"
 
     },
     {"Name": "Table Tennis Room",
@@ -335,7 +348,8 @@ const map_data_init = [
         "id": "PE Court",
         "latitude":25.019847,
         "longitude":121.536566,
-        "comments":[]
+        "comments":[],
+        "time" : "6/30/2021, 2:07:44 PM"
 
     },
     {"Name": "Sports Field",
@@ -347,7 +361,8 @@ const map_data_init = [
         "Description":"Outdoor Court",
         "latitude":25.019724,
         "longitude":121.534867,
-        "comments":[]
+        "comments":[],
+        "time" : "6/30/2021, 2:07:44 PM"
 
     },
     {"Name": "Clay Tennis Court",
@@ -359,7 +374,8 @@ const map_data_init = [
         "id": "PE Court",
         "latitude":25.01917,
         "longitude":121.535598,
-        "comments":[]
+        "comments":[],
+        "time" : "6/30/2021, 2:07:44 PM"
 
     },
     {"Name": "Prosody Room",
@@ -371,7 +387,8 @@ const map_data_init = [
         "id": "PE Court",
         "latitude":25.021665,
         "longitude":121.535448,
-        "comments":[]
+        "comments":[],
+        "time" : "6/30/2021, 2:07:44 PM"
 
     },
     {"Name": "Basketball Court",
@@ -383,7 +400,8 @@ const map_data_init = [
         "id": "PE Court",
         "latitude":25.019069,
         "longitude":121.534201,
-        "comments":[]
+        "comments":[],
+        "time" : "6/30/2021, 2:07:44 PM"
 
     },
     {"Name": "Baseball Practice Field",
@@ -395,7 +413,8 @@ const map_data_init = [
         "id": "PE Court",
         "latitude":25.020773,
         "longitude":121.534533,
-        "comments":[]
+        "comments":[],
+        "time" : "6/30/2021, 2:07:44 PM"
 
     },
     {"Name": "Baseball Field",
@@ -408,7 +427,8 @@ const map_data_init = [
         "id": "PE Court",
         "latitude":25.020817,
         "longitude":121.535169,
-        "comments":[]
+        "comments":[],
+        "time" : "6/30/2021, 2:07:44 PM"
 
     },
     {"Name": "Tennis Court",
@@ -420,7 +440,8 @@ const map_data_init = [
         "id": "PE Court",
         "latitude":25.018675,
         "longitude":121.535059,
-        "comments":[]
+        "comments":[],
+        "time" : "6/30/2021, 2:07:44 PM"
 
 
     },
@@ -433,7 +454,8 @@ const map_data_init = [
         "id": "PE Court",
         "latitude":25.021493,
         "longitude":121.535195,
-        "comments":[]
+        "comments":[],
+        "time" : "6/30/2021, 2:07:44 PM"
 
     },
     {"Name": "Dance Room",
@@ -445,7 +467,8 @@ const map_data_init = [
         "id": "PE Court",
         "latitude":25.019805,
         "longitude":121.536264,
-        "comments":[]
+        "comments":[],
+        "time" : "6/30/2021, 2:07:44 PM"
 
     },
     {"Name": "Judo Court",
@@ -457,7 +480,8 @@ const map_data_init = [
         "id": "PE Court",
         "latitude":25.019612,
         "longitude":121.536267,
-        "comments":[]
+        "comments":[],
+        "time" : "6/30/2021, 2:07:44 PM"
 
     },
     {"Name": "Dance Room",
@@ -469,7 +493,8 @@ const map_data_init = [
         "id": "PE Court",
         "latitude":25.021697,
         "longitude": 121.534851,
-        "comments":[]
+        "comments":[],
+        "time" : "6/30/2021, 2:07:44 PM"
 
     },
     {"Name": "Swimming Pool",
@@ -481,7 +506,8 @@ const map_data_init = [
         "id": "PE Court",
         "latitude": 25.021913,
         "longitude":121.535174,
-        "comments":[]
+        "comments":[],
+        "time" : "6/30/2021, 2:07:44 PM"
 
     },
     {"Name": "Swimming Pool",
@@ -493,7 +519,8 @@ const map_data_init = [
         "id": "PE Court",
         "latitude":25.020696,
         "longitude":121.536351,
-        "comments":[]
+        "comments":[],
+        "time" : "6/30/2021, 2:07:44 PM"
 
     },
     {"Name": "Table Tennis Room",
@@ -505,7 +532,8 @@ const map_data_init = [
         "id": "PE Court",
         "latitude":25.021487,
         "longitude":121.535554,
-        "comments":[]
+        "comments":[],
+        "time" : "6/30/2021, 2:07:44 PM"
 
 
     },
@@ -518,7 +546,8 @@ const map_data_init = [
         "id": "PE Court",
         "latitude":25.020172,
         "longitude":121.535591,
-        "comments":[]
+        "comments":[],
+        "time" : "6/30/2021, 2:07:44 PM"
 
     },
     {"Name": "Basketball Court",
@@ -530,7 +559,8 @@ const map_data_init = [
         "id": "PE Court",
         "latitude":25.019489,
         "longitude":121.536492,
-        "comments":[]
+        "comments":[],
+        "time" : "6/30/2021, 2:07:44 PM"
 
     },
     {"Name": "Tennis Court",
@@ -542,7 +572,8 @@ const map_data_init = [
         "id": "PE Court",
         "latitude":25.021779,
         "longitude":121.535315,
-        "comments":[]
+        "comments":[],
+        "time" : "6/30/2021, 2:07:44 PM"
 
     },
     {"Name": "Volleyball Court",
@@ -554,7 +585,8 @@ const map_data_init = [
         "id": "PE Court",
         "latitude":25.019315,
         "longitude":121.536516,
-        "comments":[]
+        "comments":[],
+        "time" : "6/30/2021, 2:07:44 PM"
 
     },
     {"Name": "Gym",
@@ -566,7 +598,8 @@ const map_data_init = [
         "id": "PE Court",
         "latitude": 25.019625,
         "longitude":121.536595,
-        "comments":[]
+        "comments":[],
+        "time" : "6/30/2021, 2:07:44 PM"
 
     },
     {"Name": "Sports Field",
@@ -578,7 +611,8 @@ const map_data_init = [
         "id": "PE Court",
         "latitude":25.019708,
         "longitude":121.53646,
-        "comments":[]
+        "comments":[],
+        "time" : "6/30/2021, 2:07:44 PM"
 
     },
     {"Name": "Gym",
@@ -590,7 +624,8 @@ const map_data_init = [
         "id": "PE Court",
         "latitude":25.02148,
         "longitude":121.534956,
-        "comments":[]
+        "comments":[],
+        "time" : "6/30/2021, 2:07:44 PM"
 
     },
     {"Name": "Basketball Court",
@@ -602,7 +637,8 @@ const map_data_init = [
         "id": "PE Court",
         "latitude":25.018532,
         "longitude":121.546519,
-        "comments":[]
+        "comments":[],
+        "time" : "6/30/2021, 2:07:44 PM"
 
     }
 
