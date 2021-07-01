@@ -78,7 +78,7 @@ function Pins(props) {
       }
     }
     else if (place === 'PE Court') {
-      if (name === 'Basketball Court') {
+      if (name.includes('Basketball Court')) {
         if (seats === 'empty' || seats === '30%') {
           return BasketballG;
         }
@@ -89,7 +89,7 @@ function Pins(props) {
             return BasketballR;
         }
       }
-      else if (name === 'Baseball Field' || name === 'Baseball Practice Field') {
+      else if (name.includes('Baseball Field') || name === 'Baseball Practice Field') {
         if (seats === 'empty' || seats === '30%') {
           return BaseballG;
         }
@@ -100,7 +100,7 @@ function Pins(props) {
             return BaseballR;
         }
       }
-      else if (name === 'Gym') {
+      else if (name.includes('Gym')) {
         if (seats === 'empty' || seats === '30%') {
           return FitnessG;
         }
@@ -122,7 +122,7 @@ function Pins(props) {
             return GolfR;
         }
       }
-      else if (name === 'Sports Field' || name === 'Futsal Court') {
+      else if (name.includes('Sports Field') || name === 'Futsal Court') {
         if (seats === 'empty' || seats === '30%') {
           return PitchG;
         }
@@ -133,7 +133,7 @@ function Pins(props) {
             return PitchR;
         }
       }
-      else if (name === 'Swimming Pool') {
+      else if (name.includes('Swimming Pool')) {
         if (seats === 'empty' || seats === '30%') {
           return SwimmingG;
         }
@@ -144,7 +144,7 @@ function Pins(props) {
             return SwimmingR;
         }
       }
-      else if (name === 'Table Tennis Room') {
+      else if (name.includes('Table Tennis Room')) {
         if (seats === 'empty' || seats === '30%') {
           return TableTennisG;
         }
@@ -155,7 +155,7 @@ function Pins(props) {
             return TableTennisR;
         }
       }
-      else if (name === 'Tennis Court' || name === 'Clay Tennis Court') {
+      else if (name.includes('Tennis Court')) {
         if (seats === 'empty' || seats === '30%') {
           return TennisG;
         }
@@ -177,7 +177,7 @@ function Pins(props) {
             return VolleyballR;
         }
       }
-      else if (name === 'Dance Room') {
+      else if (name.includes('Dance Room')) {
         if (seats === 'empty' || seats === '30%') {
           return DanceG;
         }
@@ -210,7 +210,7 @@ function Pins(props) {
             return CombatR;
         }
       }
-      else if (name === 'Judo Court') {
+      else if (name.includes('Judo Court')) {
         if (seats === 'empty' || seats === '30%') {
           return JudoG;
         }

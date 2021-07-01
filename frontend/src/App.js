@@ -26,23 +26,36 @@ function App() {
     }   
   }, [login, userinfo]);
 
-  return (
-    <div>
-      {/* <div className="navBar">
-        <NavLink className="title-name" to="/home">Info Exchange</NavLink>
-        <NavLink className="redirect" to="/aboutus">About Us</NavLink>
-        <NavLink className="redirect" to="/help">Help</NavLink>
-      </div> */}
-      <Switch>
-          <Route exact path="/" component={login? ()=><MainPage userinfo={userinfo} log_in={log_in}/>: ()=><HomePage log_in = {log_in} setUserinfo={setUserinfo}/>} />
+  console.log(login)
+
+  if(login){
+    return(
+      <div>
+        <Switch>
+          <Route exact path="/" component={()=><MainPage userinfo={userinfo} log_in={log_in}/>} />
           <Route exact path="/aboutus" component={() => <AboutUs userinfo={userinfo}/>} />
           <Route exact path="/calendar" component={() => <Calender userinfo={userinfo} log_in={log_in}/>} />
           <Route exact path="/map" component={() => <Map userinfo={userinfo} log_in={log_in}/>} />
           <Route exact path="/pastexams" component={() => <PastExams userinfo={userinfo} log_in={log_in}/>} />
           <Redirect from="/home" to="/" />
-      </Switch>
-    </div>
-  );
+        </Switch>
+      </div>
+    )
+  }
+  else{
+    return (
+      <div>
+        <Switch>
+            <Route exact path="/" component={()=><HomePage log_in = {log_in} setUserinfo={setUserinfo}/>} />
+            <Route exact path="/aboutus" component={() => <AboutUs userinfo={userinfo}/>} />
+            <Route exact path="/calendar" component={() => <Calender userinfo={userinfo} log_in={log_in}/>} />
+            <Route exact path="/map" component={() => <Map userinfo={userinfo} log_in={log_in}/>} />
+            <Route exact path="/pastexams" component={() => <PastExams userinfo={userinfo} log_in={log_in}/>} />
+            <Redirect from="/home" to="/" />
+        </Switch>
+      </div>
+    );
+  }
 }
 
 export default App;

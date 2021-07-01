@@ -18,6 +18,7 @@ router.post('/loadAllData',async function(req, res) {
         //console.log(data)
         res.send({message : "load Successfully", Data : data});
     }catch(e) {
+        console.log('error')
         res.send({message : "Something went wrong"});
     }
 })
@@ -27,9 +28,9 @@ router.post('/updateInfo', async function(req, res) {
     try {
         console.log(req.body)
         let site = await Map.findOne({Name : req.body.Name});
-        console.log(site);
+        // console.log(site);
         await Map.update({Name : req.body.Name}, {Seats : req.body.seats, time : req.body.time});
-        console.log(site);
+        // console.log(site);
         res.send({message : "update Successfully", newinfo : site});
         
     } catch(e) {
@@ -47,9 +48,9 @@ router.post('/updateComment', async function(req, res) {
         let json_comments = [...site.comments];
         // if (site.comments.length != 0) {
         //     comments = JSON.parse(site.comments);
-        // }   
-        console.log(comments);
-        console.log(json_comments);
+        // // }   
+        // console.log(comments);
+        // console.log(json_comments);
         comments.push({UserName : req.body.UserName, comment : req.body.comment, time : req.body.time});
         json_comments.push(JSON.stringify({UserName : req.body.UserName, comment : req.body.comment, time : req.body.time}))
         res.send({message : "updateMessage Successfully", comments})

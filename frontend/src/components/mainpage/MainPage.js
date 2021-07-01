@@ -3,6 +3,7 @@ import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Cards from './Cards'
 import MainPageTopBar from './MainPageTopBar'
 import HashLoader from 'react-spinners/HashLoader'
+import instance from '../../axios'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -22,8 +23,22 @@ const useStyles = makeStyles((theme) => ({
 
 function MainPage({log_in, userinfo}) {
     const classes = useStyles();
-
     const [loading, setLoading] = useState(true)
+
+    const loadUserData = async() => {
+      const email = userinfo;
+      const {
+        data : {message}
+      } = await instance.post('api/getUserData', {
+        email
+      })
+      if(message === "Something went wrong"){
+        log_in(false);
+      }
+    }
+    useEffect(()=>{
+      loadUserData()
+    }, [])
 
     useEffect(()=>{
         const loadData = async () => {

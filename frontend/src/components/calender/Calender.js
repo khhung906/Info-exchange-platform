@@ -62,10 +62,13 @@ function Calender(props) {
     const loadcourse = async() => {
       const email = userinfo;
       const {
-        data : {classinfo} 
+        data : {classinfo, message} 
       } = await instance.post('api/loadcourse' ,{
         email, which : 0
       });
+      if(message === "Something went wrong"){
+        log_in(false);
+      }
       setList(classinfo)
       let tmp_c = {}
       for(let c = 0; c < classinfo.length; c++){
